@@ -285,7 +285,10 @@ function renderRoundModal() {
   };
   score("Karten in der Timeline", mine.score);
   score("Runden gespielt", `${state.round}${skipped ? ` (${skipped} übersprungen)` : ""}`);
-  score("Platz in dieser Partie", place > 0 ? `${place} von ${rows.length}` : "—");
+  if (rows.length > 1) {
+    // Im Solo-Modus ist "1 von 1" nur Rauschen.
+    score("Platz in dieser Partie", place > 0 ? `${place} von ${rows.length}` : "—");
+  }
   const placeEternal = highscorePlace(mine.points);
   score("Platz in der ewigen Highscore",
         placeEternal ? `Platz ${placeEternal}` : "noch nicht gelistet");
