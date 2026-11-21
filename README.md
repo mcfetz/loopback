@@ -134,6 +134,22 @@ wird nicht eingetragen. Die Startseite zeigt die Top 10, nach dem Auflösen der 
 aktualisiert sie sich selbst und nennt den eigenen Platz. Lesen kann sie jeder über
 `GET /api/highscores?limit=10`.
 
+## Deployment (GitHub Actions → ghcr.io → Portainer)
+
+Zwei Wege ins Repo: `origin` ist Gitea, `github` ist der GitHub-Klon
+(`github.com/mcfetz/loopback`) — die Pipeline hängt an GitHub:
+
+- `.github/workflows/ci.yml` — pytest bei Push und Pull Request auf `main`.
+- `.github/workflows/docker.yml` — baut `ghcr.io/mcfetz/loopback:latest` (+ `sha-<commit`)
+  und ruft danach den Portainer-Webhook. Ist `PORTAINER_WEBHOOK_URL` nicht gesetzt, wird der
+  Schritt still übersprungen und der Lauf ist trotzdem grün — ein grüner Lauf ist also kein
+  Beweis für ein Deployment.
+- Der Stack selbst steht in `deploy/portainer-stack.yml` (Image, Port 8123→8000,
+  `LOOPBACK_DATA_DIR=/data` auf einem Volume, Healthcheck gegen `/api/health`).
+
+Nach dem Merge auf GitHub Gitea nachziehen (`git push origin main`), sonst driften die beiden
+Hälften auseinander.
+
 ## Technik
 
 - `app/game.py` — Regelwerk (Räume, Timelines, Auswertung), ohne Netz testbar.

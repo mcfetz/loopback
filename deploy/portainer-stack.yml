@@ -1,0 +1,31 @@
+# Portainer-Stack fuer LoopBack.
+#
+# Zieht das Image, das die Pipeline bei jedem Push auf main baut
+# (ghcr.io/mcfetz/loopback:latest, oeffentlich pullbar). Kein Build im Stack —
+# deployt wird ausschliesslich ueber GitHub Actions und den Portainer-Webhook.
+#
+# Swarm-Hinweis: in einem Swarm-Cluster "container_name" und "restart" weglassen und
+# stattdessen
+#   deploy:
+#     restart_policy: { condition: on-failure }
+# setzen.
+services:
+  loopback:
+    image: ghcr.io/mcfetz/loopback:latest
+    ports:
+      - "8123:8000"
+    environment:
+      # Highscores muessen auf dem Volume liegen, sonst sind sie nach jedem Redeploy weg.
+      LOOPBACK_DATA_DIR: /data
+    volumes:
+      - loopback-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://127.0.0.1:8000/api/health', timeout=4)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  loopback-data:
