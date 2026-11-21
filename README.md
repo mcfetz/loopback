@@ -115,6 +115,16 @@ die normale Suche liefert bei bekannten Titeln sonst genau die („Don't Start N
 Treffer, kein Original). Neue Karten also in `scripts/build_pool.py` in `CARDS`
 eintragen (Titel, Interpret, Jahr) und das Skript laufen lassen.
 
+## Ergebnis-Modal
+
+Nach jeder Runde (und am Spielende) legt sich ein Modal über die Seite: richtig/daneben mit
+Punkten und Zeitbonus, Karten und Punkte gesamt, Platz in der laufenden Partie, dazu der
+Platz in der ewigen Highscore (während des Spiels vorläufig, am Ende echt) und die Top 5.
+Bei mehreren Spielern steht die Tabelle der Partie darunter, der eigene Platz ist markiert.
+„Nächste Karte" startet beim Host und im Solo-Modus direkt die nächste Runde, bei Mitspielern
+heißt der Knopf „Weiter" und schließt nur. Schließen geht auch über das ✕ oder einen Klick
+neben das Fenster; eine neue Runde schließt es von selbst.
+
 ## Highscores
 
 Jede beendete Partie landet auf dem Server in `data/highscores.json` (per `.gitignore` aussen

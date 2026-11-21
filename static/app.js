@@ -81,6 +81,8 @@ function handle(msg) {
       lastFinishedRound = msg.round;
       loadHighscores();          // frisch eingetragene Partie holen
     }
+    if (msg.state === "playing" || msg.state === "lobby") closeRoundModal();
+    maybeOpenRoundModal();
     me.code = msg.code;
     if (me.role === "host") renderHost();
     else if (me.role === "solo") renderSolo();
@@ -216,6 +218,115 @@ function renderRounds() {
   }
 }
 
+// ---------------------------------------------------------------- Ergebnis-Modal
+
+let modalKey = "";        // Runde+Status, fuer die das Modal schon offen war
+
+function modalOpen() {
+  const box = $("#roundmodal");
+  return box && !box.classList.contains("hidden");
+}
+
+function gameRanking() {
+  return [...(state.players || [])].sort(
+    (a, b) => (b.points - a.points) || (b.score - a.score));
+}
+
+function highscorePlace(points) {
+  if (!highscoreRows.length) return null;
+  return highscoreRows.filter((r) => r.points > points).length + 1;
+}
+
+function maybeOpenRoundModal() {
+  if (!state || !state.me) return;
+  const relevant = state.state === "finished"
+    || (state.state === "revealed" && (state.results || []).length > 0);
+  if (!relevant) return;
+  const key = `${state.round}:${state.state}`;
+  if (key === modalKey) return;
+  modalKey = key;
+  renderRoundModal();
+  $("#roundmodal").classList.remove("hidden");
+  loadHighscores();          // ewige Liste im Hintergrund holen, rendert danach neu
+}
+
+function closeRoundModal() {
+  const box = $("#roundmodal");
+  if (box) box.classList.add("hidden");
+}
+
+function renderRoundModal() {
+  if (!state || !state.me) return;
+  const body = $("#modal-body");
+  if (!body) return;
+  const mine = state.me;
+  const finished = state.state === "finished";
+  $("#modal-title").textContent = finished
+    ? "Spiel beendet"
+    : `Runde ${state.round} von ${state.target}`;
+  $("#modal-next").textContent = finished ? "Schließen"
+    : (me.role === "host" || me.role === "solo") ? "Nächste Karte" : "Weiter";
+  body.innerHTML = "";
+
+  const result = (state.results || []).find((r) => r.player_id === mine.id);
+  if (result) {
+    const line = el("div", "modal-line " + (result.correct ? "ok" : "bad"));
+    line.appendChild(el("span", "mlabel", result.correct ? "Richtig" : "Daneben"));
+    line.appendChild(el("span", "mval", result.correct
+      ? `+${result.delta} P · ${fmtMult(result.multiplier || 1)}`
+      : "+0 P"));
+    body.appendChild(line);
+  }
+
+  const kv = el("div", "modal-kv");
+  const rows = gameRanking();
+  const place = rows.findIndex((p) => p.id === mine.id) + 1;
+  const score = (label, value) => {
+    const row = el("div");
+    row.appendChild(el("span", "", label));
+    row.appendChild(el("b", "", String(value)));
+    kv.appendChild(row);
+  };
+  score("Karten in der Timeline", mine.score);
+  score("Punkte gesamt", mine.points);
+  score("Platz in dieser Partie", place > 0 ? `${place} von ${rows.length}` : "—");
+  const placeEternal = highscorePlace(mine.points);
+  score(finished ? "Platz in der Highscore" : "Highscore-Platz (vorläufig)",
+        placeEternal ? `Platz ${placeEternal}` : "noch nicht gelistet");
+  body.appendChild(kv);
+
+  if (rows.length > 1) {
+    body.appendChild(el("div", "modal-sub", "Diese Partie"));
+    const table = el("ul", "modal-table");
+    rows.forEach((p, index) => {
+      const li = el("li", p.id === mine.id ? "me" : "");
+      li.appendChild(el("span", "trank", String(index + 1)));
+      li.appendChild(el("span", "tname", p.name));
+      li.appendChild(el("span", "tpts", `${p.points} P`));
+      li.appendChild(el("span", "tcards", `${p.score} K`));
+      table.appendChild(li);
+    });
+    body.appendChild(table);
+  }
+
+  body.appendChild(el("div", "modal-sub", "Ewige Highscore"));
+  const eternal = highscoreRows.slice(0, 5);
+  if (!eternal.length) {
+    body.appendChild(el("div", "modal-kv", "Noch keine Partie gespeichert."));
+  } else {
+    const table = el("ul", "modal-table");
+    eternal.forEach((row, index) => {
+      const li = el("li", row.name === mine.name ? "me" : "");
+      li.appendChild(el("span", "trank", String(index + 1)));
+      li.appendChild(el("span", "tname", row.name));
+      li.appendChild(el("span", "tpts", `${row.points} P`));
+      li.appendChild(el("span", "tcards", `${row.rounds} R`));
+      table.appendChild(li);
+    });
+    body.appendChild(table);
+  }
+}
+
 // ---------------------------------------------------------------- Highscores
 
 let highscoreRows = [];
@@ -226,6 +337,7 @@ async function loadHighscores() {
     const data = await res.json();
     highscoreRows = data.scores || [];
     renderHighscores(highscoreRows);
+    if (modalOpen()) renderRoundModal();
     if (state && state.state === "finished" && state.me) {
       const rank = highscoreRows.findIndex(
         (r) => r.name === state.me.name && r.points === state.me.points);
@@ -395,6 +507,8 @@ $("#btn-solo").onclick = () => {
          playlist: pickedSource, rounds: pickedRounds });
 };
 
+$("#btn-reset").addEventListener("click", () => { modalKey = ""; });
+
 $("#btn-leave").onclick = () => {
   localStorage.removeItem("jahresringe");
   location.reload();
@@ -404,6 +518,17 @@ for (const [id, action] of [["#btn-start", "start"], ["#btn-next", "next"],
                             ["#btn-skip", "skip"], ["#btn-reset", "reset"]]) {
   $(id).onclick = () => send({ action });
 }
+
+$("#modal-close").onclick = () => closeRoundModal();
+$("#roundmodal").onclick = (event) => {
+  if (event.target === $("#roundmodal")) closeRoundModal();     // Klick auf den Hintergrund
+};
+$("#modal-next").onclick = () => {
+  closeRoundModal();
+  if (state && state.state === "revealed" && (me.role === "host" || me.role === "solo")) {
+    send({ action: "next" });
+  }
+};
 
 $("#solo-next").onclick = () => send({ action: "next" });
 $("#solo-skip").onclick = () => send({ action: "skip" });
