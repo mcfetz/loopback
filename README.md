@@ -46,7 +46,27 @@ Rock, Hip-Hop, Electronic, Soul & Funk, Film & Games, Folk & Country, Reggae und
 zusammen und ergänzt „Deutsch" anhand einer Interpretenliste (`GENRE_BUCKETS`/`DEUTSCH` in
 `scripts/build_pool.py`).
 
-## Pool neu bauen
+## Kartenpool aus Playlists
+
+Statt Karten einzeln zu pflegen, lassen sich Deezer-Playlists importieren:
+
+```bash
+python scripts/import_playlists.py 12204287271            # Playlist-ID
+python scripts/import_playlists.py https://link.deezer.com/s/351vBqcAj6kc4KMvb5TZS
+python scripts/import_playlists.py --limit 20 12204287271  # erst mal 20 Karten testen
+```
+
+Das Skript holt die Tracks, wirft alles ohne Preview, ohne brauchbare Fassung (Instrumental,
+Karaoke, Live, Remix, Medley) und zu kurze Stücke raus, zieht die Genres aus dem Deezer-Album
+und bestimmt das **Jahr über die Apple-Music-Suche** (iTunes-API). Deezer kennt nur das
+Album-Datum („ABBA Gold" → Dancing Queen 2005), Apple nennt das Erstveröffentlichungsdatum
+(1976) — auch bei Compilations. Genommen wird das häufigste Jahr der passenden Treffer, weil
+einzelne Apple-Einträge kaputte Daten haben (ein „Radio Edit" von Meat Loaf steht dort mit
+1966, richtig ist 1977).
+
+Kuratierte Karten in `data/pool.json` bleiben erhalten und gewinnen beim Jahr. Alles
+Unsichere landet in `data/pool-review.txt` (Jahr weicht stark vom Deezer-Album ab, kein Genre,
+kein Jahr gefunden).
 
 `data/pool.json` enthält die Karten: Titel, Interpret, **kuratiertes Originaljahr**, Deezer-ID.
 Das Jahr ist im Spiel die einzige Wahrheit, weil Deezer nur das Album-Release-Datum kennt
