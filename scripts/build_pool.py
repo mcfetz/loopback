@@ -29,7 +29,7 @@ CARDS: list[tuple[str, str, int]] = [
     ("Johnny B. Goode", "Chuck Berry", 1958),
     ("Hit the Road Jack", "Ray Charles", 1961),
     ("She Loves You", "The Beatles", 1963),
-    ("You Really Got Me", "The Kinks", 1964),
+    ("Waterloo Sunset", "The Kinks", 1967),
     ("(I Can't Get No) Satisfaction", "The Rolling Stones", 1965),
     ("My Generation", "The Who", 1965),
     ("I Got You (I Feel Good)", "James Brown", 1965),
@@ -120,7 +120,8 @@ async def fetch(client: httpx.AsyncClient, path: str, **params) -> dict | None:
 
 
 BAD_WORDS = ("instrumental", "karaoke", "cover", "tribute", "made famous", "in the style of",
-             "live at", "live from", "commentary", "remix", "mixed", "medley")
+             "commentary", "remix", "mixed", "medley")
+LIVE_RE = re.compile(r"\blive\b")     # "(Live)" ja, "Stayin Alive" nein
 
 # Deezer liefert Genres pro Album und sehr feinkoernig (18 verschiedene bei 77 Karten, viele
 # mit einem einzigen Titel). Fuer eine Party-Filterung wird daraus eine Handvoll Schubladen.
@@ -155,7 +156,7 @@ def bucket_genres(raw: list[str], artist: str) -> list[str]:
 
 
 # Alben ohne Genre-Angabe (z.B. Live-Scheiben) bekommen hier ihr Genre.
-MANUAL_GENRES = {"no-woman-no-cry": "Reggae"}
+MANUAL_GENRES = {"bob-marley-no-woman-no-cry": "Reggae"}
 
 
 def score(hit: dict, title: str, artist: str) -> float:
@@ -186,6 +187,8 @@ def norm(text: str) -> str:
 def is_clean(title: str) -> bool:
     low = (title or "").lower()
     if " / " in low or "medley" in low:      # Medleys wie "Jailhouse Rock / Hound Dog / ..."
+        return False
+    if LIVE_RE.search(low):                  # Live-Fassungen, aber nicht "Stayin Alive"
         return False
     return not any(bad in low for bad in BAD_WORDS)
 

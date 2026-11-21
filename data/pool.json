@@ -50,11 +50,11 @@
     },
     {
       "key": "the-beatles-she-loves-you",
-      "title": "She Loves You (Live)",
+      "title": "She Loves You (Mono / Remastered)",
       "artist": "The Beatles",
       "year": 1963,
-      "deezer_id": "2614506842",
-      "deezer_release_year": "2024",
+      "deezer_id": "116348596",
+      "deezer_release_year": "2015",
       "preview_ok": true,
       "genres": [
         "Rock"
@@ -64,12 +64,12 @@
       ]
     },
     {
-      "key": "the-kinks-you-really-got-me",
-      "title": "You Really Got Me (Live)",
+      "key": "the-kinks-waterloo-sunset",
+      "title": "Waterloo Sunset",
       "artist": "The Kinks",
-      "year": 1964,
-      "deezer_id": "3474141091",
-      "deezer_release_year": "2025",
+      "year": 1967,
+      "deezer_id": "3802993412",
+      "deezer_release_year": "1967",
       "preview_ok": true,
       "genres": [
         "Rock"
