@@ -39,8 +39,10 @@ ohne Mitspieler. Man steuert selbst und tippt selbst, 10 Karten sind das Ziel.
 ## Starten
 
 ```bash
+cd ~/development/loopback
 python -m venv venv && venv/bin/pip install -r requirements.txt
 venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8123
+# Tests: venv/bin/pip install -r requirements-dev.txt && venv/bin/python -m pytest tests -q
 ```
 
 Oder als Container: `docker compose up -d --build`, dann `http://<host>:8123` aufrufen.
