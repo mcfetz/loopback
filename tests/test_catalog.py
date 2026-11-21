@@ -18,6 +18,12 @@ def test_parse_playlist_id():
     assert importer.parse_playlist_id("   ") is None
 
 
+def test_short_link_is_not_parsed_directly_but_resolved():
+    # Kurzlinks tragen keine ID; sie brauchen den HTTP-Redirect (resolve_playlist_id).
+    short = "https://link.deezer.com/s/351wa9lZdHsgXgzIjKtuv"
+    assert importer.parse_playlist_id(short) is None
+
+
 def test_is_clean_rejects_live_but_not_alive():
     assert catalog.is_clean("Dancing Queen")
     assert not catalog.is_clean("She Loves You (Live)")

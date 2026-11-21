@@ -90,10 +90,11 @@ async def playlists() -> dict:
 @app.post("/api/playlists")
 async def import_playlist(payload: dict) -> dict:
     raw = str((payload or {}).get("url") or "")
-    pid = importer.parse_playlist_id(raw)
+    pid = await importer.resolve_playlist_id(raw)
     if not pid:
         raise HTTPException(status_code=400,
-                            detail="Keine Playlist-ID gefunden — Deezer-Link oder ID einsetzen")
+                            detail="Keine Playlist gefunden — Deezer-Playlist-Link (auch "
+                                   "Kurzlink) oder Playlist-ID einsetzen")
     job = await importer.import_in_background(pid)
     log.info("Import gestartet: Playlist %s (Job %s)", pid, job.id)
     return job.as_dict()

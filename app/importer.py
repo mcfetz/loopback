@@ -11,6 +11,7 @@ import json
 import re
 import secrets
 import time
+import urllib.parse
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -84,6 +85,37 @@ def parse_playlist_id(raw: str) -> str | None:
     if raw.isdigit():
         return raw
     return None
+
+
+async def resolve_playlist_id(raw: str) -> str | None:
+    """ID aus Link, Kurzlink oder roher ID holen.
+
+    Deezer-Kurzlinks (link.deezer.com/s/…) enthalten keine ID; sie leiten auf
+    www.deezer.com/playlist/<id> weiter, teils mit der Ziel-URL url-kodiert in Query-Parametern
+    (awf/dest/iwf). Deshalb hier einmal folgen und alle Stellen absuchen.
+    """
+    direct = parse_playlist_id(raw)
+    if direct:
+        return direct
+    raw = (raw or "").strip()
+    if not re.match(r"https?://", raw):
+        return None
+    try:
+        async with httpx.AsyncClient(timeout=15.0, follow_redirects=True,
+                                     headers={"User-Agent": UA}) as client:
+            resp = await client.get(raw)
+    except httpx.HTTPError:
+        return None
+    candidates = [str(resp.url), resp.headers.get("location", "")]
+    parsed = urllib.parse.urlparse(str(resp.url))
+    for values in urllib.parse.parse_qs(parsed.query).values():
+        candidates.extend(urllib.parse.unquote(v) for v in values)
+    for candidate in candidates:
+        hit = PLAYLIST_RE.search(candidate or "")
+        if hit:
+            return hit.group(1)
+    return None
+
 
 
 # ------------------------------------------------------------------ Deezer
