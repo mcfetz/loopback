@@ -262,16 +262,17 @@ function renderRoundModal() {
   $("#modal-next").textContent = "Schließen";
   body.innerHTML = "";
 
-  const result = (state.results || []).find((r) => r.player_id === mine.id);
-  if (result) {
-    const line = el("div", "modal-line " + (result.correct ? "ok" : "bad"));
-    line.appendChild(el("span", "mlabel", result.correct ? "Letzte Runde: richtig"
-                                                         : "Letzte Runde: daneben"));
-    line.appendChild(el("span", "mval", result.correct
-      ? `+${result.delta} P · ${fmtMult(result.multiplier || 1)}`
-      : "+0 P"));
-    body.appendChild(line);
-  }
+  // Gesamtausbeute statt Ergebnis der letzten Runde: Karten zaehlen, uebersprungene Runden
+  // fliegen raus, die Startkarte war geschenkt.
+  const correct = Math.max(0, mine.score - 1);
+  const skipped = (state.log || []).filter((entry) => entry.skipped).length;
+  const counted = Math.max(0, state.round - skipped);
+  const quote = counted ? Math.round((correct / counted) * 100) : 0;
+  const line = el("div", "modal-line " + (correct * 2 >= counted ? "ok" : "bad"));
+  line.appendChild(el("span", "mlabel",
+    `${correct} von ${counted} Runden richtig${counted ? ` (${quote} %)` : ""}`));
+  line.appendChild(el("span", "mval", `${mine.points} P`));
+  body.appendChild(line);
 
   const kv = el("div", "modal-kv");
   const rows = gameRanking();
@@ -283,7 +284,7 @@ function renderRoundModal() {
     kv.appendChild(row);
   };
   score("Karten in der Timeline", mine.score);
-  score("Punkte gesamt", mine.points);
+  score("Runden gespielt", `${state.round}${skipped ? ` (${skipped} übersprungen)` : ""}`);
   score("Platz in dieser Partie", place > 0 ? `${place} von ${rows.length}` : "—");
   const placeEternal = highscorePlace(mine.points);
   score("Platz in der ewigen Highscore",
