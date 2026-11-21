@@ -43,10 +43,23 @@ wählt mehr Genres.
 Die Genres stammen aus den Album-Angaben von Deezer, werden aber gebündelt: Deezer liefert
 18 Feinkategorien für 77 Karten (viele mit nur einem Titel), das Skript fasst sie zu Pop,
 Rock, Hip-Hop, Electronic, Soul & Funk, Film & Games, Folk & Country, Reggae und Jazz & Blues
-zusammen und ergänzt „Deutsch" anhand einer Interpretenliste (`GENRE_BUCKETS`/`DEUTSCH` in
-`scripts/build_pool.py`).
+zusammen und ergänzt „Deutsch" anhand einer Interpretenliste. Die Tabellen stehen in
+`app/catalog.py` (`GENRE_BUCKETS`, `DEUTSCH`), damit UI-Import und CLI dieselben Regeln nutzen.
 
-## Kartenpool aus Playlists
+## Quelle im UI wählen und importieren
+
+Die Startseite hat oben einen Block **Quelle**: Chips für „Alle Karten", „Kuratiert" und jede
+importierte Playlist (mit Kartenzahl). Die Auswahl gilt für Host- und Solo-Runden; der Host
+sieht sie unter dem Session-Code („Quelle: Hitster · Genres: Rock").
+
+Import direkt im UI: Deezer-Link oder Playlist-ID ins Feld, „Importieren" — der Import läuft
+als Hintergrund-Job im Server (`app/importer.py`), die Seite zeigt den Fortschritt
+(geprüfte Tracks, übernommene Karten) und aktualisiert danach Quellen und Genres. Pro Track
+fällt eine Apple-Music-Abfrage an, deshalb dauert eine 300-Track-Playlist rund fünf Minuten.
+
+`data/playlists.json` merkt sich die Quellen (ID, Titel, Kartenzahl), `data/pool.json` trägt
+pro Karte `playlist`. Ein erneuter Import derselben Playlist ersetzt genau deren Karten,
+kuratierte und fremde Playlists bleiben unangetastet.
 
 Statt Karten einzeln zu pflegen, lassen sich Deezer-Playlists importieren:
 

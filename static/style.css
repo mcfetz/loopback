@@ -474,6 +474,15 @@ footer { position: relative; z-index: 1; text-align: center; padding: 1rem; }
 .chip.clear { background: transparent; color: var(--muted); border-style: dashed; }
 .filterline { text-align: center; color: var(--muted); font-size: .8rem; margin: -.3rem 0 .7rem; }
 
+/* Quellen + Import */
+.importrow { display: flex; gap: .5rem; align-items: stretch; }
+.importrow input { flex: 1; margin-top: 0; font-size: .95rem; }
+.importrow button { flex: 0 0 auto; }
+.source.on { background: var(--grad-hot); color: #2a0016; border-color: transparent;
+  box-shadow: 0 8px 18px rgba(255, 46, 147, .35); }
+.source .cnt { opacity: .7; }
+.progressline { color: var(--cyan); font-weight: 700; }
+
 @media (prefers-reduced-motion: reduce) {
   body::before, button.primary::after, .winner-banner { animation: none; }
   .reveal, .tcard, .slot.picked { animation: none; }

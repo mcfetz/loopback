@@ -143,11 +143,120 @@ function chosenGenres() {
   return [...pickedGenres];
 }
 
+// ---------------------------------------------------------------- Quellen (Playlists)
+
+let sources = { total: 0, curated: 0, items: [] };
+let pickedSource = localStorage.getItem("jahresringe-source") || "";
+let importTimer = null;
+
+function sourceLabel(id) {
+  if (!id) return "alle Karten";
+  if (id === "kuratiert") return "kuratiert";
+  const hit = (sources.items || []).find((s) => s.id === id);
+  return hit ? hit.title : id;
+}
+
+function renderSources() {
+  for (const box of document.querySelectorAll("[data-sources]")) {
+    box.innerHTML = "";
+    const options = [
+      { id: "", name: "Alle Karten", count: sources.total },
+      { id: "kuratiert", name: "Kuratiert", count: sources.curated },
+      ...(sources.items || []).map((s) => ({ id: s.id, name: s.title,
+                                             count: s.cards_in_pool })),
+    ].filter((opt) => opt.count > 0);
+    for (const opt of options) {
+      const chip = el("button", "chip source" + (pickedSource === opt.id ? " on" : ""));
+      chip.type = "button";
+      chip.appendChild(document.createTextNode(opt.name));
+      chip.appendChild(el("span", "cnt", String(opt.count)));
+      chip.onclick = () => {
+        pickedSource = opt.id;
+        localStorage.setItem("jahresringe-source", pickedSource);
+        renderSources();
+      };
+      box.appendChild(chip);
+    }
+  }
+}
+
+async function loadSources() {
+  try {
+    const res = await fetch("/api/playlists");
+    sources = await res.json();
+    const known = (sources.items || []).some((s) => s.id === pickedSource);
+    if (pickedSource && pickedSource !== "kuratiert" && !known) pickedSource = "";
+    renderSources();
+  } catch (err) {
+    console.warn("Quellen konnten nicht geladen werden", err);
+  }
+}
+
+function importStatus(text, cls) {
+  const box = $("#import-status");
+  if (!box) return;
+  box.textContent = text || "";
+  box.className = "hint " + (cls || "");
+}
+
+function pollImport(job) {
+  clearInterval(importTimer);
+  importTimer = setInterval(async () => {
+    let status;
+    try {
+      status = await (await fetch(`/api/playlists/jobs/${job.id}`)).json();
+    } catch (err) {
+      return;                       // Netzhusten: beim naechsten Takt weiter
+    }
+    if (status.state === "running" || status.state === "queued") {
+      importStatus(`${status.title || job.playlist_id}: ${status.processed}/${status.total} `
+        + `geprüft, ${status.added} übernommen (${status.seconds} s)`, "progressline");
+      return;
+    }
+    clearInterval(importTimer);
+    $("#btn-import").disabled = false;
+    if (status.state !== "done") {
+      importStatus(`Import fehlgeschlagen: ${status.message}`);
+      return;
+    }
+    const skipped = Object.entries(status.skipped || {}).map(([k, v]) => `${k}=${v}`).join(", ");
+    importStatus(`${status.title}: ${status.added} Karten übernommen`
+      + (skipped ? ` (übersprungen: ${skipped})` : ""), "progressline");
+    $("#import-url").value = "";
+    pickedSource = status.playlist_id;             // frisch importiert = gleich auswaehlen
+    localStorage.setItem("jahresringe-source", pickedSource);
+    await loadSources();
+    await loadGenres();
+  }, 1500);
+}
+
+$("#btn-import").onclick = async () => {
+  const url = ($("#import-url").value || "").trim();
+  if (!url) return importStatus("Playlist-Link oder ID einsetzen");
+  importStatus("Import startet …", "progressline");
+  $("#btn-import").disabled = true;
+  try {
+    const res = await fetch("/api/playlists", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url }),
+    });
+    if (!res.ok) {
+      const problem = await res.json().catch(() => ({}));
+      throw new Error(problem.detail || `HTTP ${res.status}`);
+    }
+    pollImport(await res.json());
+  } catch (err) {
+    importStatus(`Import fehlgeschlagen: ${err.message}`);
+    $("#btn-import").disabled = false;
+  }
+};
+
 $("#btn-create").onclick = () => {
   showError("");
   me.role = "host";
   me.name = ($("#host-name").value || "Host").trim().slice(0, 24);
-  send({ action: "create", name: me.name, genres: chosenGenres() });
+  send({ action: "create", name: me.name, genres: chosenGenres(), playlist: pickedSource });
 };
 
 $("#btn-join").onclick = () => {
@@ -163,7 +272,7 @@ $("#btn-join").onclick = () => {
 $("#btn-solo").onclick = () => {
   showError("");
   me.role = "solo";
-  send({ action: "solo", name: "Solo", genres: chosenGenres() });
+  send({ action: "solo", name: "Solo", genres: chosenGenres(), playlist: pickedSource });
 };
 
 $("#btn-leave").onclick = () => {
@@ -179,7 +288,8 @@ for (const [id, action] of [["#btn-start", "start"], ["#btn-next", "next"], ["#b
 $("#solo-next").onclick = () => send({ action: "next" });
 $("#solo-reveal").onclick = () => send({ action: "reveal" });
 $("#solo-skip").onclick = () => send({ action: "skip" });
-$("#solo-restart").onclick = () => send({ action: "solo", name: "Solo", genres: chosenGenres() });
+$("#solo-restart").onclick = () => send({ action: "solo", name: "Solo", genres: chosenGenres(),
+                                           playlist: pickedSource });
 
 // ---------------------------------------------------------------- Audio
 
@@ -228,7 +338,9 @@ function renderHost() {
   $("#host-code").textContent = state.code;
   $("#host-url").textContent = `${location.origin}/?code=${state.code}`;
   const active = state.genres || [];
-  $("#host-filter").textContent = active.length ? `Genres: ${active.join(", ")}` : "Genres: alle";
+  const parts = [`Quelle: ${sourceLabel(state.playlist || "")}`];
+  parts.push(active.length ? `Genres: ${active.join(", ")}` : "Genres: alle");
+  $("#host-filter").textContent = parts.join(" · ");
 
   const st = state.state;
   const playing = st === "playing";
@@ -539,4 +651,5 @@ if (saved && saved.role && saved.role !== "solo") {
   $("#btn-leave").classList.remove("hidden");
 }
 loadGenres();
+loadSources();
 connect();

@@ -17,6 +17,17 @@
   <!-- Start -->
   <section id="view-start" class="view">
     <div class="card">
+      <h2>Quelle</h2>
+      <p class="hint">Woraus die Karten kommen &mdash; alle, nur die handverlesenen oder eine importierte Playlist.</p>
+      <div class="chips" data-sources></div>
+      <label>Playlist importieren <span class="chipnote">Deezer-Link oder ID</span></label>
+      <div class="importrow">
+        <input id="import-url" placeholder="https://www.deezer.com/playlist/…">
+        <button id="btn-import" class="primary">Importieren</button>
+      </div>
+      <p id="import-status" class="hint"></p>
+    </div>
+    <div class="card">
       <h2>Host</h2>
       <p class="hint">Du spielst das Audio, steuerst die Runden und r&auml;tst selbst mit. Die L&ouml;sung siehst du erst beim Aufl&ouml;sen.</p>
       <label>Dein Name <input id="host-name" maxlength="24" placeholder="Host" value="Host"></label>

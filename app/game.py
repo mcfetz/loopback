@@ -83,6 +83,7 @@ class Room:
     winner: str | None = None
     solo: bool = False       # Ein-Geraet-Modus: derselbe Client ist Host und Spieler
     filter_genres: list[str] = field(default_factory=list)
+    filter_playlist: str = ""
 
     # ---------- Aufbau ----------
 
@@ -240,6 +241,7 @@ class Room:
             "winner": self.winner,
             "deck_left": len(self.deck),
             "genres": self.filter_genres,
+            "playlist": self.filter_playlist,
             "players": [
                 {
                     "id": p.id,

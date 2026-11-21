@@ -105,11 +105,6 @@ CARDS: list[tuple[str, str, int]] = [
 ]
 
 
-def slug(title: str, artist: str) -> str:
-    raw = f"{artist}-{title}".lower()
-    return re.sub(r"[^a-z0-9]+", "-", raw).strip("-")[:60]
-
-
 async def fetch(client: httpx.AsyncClient, path: str, **params) -> dict | None:
     try:
         resp = await client.get(f"{DEEZER}/{path}", params=params or None)
@@ -119,44 +114,13 @@ async def fetch(client: httpx.AsyncClient, path: str, **params) -> dict | None:
         return None
 
 
-BAD_WORDS = ("instrumental", "karaoke", "cover", "tribute", "made famous", "in the style of",
-             "commentary", "remix", "mixed", "medley")
-LIVE_RE = re.compile(r"\blive\b")     # "(Live)" ja, "Stayin Alive" nein
+from app.catalog import BAD_WORDS, MANUAL_GENRES, bucket_genres, is_clean, norm, slug
 
-# Deezer liefert Genres pro Album und sehr feinkoernig (18 verschiedene bei 77 Karten, viele
-# mit einem einzigen Titel). Fuer eine Party-Filterung wird daraus eine Handvoll Schubladen.
-GENRE_BUCKETS = {
-    "pop": "Pop", "international pop": "Pop", "electro pop/electro rock": "Pop",
-    "singer & songwriter": "Pop", "indie pop": "Pop", "chanson": "Pop",
-    "rock": "Rock", "indie rock": "Rock", "alternative": "Rock", "heavy metal": "Rock",
-    "hard rock": "Rock", "punk": "Rock", "metal": "Rock", "alternative rock": "Rock",
-    "rap/hip hop": "Hip-Hop", "r&b": "Hip-Hop", "trap": "Hip-Hop", "hip hop": "Hip-Hop",
-    "electro": "Electronic", "dance": "Electronic", "techno/house": "Electronic",
-    "house": "Electronic", "disco": "Electronic", "trance": "Electronic",
-    "soul & funk": "Soul & Funk", "soul": "Soul & Funk", "funk": "Soul & Funk",
-    "filmmusik": "Film & Games", "filme/videospiele": "Film & Games",
-    "soundtrack": "Film & Games", "musical": "Film & Games",
-    "jazz": "Jazz & Blues", "blues": "Jazz & Blues",
-    "folk": "Folk & Country", "country": "Folk & Country",
-    "reggae": "Reggae", "klassik": "Klassik", "classical": "Klassik",
-}
-
-# Deutschsprachig ist kein Deezer-Genre, fuer eine deutsche Runde aber der naheliegendste Filter.
-DEUTSCH = {
-    "nena", "peter schilling", "herbert grönemeyer", "die ärzte", "rammstein", "cro",
-    "marteria", "deichkind", "kraftklub", "apache 207", "falco", "fettes brot",
-}
+# Die Regeln (Fassungsfilter, Genre-Buendel, Jahresermittlung) leben in app/catalog.py, damit
+# UI-Import und CLI nicht auseinander laufen.
 
 
-def bucket_genres(raw: list[str], artist: str) -> list[str]:
-    buckets = {GENRE_BUCKETS[g.lower()] for g in raw if g.lower() in GENRE_BUCKETS}
-    if artist.lower() in DEUTSCH:
-        buckets.add("Deutsch")
-    return sorted(buckets)
-
-
-# Alben ohne Genre-Angabe (z.B. Live-Scheiben) bekommen hier ihr Genre.
-MANUAL_GENRES = {"bob-marley-no-woman-no-cry": "Reggae"}
+# (Genre-Buendel, Fassungsfilter und Jahr-Logik: siehe app/catalog.py)
 
 
 def score(hit: dict, title: str, artist: str) -> float:
@@ -178,19 +142,6 @@ def score(hit: dict, title: str, artist: str) -> float:
         s -= 6.0
     s += min(2.0, ((hit.get("rank") or 0) / 400000.0))
     return s
-
-
-def norm(text: str) -> str:
-    return re.sub(r"[^a-z0-9]+", " ", (text or "").lower().replace("ß", "ss")).strip()
-
-
-def is_clean(title: str) -> bool:
-    low = (title or "").lower()
-    if " / " in low or "medley" in low:      # Medleys wie "Jailhouse Rock / Hound Dog / ..."
-        return False
-    if LIVE_RE.search(low):                  # Live-Fassungen, aber nicht "Stayin Alive"
-        return False
-    return not any(bad in low for bad in BAD_WORDS)
 
 
 def best_artist(artists: list[dict], artist: str) -> dict | None:
@@ -238,7 +189,6 @@ async def pick_track(client: httpx.AsyncClient, title: str, artist: str) -> tupl
     chosen = clean or ranked
     chosen.sort(key=lambda h: score(h, title, artist), reverse=True)
     return chosen[0], "suche" if clean else "suche-schmutzig"
-
 
 
 async def build() -> int:

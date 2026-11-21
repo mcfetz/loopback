@@ -10,11 +10,11 @@ import logging
 import secrets
 from pathlib import Path
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from app import deezer
+from app import catalog, deezer, importer
 from app.game import Card, GameError, Player, Room, TARGET_CARDS, filter_pool, new_code
 
 log = logging.getLogger("song-timeline")
@@ -30,10 +30,15 @@ ROOMS: dict[str, Room] = {}
 CONNS: dict[str, list[dict]] = {}       # code -> [{"ws","pid","host"}]
 
 
-def pool_cards(genres: list[str] | None = None) -> list[Card]:
+def pool_cards(genres: list[str] | None = None, playlist: str | None = None) -> list[Card]:
+    items = deezer.load_pool()
+    if playlist == "kuratiert":
+        items = [i for i in items if not i.get("playlist")]
+    elif playlist:
+        items = [i for i in items if i.get("playlist") == playlist]
     cards = [Card(**{k: item[k] for k in ("key", "title", "artist", "year", "deezer_id")},
                   genres=tuple(item.get("genres") or []))
-             for item in deezer.load_pool()]
+             for item in items]
     return filter_pool(cards, genres)
 
 
@@ -44,13 +49,15 @@ def wanted_genres(msg: dict) -> list[str]:
     return [str(g)[:32] for g in raw][:8]
 
 
-def room_pool(msg: dict) -> tuple[list[Card], list[str]]:
+def room_pool(msg: dict) -> tuple[list[Card], list[str], str]:
     genres = wanted_genres(msg)
-    cards = pool_cards(genres)
+    playlist = str(msg.get("playlist") or "").strip()[:40]
+    cards = pool_cards(genres, playlist or None)
     if len(cards) < TARGET_CARDS + 2:
-        raise GameError(f"Zu wenige Karten fuer diese Genres ({len(cards)} statt "
-                        f"{TARGET_CARDS + 2}) — bitte mehr Genres waehlen")
-    return cards, genres
+        raise GameError(f"Zu wenige Karten fuer diese Auswahl ({len(cards)} statt "
+                        f"{TARGET_CARDS + 2}) — bitte mehr Genres waehlen oder eine andere "
+                        f"Playlist")
+    return cards, genres, playlist
 
 
 @app.get("/")
@@ -61,12 +68,44 @@ async def index() -> FileResponse:
 @app.get("/api/genres")
 async def genres() -> list[dict]:
     """Verfuegbare Genres mit Kartenzahl, haeufigste zuerst."""
+    return catalog.grouped_genres(importer.pool_cards())
+
+
+@app.get("/api/playlists")
+async def playlists() -> dict:
+    """Gemerkte Playlists als Rundenquellen, plus die kuratierten Karten."""
+    cards = importer.pool_cards()
     counts: dict[str, int] = {}
-    for item in deezer.load_pool():
-        for name in item.get("genres") or []:
-            counts[name] = counts.get(name, 0) + 1
-    return [{"name": name, "count": count}
-            for name, count in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))]
+    for card in cards:
+        pid = card.get("playlist") or ""
+        counts[pid] = counts.get(pid, 0) + 1
+    return {
+        "total": len(cards),
+        "curated": counts.get("", 0),
+        "items": [{**item, "cards_in_pool": counts.get(item["id"], 0)}
+                  for item in importer.load_playlists()],
+    }
+
+
+@app.post("/api/playlists")
+async def import_playlist(payload: dict) -> dict:
+    raw = str((payload or {}).get("url") or "")
+    pid = importer.parse_playlist_id(raw)
+    if not pid:
+        raise HTTPException(status_code=400,
+                            detail="Keine Playlist-ID gefunden — Deezer-Link oder ID einsetzen")
+    job = await importer.import_in_background(pid)
+    log.info("Import gestartet: Playlist %s (Job %s)", pid, job.id)
+    return job.as_dict()
+
+
+@app.get("/api/playlists/jobs/{job_id}")
+async def import_job(job_id: str) -> dict:
+    job = importer.JOBS.get(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="Job unbekannt")
+    return job.as_dict()
+
 
 
 @app.get("/api/health")
@@ -119,10 +158,11 @@ async def ws_endpoint(sock: WebSocket) -> None:
             try:
                 if action == "create":
                     host_id = secrets.token_urlsafe(8)
-                    cards, genres = room_pool(msg)
+                    cards, genres, playlist = room_pool(msg)
                     room = Room.create(cards, host_id=host_id,
                                        code=new_code(set(ROOMS)))
                     room.filter_genres = genres
+                    room.filter_playlist = playlist
                     host_name = str(msg.get("name") or "Host").strip()[:24] or "Host"
                     room.add_player(host_id, host_name)     # Host raet mit
                     ROOMS[room.code] = room
@@ -138,9 +178,10 @@ async def ws_endpoint(sock: WebSocket) -> None:
                 elif action == "solo":
                     # Ein Geraet, eine Person: derselbe Client steuert und tippt, ohne Code.
                     solo_pid = secrets.token_urlsafe(8)
-                    cards, genres = room_pool(msg)
+                    cards, genres, playlist = room_pool(msg)
                     room = Room.create(cards, host_id=solo_pid, code=new_code(set(ROOMS)))
                     room.filter_genres = genres
+                    room.filter_playlist = playlist
                     room.solo = True
                     name = str(msg.get("name") or "Solo").strip()[:24] or "Solo"
                     room.add_player(solo_pid, name)
