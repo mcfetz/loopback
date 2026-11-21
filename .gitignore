@@ -2,3 +2,5 @@ venv/
 __pycache__/
 *.pyc
 .pytest_cache/
+# Laufzeit: Highscore-Liste des Servers
+data/highscores.json

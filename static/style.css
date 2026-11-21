@@ -483,6 +483,29 @@ h3 {
   from { transform: scale(.94); opacity: .4; }
 }
 
+/* Highscore-Liste */
+.highscores { list-style: none; padding: 0; margin: .3rem 0 0; display: grid; gap: .35rem; }
+.highscores:empty { display: none; }
+.highscores li {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr auto;
+  grid-template-areas: "rank name points" ". meta meta";
+  align-items: baseline;
+  gap: .1rem .5rem;
+  padding: .5rem .7rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid var(--line);
+}
+.highscores li.top {
+  background: linear-gradient(100deg, rgba(255, 207, 46, .22), rgba(255, 46, 147, .18));
+  border-color: rgba(255, 207, 46, .45);
+}
+.highscores .hrank { grid-area: rank; font-weight: 900; color: var(--yellow); }
+.highscores .hname { grid-area: name; font-weight: 800; }
+.highscores .hpts { grid-area: points; font-weight: 900; }
+.highscores .hmeta { grid-area: meta; color: var(--muted); font-size: .76rem; }
+
 /* Zeitbonus-Anzeige */
 .mult {
   text-align: center;

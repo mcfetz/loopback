@@ -279,6 +279,10 @@ class Room:
             player.correct_last = None
             player.guessed_at = None
             player.last_delta = 0
+        if self.round >= self.max_rounds:
+            # Uebersprungene letzte Runde darf das Spiel nicht offen lassen.
+            best = max(self.players.values(), key=lambda p: (p.points, p.score))
+            self._finish(best)
 
     def reset(self) -> None:
         self.state = "lobby"

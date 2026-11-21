@@ -114,6 +114,15 @@ die normale Suche liefert bei bekannten Titeln sonst genau die („Don't Start N
 Treffer, kein Original). Neue Karten also in `scripts/build_pool.py` in `CARDS`
 eintragen (Titel, Interpret, Jahr) und das Skript laufen lassen.
 
+## Highscores
+
+Jede beendete Partie landet auf dem Server in `data/highscores.json` (per `.gitignore` aussen
+vor, das ist Laufzeit). Pro Name bleibt die **beste** Partie stehen — Punkte, Karten,
+Rundenzahl, solo und Zeitstempel; wer in einer Partie weder Punkte noch Karten geholt hat,
+wird nicht eingetragen. Die Startseite zeigt die Top 10, nach dem Auflösen der letzten Runde
+aktualisiert sie sich selbst und nennt den eigenen Platz. Lesen kann sie jeder über
+`GET /api/highscores?limit=10`.
+
 ## Technik
 
 - `app/game.py` — Regelwerk (Räume, Timelines, Auswertung), ohne Netz testbar.

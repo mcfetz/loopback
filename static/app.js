@@ -13,6 +13,7 @@ let ws = null;
 let me = { role: null, id: null, name: null, code: null };
 let state = null;
 let clockOffset = 0;      // Sekunden: Browseruhr minus Serveruhr
+let lastFinishedRound = -1;
 
 // ---------------------------------------------------------------- Zeitbonus
 
@@ -76,6 +77,10 @@ function handle(msg) {
   if (msg.type === "state") {
     state = msg;
     if (msg.now) clockOffset = Date.now() / 1000 - msg.now;   // Serverzeit statt Browseruhr
+    if (msg.state === "finished" && msg.round !== lastFinishedRound) {
+      lastFinishedRound = msg.round;
+      loadHighscores();          // frisch eingetragene Partie holen
+    }
     me.code = msg.code;
     if (me.role === "host") renderHost();
     else if (me.role === "solo") renderSolo();
@@ -209,6 +214,46 @@ function renderRounds() {
       box.appendChild(chip);
     }
   }
+}
+
+// ---------------------------------------------------------------- Highscores
+
+let highscoreRows = [];
+
+async function loadHighscores() {
+  try {
+    const res = await fetch("/api/highscores?limit=10");
+    const data = await res.json();
+    highscoreRows = data.scores || [];
+    renderHighscores(highscoreRows);
+    if (state && state.state === "finished" && state.me) {
+      const rank = highscoreRows.findIndex(
+        (r) => r.name === state.me.name && r.points === state.me.points);
+      if (rank >= 0) {
+        setStatus(`Platz ${rank + 1} in der Highscore — ${state.me.points} Punkte.`);
+      }
+    }
+  } catch (err) {
+    console.warn("Highscores konnten nicht geladen werden", err);
+  }
+}
+
+function renderHighscores(rows) {
+  const box = $("#highscores");
+  if (!box) return;
+  box.innerHTML = "";
+  const empty = $("#hs-empty");
+  if (empty) empty.classList.toggle("hidden", rows.length > 0);
+  rows.forEach((row, index) => {
+    const li = el("li", index === 0 ? "top" : "");
+    li.appendChild(el("span", "hrank", String(index + 1)));
+    li.appendChild(el("span", "hname", row.name));
+    li.appendChild(el("span", "hpts", `${row.points} P`));
+    const karten = `${row.cards} Karte${row.cards === 1 ? "" : "n"}`;
+    li.appendChild(el("span", "hmeta",
+      `${row.rounds} Runden · ${karten}${row.solo ? " · solo" : ""} · ${row.at}`));
+    box.appendChild(li);
+  });
 }
 
 // ---------------------------------------------------------------- Quellen (Playlists)
@@ -759,4 +804,5 @@ if (saved && saved.role && saved.role !== "solo") {
 loadGenres();
 renderRounds();
 loadSources();
+loadHighscores();
 connect();

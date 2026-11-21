@@ -14,7 +14,7 @@ from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from app import catalog, deezer, importer
+from app import catalog, deezer, importer, scores
 from app.game import (Card, DEFAULT_ROUNDS, GameError, Player, Room, ROUND_OPTIONS, filter_pool,
                       new_code)
 
@@ -28,6 +28,7 @@ app = FastAPI(title="Song-Timeline")
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 ROOMS: dict[str, Room] = {}
+SCORED: set[str] = set()      # Raeume, deren Ergebnis schon in der Highscore steht
 CONNS: dict[str, list[dict]] = {}       # code -> [{"ws","pid","host"}]
 
 
@@ -73,6 +74,11 @@ def room_pool(msg: dict) -> tuple[list[Card], list[str], str, int]:
                         f"{rounds + 2}) — bitte mehr Genres waehlen oder eine andere "
                         f"Playlist")
     return cards, genres, playlist, rounds
+
+
+@app.get("/api/highscores")
+def api_highscores(limit: int = 10):
+    return {"scores": scores.top(max(1, min(50, limit)))}
 
 
 @app.get("/")
@@ -257,6 +263,12 @@ async def ws_endpoint(sock: WebSocket) -> None:
                         room.skip()
                     elif action == "reset":
                         room.reset()
+                        SCORED.discard(room.code)
+                    if room.state == "finished" and room.code not in SCORED:
+                        SCORED.add(room.code)
+                        entries = scores.record_room(room)
+                        log.info("Highscore: %s", ", ".join(
+                            f"{e['name']} {e['points']} P" for e in entries))
                     await send_state(room.code)
 
                 elif action == "place":
