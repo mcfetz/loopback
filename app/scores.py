@@ -9,13 +9,16 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import threading
 import time
 from pathlib import Path
 
 log = logging.getLogger("loopback")
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+# Im Container zeigt das auf ein Volume (LOOPBACK_DATA_DIR), sonst neben das Projekt.
+DATA_DIR = Path(os.environ.get("LOOPBACK_DATA_DIR") or
+                Path(__file__).resolve().parent.parent / "data").resolve()
 SCORES_FILE = DATA_DIR / "highscores.json"
 MAX_ENTRIES = 50
 
