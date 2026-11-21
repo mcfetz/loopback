@@ -11,9 +11,12 @@ import secrets
 import time
 from dataclasses import dataclass, field
 
-TARGET_CARDS = 10   # wer so viele Karten in seiner Timeline hat, beendet das Spiel
+TARGET_CARDS = 10   # Kompatibilitaetsname: Mindestgroesse des Kartenpools
 SEED_CARDS = 1      # jeder startet mit einer offenen Karte
 CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"   # ohne O/0/I/1 (Verwechslung am Telefon)
+
+ROUND_OPTIONS = (5, 10, 15, 20)   # waehlbare Rundenzahl
+DEFAULT_ROUNDS = 10               # danach ist das Spiel vorbei, egal wie getippt wurde
 
 BASE_POINTS = 100      # Punkte fuer eine richtige Antwort ohne Zeitbonus
 MAX_MULTIPLIER = 3.0   # direkt nach dem Start der Runde
@@ -107,6 +110,7 @@ class Room:
     filter_genres: list[str] = field(default_factory=list)
     filter_playlist: str = ""
     round_started: float | None = None
+    max_rounds: int = DEFAULT_ROUNDS
 
     # ---------- Aufbau ----------
 
@@ -195,6 +199,16 @@ class Room:
         player.pending = int(slot)
         player.guessed_at = time.time()      # Aenderung kostet Zeit, also neuen Stempel setzen
 
+    def unplace(self, pid: str) -> None:
+        """Tipp zuruecknehmen (Cancel am Slot-Button)."""
+        if self.state != "playing":
+            raise GameError("Jetzt wird nicht getippt")
+        player = self.players.get(pid)
+        if player is None:
+            raise GameError("Spieler unbekannt")
+        player.pending = None
+        player.guessed_at = None
+
     def reveal(self) -> list[dict]:
         if self.state != "playing" or self.current is None:
             raise GameError("Nichts aufzuloesen")
@@ -234,8 +248,9 @@ class Room:
             "correct": [r["name"] for r in results if r["correct"]],
         })
         self.state = "revealed"
-        if any(p.score >= TARGET_CARDS for p in self.players.values()):
-            # Meiste Punkte gewinnt, Karten entscheiden bei Gleichstand (schnelles Tippen zaehlt).
+        if self.round >= self.max_rounds:
+            # Nach der eingestellten Rundenzahl ist Schluss (egal ob richtig oder falsch);
+            # gewertet wird nach Punkten, Karten entscheiden bei Gleichstand.
             best = max(self.players.values(), key=lambda p: (p.points, p.score))
             self._finish(best)
         return self.results
@@ -289,7 +304,7 @@ class Room:
             "code": self.code,
             "state": self.state,
             "round": self.round,
-            "target": TARGET_CARDS,
+            "target": self.max_rounds,
             "winner": self.winner,
             "deck_left": len(self.deck),
             "genres": self.filter_genres,

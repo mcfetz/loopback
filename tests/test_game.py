@@ -11,8 +11,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from app.game import (BASE_POINTS, FAST_SECONDS, MAX_MULTIPLIER, Card, GameError, Room,
-                      TARGET_CARDS, filter_pool, slot_is_correct, speed_multiplier)
+from app.game import (BASE_POINTS, DEFAULT_ROUNDS, FAST_SECONDS, MAX_MULTIPLIER, Card,
+                      GameError, ROUND_OPTIONS, Room, TARGET_CARDS, filter_pool,
+                      slot_is_correct, speed_multiplier)
 
 
 def make_pool(n: int = 20) -> list[Card]:
@@ -116,20 +117,37 @@ def test_round_flow_rules():
         pass
 
 
-def test_win_at_target_cards():
+def test_game_ends_after_the_chosen_number_of_rounds():
     room, _ = make_room(1)
-    player = room.players["p0"]
-    # kuenstlich nah an die Zielmarke bringen
-    extra = [Card(f"x{i}", f"X{i}", "Y", 1900 + i, str(9000 + i)) for i in range(TARGET_CARDS - 2)]
-    player.timeline = extra + player.timeline
+    room.max_rounds = 3
     room.start()
-    card = room.next_round()
-    years = [c.year for c in player.timeline]
-    room.place("p0", sum(1 for y in years if y <= card.year))
+    for _ in range(2):
+        room.next_round()
+        room.reveal()                       # egal ob richtig oder falsch
+        assert room.state == "revealed"
+    room.next_round()
     room.reveal()
-    assert player.score == TARGET_CARDS
     assert room.state == "finished"
-    assert room.winner == player.name
+    assert room.round == 3
+    assert room.winner == room.players["p0"].name
+
+
+def test_default_is_ten_rounds():
+    room, _ = make_room(1)
+    assert room.max_rounds == DEFAULT_ROUNDS == 10
+    assert ROUND_OPTIONS == (5, 10, 15, 20)
+    assert room.snapshot("p0")["target"] == 10
+
+
+def test_unplace_takes_the_guess_back():
+    room, _ = make_room(1)
+    room.start()
+    room.next_round()
+    room.place("p0", 0)
+    assert room.players["p0"].pending == 0
+    room.unplace("p0")
+    assert room.players["p0"].pending is None
+    assert room.players["p0"].guessed_at is None
 
 
 def test_duplicate_names_and_late_join_are_rejected():
@@ -313,8 +331,9 @@ def test_winner_is_the_points_leader():
     room, _ = make_room(2)
     p0, p1 = room.players["p0"], room.players["p1"]
     room.start()
-    # p0 hat schon 10 Karten (Spielende waere erreicht), aber keine Punkte
-    p0.timeline = [Card(f"a{i}", "A", "X", 1960 + i, str(i)) for i in range(10)]
+    room.max_rounds = 1                 # eine Runde, dann ist Schluss
+    # p0 hat schon viele Karten, aber keine Punkte; p1 sammelt die Punkte
+    p0.timeline = [Card(f"a{i}", "A", "X", 1960 + i, str(i)) for i in range(5)]
     p1.points = 900
     card = room.next_round()
     years = [c.year for c in p1.timeline]

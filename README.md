@@ -9,9 +9,13 @@ anderen joinen per Session-Code vom Handy, tippen ihre Platzierung und sehen ihr
 - Jeder startet mit einer offenen Karte in seiner Timeline (Jahr sichtbar) — auch der Host.
 - Der Host spielt eine Karte ab. Alle tippen, wo sie in *ihre* Timeline gehört
   (davor / zwischen zwei Jahren / danach).
-- Auflösen: Passt die Platzierung, wandert die Karte in die Timeline und gibt einen Punkt.
+- Tippen: auf einen Jahres-Button tippen — der Button wird zum Paar **OK / ✕**. OK bestätigt
+  den Tipp (beim Host und im Solo-Modus löst es die Runde direkt auf — einen separaten
+  Auflösen-Button gibt es nicht mehr), ✕ nimmt ihn zurück.
+- Auflösen: Passt die Platzierung, wandert die Karte in die Timeline.
   Falsch getippt oder gar nicht getippt: Karte verfällt.
-- Wer zuerst 10 Karten in der Timeline hat, beendet das Spiel.
+- Das Spiel endet nach der eingestellten Rundenzahl — 5, 10, 15 oder 20, Vorgabe 10 — egal ob
+  richtig oder falsch getippt wurde.
 
 **Punkte:** Jede richtige Antwort gibt 100 Punkte mal Zeitbonus. Der Bonus startet bei ×3,0
 und sinkt linear auf ×1,0 nach 20 Sekunden — wer zuerst tippt, bekommt also bis zu 300 Punkte,

@@ -15,7 +15,8 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app import catalog, deezer, importer
-from app.game import Card, GameError, Player, Room, TARGET_CARDS, filter_pool, new_code
+from app.game import (Card, DEFAULT_ROUNDS, GameError, Player, Room, ROUND_OPTIONS, filter_pool,
+                      new_code)
 
 log = logging.getLogger("song-timeline")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -54,15 +55,24 @@ def wanted_genres(msg: dict) -> list[str]:
     return [str(g)[:32] for g in raw][:8]
 
 
-def room_pool(msg: dict) -> tuple[list[Card], list[str], str]:
+def wanted_rounds(msg: dict) -> int:
+    try:
+        rounds = int(msg.get("rounds") or DEFAULT_ROUNDS)
+    except (TypeError, ValueError):
+        rounds = DEFAULT_ROUNDS
+    return rounds if rounds in ROUND_OPTIONS else DEFAULT_ROUNDS
+
+
+def room_pool(msg: dict) -> tuple[list[Card], list[str], str, int]:
     genres = wanted_genres(msg)
     playlist = str(msg.get("playlist") or "").strip()[:40]
+    rounds = wanted_rounds(msg)
     cards = pool_cards(genres, playlist or None)
-    if len(cards) < TARGET_CARDS + 2:
+    if len(cards) < rounds + 2:
         raise GameError(f"Zu wenige Karten fuer diese Auswahl ({len(cards)} statt "
-                        f"{TARGET_CARDS + 2}) — bitte mehr Genres waehlen oder eine andere "
+                        f"{rounds + 2}) — bitte mehr Genres waehlen oder eine andere "
                         f"Playlist")
-    return cards, genres, playlist
+    return cards, genres, playlist, rounds
 
 
 @app.get("/")
@@ -165,11 +175,12 @@ async def ws_endpoint(sock: WebSocket) -> None:
             try:
                 if action == "create":
                     host_id = secrets.token_urlsafe(8)
-                    cards, genres, playlist = room_pool(msg)
+                    cards, genres, playlist, rounds = room_pool(msg)
                     room = Room.create(cards, host_id=host_id,
                                        code=new_code(set(ROOMS)))
                     room.filter_genres = genres
                     room.filter_playlist = playlist
+                    room.max_rounds = rounds
                     host_name = str(msg.get("name") or "Host").strip()[:24] or "Host"
                     room.add_player(host_id, host_name)     # Host raet mit
                     ROOMS[room.code] = room
@@ -185,10 +196,11 @@ async def ws_endpoint(sock: WebSocket) -> None:
                 elif action == "solo":
                     # Ein Geraet, eine Person: derselbe Client steuert und tippt, ohne Code.
                     solo_pid = secrets.token_urlsafe(8)
-                    cards, genres, playlist = room_pool(msg)
+                    cards, genres, playlist, rounds = room_pool(msg)
                     room = Room.create(cards, host_id=solo_pid, code=new_code(set(ROOMS)))
                     room.filter_genres = genres
                     room.filter_playlist = playlist
+                    room.max_rounds = rounds
                     room.solo = True
                     name = str(msg.get("name") or "Solo").strip()[:24] or "Solo"
                     room.add_player(solo_pid, name)
@@ -252,6 +264,13 @@ async def ws_endpoint(sock: WebSocket) -> None:
                     if room is None or pid is None:
                         raise GameError("Erst einer Session beitreten")
                     room.place(pid, int(msg.get("slot", -1)))
+                    await send_state(room.code)
+
+                elif action == "clear":
+                    room = ROOMS.get(code or "")
+                    if room is None or pid is None:
+                        raise GameError("Erst einer Session beitreten")
+                    room.unplace(pid)
                     await send_state(room.code)
 
                 elif action == "ping":

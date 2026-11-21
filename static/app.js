@@ -188,6 +188,29 @@ function chosenGenres() {
   return [...pickedGenres];
 }
 
+// ---------------------------------------------------------------- Rundenzahl
+
+const ROUND_OPTIONS = [5, 10, 15, 20];
+let pickedRounds = Number(localStorage.getItem("jahresringe-rounds")) || 10;
+if (!ROUND_OPTIONS.includes(pickedRounds)) pickedRounds = 10;
+
+function renderRounds() {
+  for (const box of document.querySelectorAll("[data-rounds]")) {
+    box.innerHTML = "";
+    for (const n of ROUND_OPTIONS) {
+      const chip = el("button", "chip" + (pickedRounds === n ? " on" : ""));
+      chip.type = "button";
+      chip.textContent = `${n} Runden`;
+      chip.onclick = () => {
+        pickedRounds = n;
+        localStorage.setItem("jahresringe-rounds", String(n));
+        renderRounds();
+      };
+      box.appendChild(chip);
+    }
+  }
+}
+
 // ---------------------------------------------------------------- Quellen (Playlists)
 
 let sources = { total: 0, curated: 0, items: [] };
@@ -302,7 +325,8 @@ $("#btn-create").onclick = () => {
   showError("");
   me.role = "host";
   me.name = ($("#host-name").value || "Host").trim().slice(0, 24);
-  send({ action: "create", name: me.name, genres: chosenGenres(), playlist: pickedSource });
+  send({ action: "create", name: me.name, genres: chosenGenres(), playlist: pickedSource,
+         rounds: pickedRounds });
 };
 
 $("#btn-join").onclick = () => {
@@ -318,7 +342,8 @@ $("#btn-join").onclick = () => {
 $("#btn-solo").onclick = () => {
   showError("");
   me.role = "solo";
-  send({ action: "solo", name: "Solo", genres: chosenGenres(), playlist: pickedSource });
+  send({ action: "solo", name: "Solo", genres: chosenGenres(), playlist: pickedSource,
+         rounds: pickedRounds });
 };
 
 $("#btn-leave").onclick = () => {
@@ -326,16 +351,15 @@ $("#btn-leave").onclick = () => {
   location.reload();
 };
 
-for (const [id, action] of [["#btn-start", "start"], ["#btn-next", "next"], ["#btn-reveal", "reveal"],
+for (const [id, action] of [["#btn-start", "start"], ["#btn-next", "next"],
                             ["#btn-skip", "skip"], ["#btn-reset", "reset"]]) {
   $(id).onclick = () => send({ action });
 }
 
 $("#solo-next").onclick = () => send({ action: "next" });
-$("#solo-reveal").onclick = () => send({ action: "reveal" });
 $("#solo-skip").onclick = () => send({ action: "skip" });
 $("#solo-restart").onclick = () => send({ action: "solo", name: "Solo", genres: chosenGenres(),
-                                           playlist: pickedSource });
+                                           playlist: pickedSource, rounds: pickedRounds });
 
 // ---------------------------------------------------------------- Audio
 
@@ -393,7 +417,6 @@ function renderHost() {
   $("#btn-start").classList.toggle("hidden", st !== "lobby");
   $("#btn-next").classList.toggle("hidden", !(st === "ready" || st === "revealed"));
   $("#btn-next").textContent = st === "ready" ? "Erste Karte abspielen" : "Nächste Karte";
-  $("#btn-reveal").classList.toggle("hidden", !playing);
   $("#btn-skip").classList.toggle("hidden", !playing);
   $("#host-audio-box").classList.toggle("hidden", !(playing && state.current));
 
@@ -403,14 +426,13 @@ function renderHost() {
 
   const mine = state.me;
   if (mine) {
-    $("#host-mine").textContent = `${mine.score} Karte${mine.score === 1 ? "" : "n"} · `
-      + `${mine.points} Punkte`;
+    $("#host-mine").textContent = scoreText(mine);
     renderTimeline($("#timeline-host"), mine);
     bumpScore($("#host-mine"), mine.score);
     celebrate(mine, $("#timeline-host"), $("#host-reveal"));
     if (playing) {
       setStatus(mine.pending === null ? "Du bist dran: tippe unten in deiner Timeline."
-        : "Getippt — kannst noch ändern, bis du auflöst.");
+        : "Getippt — OK löst für alle auf, ✕ nimmt es zurück.");
     } else if (st === "revealed" && mine.correct_last !== null) {
       setStatus(mine.correct_last ? "Richtig!" : "Leider falsch.", mine.correct_last === false);
     }
@@ -436,15 +458,14 @@ function renderPlayer() {
   const mine = state.me;
   if (!mine) return;
   $("#player-name").textContent = mine.name;
-  $("#player-score").textContent = `${mine.score} Karte${mine.score === 1 ? "" : "n"} · `
-    + `${mine.points} Punkte`;
+  $("#player-score").textContent = scoreText(mine);
 
   const st = state.state;
   if (st === "lobby") setStatus("Warte auf den Host …");
   else if (st === "ready") setStatus("Gleich geht's los — der Host spielt die erste Karte.");
   else if (st === "playing") {
     setStatus(mine.pending === null ? "Hör zu und tippe, wohin die Karte gehört."
-      : "Getippt — kannst noch ändern, bis der Host auflöst.");
+      : "Getippt — OK bestätigt, ✕ nimmt es zurück.");
   } else if (st === "revealed") {
     const delta = mine.delta ? ` +${mine.delta} Punkte (${fmtMult(mine.multiplier || 1)})` : "";
     setStatus((mine.correct_last === true ? "Richtig!" : "Leider falsch.") + delta,
@@ -470,22 +491,22 @@ function renderSolo() {
   const playing = st === "playing";
 
   $("#solo-label").textContent = "Solo";
-  $("#solo-score").textContent = `${mine.score} / ${state.target} · ${mine.points} Punkte`;
+  $("#solo-score").textContent = scoreText(mine);
   $("#solo-next").classList.toggle("hidden", !(st === "ready" || st === "revealed"));
   $("#solo-next").textContent = state.round === 0 ? "Erste Karte abspielen" : "Nächste Karte";
-  $("#solo-reveal").classList.toggle("hidden", !playing);
   $("#solo-skip").classList.toggle("hidden", !playing);
   $("#solo-audio-box").classList.toggle("hidden", !(playing && state.current));
 
   if (st === "lobby" || st === "ready") setStatus("Karte abspielen, dann tippen, wo sie hingehört.");
   else if (st === "playing") {
-    setStatus(mine.pending === null ? "Wo gehört die Karte hin?" : "Getippt — jetzt auflösen.");
+    setStatus(mine.pending === null ? "Wo gehört die Karte hin?"
+      : "Getippt — OK drücken löst auf, ✕ nimmt es zurück.");
   } else if (st === "revealed") {
     const delta = mine.delta ? ` +${mine.delta} Punkte (${fmtMult(mine.multiplier || 1)})` : "";
     setStatus((mine.correct_last === true ? "Richtig!" : "Leider falsch.") + delta,
               mine.correct_last === false);
   } else if (st === "finished") {
-    setStatus(`${state.target} Karten geschafft — ${mine.points} Punkte. Neues Spiel?`);
+    setStatus(`${state.target} Runden gespielt — ${mine.points} Punkte. Neues Spiel?`);
   }
 
   renderReveal($("#solo-revealbox"));
@@ -636,10 +657,26 @@ function renderTimeline(box, mine) {
 
   for (let i = 0; i <= cards.length; i++) {
     if (canTap) {
-      const slot = el("button", "slot" + (mine.pending === i ? " picked" : ""));
-      slot.textContent = slotLabel(cards, i);
-      slot.onclick = () => send({ action: "place", slot: i });
-      box.appendChild(slot);
+      if (mine.pending === i) {
+        // Getippter Slot wird zum OK/Cancel-Paar: OK loest beim Host und im Solo-Modus die
+        // Runde auf (der separate Aufloesen-Button ist damit weg), Mitspieler bestaetigen nur
+        // ihren Tipp und warten auf den Host.
+        const pair = el("div", "slotpair");
+        const ok = el("button", "slot-ok", "OK");
+        ok.type = "button";
+        ok.onclick = () => confirmGuess();
+        const cancel = el("button", "slot-cancel", "\u2715");
+        cancel.type = "button";
+        cancel.onclick = () => send({ action: "clear" });
+        pair.appendChild(ok);
+        pair.appendChild(cancel);
+        box.appendChild(pair);
+      } else {
+        const slot = el("button", "slot");
+        slot.textContent = slotLabel(cards, i);
+        slot.onclick = () => send({ action: "place", slot: i });
+        box.appendChild(slot);
+      }
     }
     if (i < cards.length) {
       const c = cards[i];
@@ -657,6 +694,17 @@ function slotLabel(cards, i) {
   if (i === 0) return `vor ${cards[0].year}`;
   if (i === cards.length) return `nach ${cards[cards.length - 1].year}`;
   return `zwischen ${cards[i - 1].year} und ${cards[i].year}`;
+}
+
+function confirmGuess() {
+  if (!state || state.state !== "playing") return;
+  if (me.role === "host" || me.role === "solo") send({ action: "reveal" });
+  else setStatus("Getippt — der Host löst auf.");
+}
+
+function scoreText(mine) {
+  const runde = Math.min(state.round || 0, state.target || 0);
+  return `Runde ${runde}/${state.target} · ${mine.score} K · ${mine.points} P`;
 }
 
 function renderResults(box) {
@@ -711,5 +759,6 @@ if (saved && saved.role && saved.role !== "solo") {
   $("#btn-leave").classList.remove("hidden");
 }
 loadGenres();
+renderRounds();
 loadSources();
 connect();

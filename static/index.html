@@ -33,6 +33,8 @@
       <label>Dein Name <input id="host-name" maxlength="24" placeholder="Host" value="Host"></label>
       <label>Genres <span class="chipnote">nichts gewählt = alle</span></label>
       <div class="chips" data-chips></div>
+      <label>Runden <span class="chipnote">danach ist Schluss</span></label>
+      <div class="chips" data-rounds></div>
       <button id="btn-create" class="primary big">Spiel erstellen</button>
     </div>
     <div class="card">
@@ -46,6 +48,8 @@
       <p class="hint">Single-Player: gleiche Regeln, keine Mitspieler, kein Code n&ouml;tig.</p>
       <label>Genres <span class="chipnote">nichts gewählt = alle</span></label>
       <div class="chips" data-chips></div>
+      <label>Runden <span class="chipnote">danach ist Schluss</span></label>
+      <div class="chips" data-rounds></div>
       <button id="btn-solo" class="big">Solo spielen</button>
     </div>
     <p id="start-error" class="error"></p>
@@ -63,7 +67,6 @@
     <div class="row">
       <button id="btn-start" class="primary">Spiel starten</button>
       <button id="btn-next" class="primary hidden">Karte abspielen</button>
-      <button id="btn-reveal" class="hidden">Aufl&ouml;sen</button>
       <button id="btn-skip" class="ghost hidden">Karte &uuml;berspringen</button>
       <button id="btn-reset" class="ghost">Neustart</button>
     </div>
@@ -120,7 +123,6 @@
 
     <div class="row">
       <button id="solo-next" class="primary">Karte abspielen</button>
-      <button id="solo-reveal" class="hidden">Aufl&ouml;sen</button>
       <button id="solo-skip" class="ghost hidden">Karte &uuml;berspringen</button>
       <button id="solo-restart" class="ghost">Neues Spiel</button>
     </div>
