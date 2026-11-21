@@ -1,8 +1,8 @@
 services:
-  jahresringe:
+  bandsalat:
     build: .
-    image: jahresringe:local
-    container_name: jahresringe
+    image: bandsalat:local
+    container_name: bandsalat
     ports:
       - "8123:8000"
     restart: unless-stopped
