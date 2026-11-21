@@ -438,15 +438,6 @@ function renderHost() {
     }
   }
 
-  const log = $("#host-log");
-  log.innerHTML = "";
-  for (const entry of state.log) {
-    const li = el("li");
-    li.appendChild(el("span", "lyear", entry.skipped ? "—" : String(entry.year)));
-    li.appendChild(el("span", "ltitle", `${entry.title} — ${entry.artist}`));
-    if (!entry.skipped) li.appendChild(el("span", "lwho", entry.correct.join(", ") || "niemand"));
-    log.appendChild(li);
-  }
 
   if (state.winner) setStatus(`Gewonnen: ${state.winner}`);
   if (state.current && state.current.preview && playing) playPreview("host", state.current.preview);
@@ -514,15 +505,6 @@ function renderSolo() {
   bumpScore($("#solo-score"), mine.score);
   celebrate(mine, $("#timeline-solo"), $("#solo-revealbox"));
 
-  const log = $("#solo-log");
-  log.innerHTML = "";
-  for (const entry of state.log) {
-    const li = el("li");
-    li.appendChild(el("span", "lyear", entry.skipped ? "—" : String(entry.year)));
-    li.appendChild(el("span", "ltitle", `${entry.title} — ${entry.artist}`));
-    if (!entry.skipped) li.appendChild(el("span", "lwho", entry.correct.length ? "richtig" : "falsch"));
-    log.appendChild(li);
-  }
 
   if (state.current && state.current.preview && playing) playPreview("solo", state.current.preview);
 }
@@ -654,13 +636,23 @@ function renderTimeline(box, mine) {
   box.innerHTML = "";
   const cards = mine.timeline;
   const canTap = state.state === "playing";
+  const misses = mine.misses || [];
+
+  // Danebengelegte Karten kommen an die Stelle, an die sie gehoert haetten: rot, zaehlen
+  // aber nicht fuer die Timeline (sonst wuerde die Sortierung luegen).
+  const ghosts = Array.from({ length: cards.length + 1 }, () => []);
+  for (const m of misses) {
+    let b = 0;
+    while (b < cards.length && cards[b].year <= m.year) b++;
+    ghosts[b].push(m);
+  }
+  for (const bucket of ghosts) bucket.sort((a, b) => a.year - b.year);
 
   for (let i = 0; i <= cards.length; i++) {
     if (canTap) {
       if (mine.pending === i) {
         // Getippter Slot wird zum OK/Cancel-Paar: OK loest beim Host und im Solo-Modus die
-        // Runde auf (der separate Aufloesen-Button ist damit weg), Mitspieler bestaetigen nur
-        // ihren Tipp und warten auf den Host.
+        // Runde auf, Mitspieler bestaetigen nur ihren Tipp und warten auf den Host.
         const pair = el("div", "slotpair");
         const ok = el("button", "slot-ok", "OK");
         ok.type = "button";
@@ -678,15 +670,21 @@ function renderTimeline(box, mine) {
         box.appendChild(slot);
       }
     }
+    for (const ghost of ghosts[i]) box.appendChild(cardNode(ghost, "miss"));
     if (i < cards.length) {
       const c = cards[i];
-      const card = el("div", "tcard");
-      card.appendChild(el("div", "tcyear", String(c.year)));
-      card.appendChild(el("div", "tctitle", c.title));
-      card.appendChild(el("div", "tcartist", c.artist));
-      box.appendChild(card);
+      box.appendChild(cardNode(c, c.key === state.seed_key ? "seed" : "ok"));
     }
   }
+}
+
+function cardNode(card, kind) {
+  const node = el("div", `tcard ${kind}`);
+  node.appendChild(el("div", "tcyear", String(card.year)));
+  node.appendChild(el("div", "tctitle", card.title));
+  node.appendChild(el("div", "tcartist", card.artist));
+  if (kind === "miss") node.appendChild(el("div", "tcmark", "daneben"));
+  return node;
 }
 
 function slotLabel(cards, i) {

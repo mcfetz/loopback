@@ -70,6 +70,7 @@ class Player:
     guessed_at: float | None = None
     last_delta: int = 0
     last_multiplier: float = 1.0
+    misses: list[Card] = field(default_factory=list)   # danebengelegt: rot, zaehlt nicht
 
     @property
     def score(self) -> int:
@@ -162,6 +163,7 @@ class Room:
             player.last_delta = 0
             player.last_multiplier = 1.0
             player.guessed_at = None
+            player.misses = []
 
     def next_round(self) -> Card:
         if self.state not in ("lobby", "ready", "revealed"):
@@ -222,6 +224,8 @@ class Room:
             multiplier = speed_multiplier(elapsed)
             delta = round(BASE_POINTS * multiplier) if ok else 0
             player.correct_last = ok
+            if not ok:
+                player.misses.append(card)
             player.last_multiplier = multiplier
             player.last_delta = delta
             player.points += delta
@@ -293,6 +297,7 @@ class Room:
             player.guessed_at = None
             player.last_delta = 0
             player.last_multiplier = 1.0
+            player.misses = []
 
     # ---------- Sicht je Client ----------
 
@@ -329,6 +334,7 @@ class Room:
             ],
             "results": self.results if self.state in ("revealed", "finished") else [],
             "log": self.log,
+            "seed_key": self.seed.key,
             "playing": playing,
         }
         if show_card and self.current:
@@ -360,6 +366,10 @@ class Room:
                 "timeline": [
                     {"key": c.key, "title": c.title, "artist": c.artist, "year": c.year}
                     for c in me.timeline
+                ],
+                "misses": [
+                    {"key": c.key, "title": c.title, "artist": c.artist, "year": c.year}
+                    for c in me.misses
                 ],
             }
         return snap

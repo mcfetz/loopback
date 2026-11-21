@@ -339,6 +339,32 @@ button.small { padding: .45rem .8rem; font-size: .8rem; }
   width: 6px;
   background: var(--grad-hot);
 }
+/* Karte richtig gelegt: gruener Balken und leichter Gruen-Schimmer */
+.tcard.ok::before { background: linear-gradient(180deg, #b6ff3d, #35d07f); }
+.tcard.ok { border-color: rgba(182, 255, 61, .38); }
+
+/* Startkarte: gegeben, nicht selbst gelegt */
+.tcard.seed::before { background: linear-gradient(180deg, #9aa0ff, #6b7bff); }
+.tcard.seed { opacity: .92; }
+
+/* Danebengelegt: rot, an der Stelle, an die die Karte gehoert haette, zaehlt nicht */
+.tcard.miss::before { background: linear-gradient(180deg, #ff5d8f, #b4143f); }
+.tcard.miss {
+  border-color: rgba(255, 46, 147, .5);
+  background: rgba(255, 46, 147, .1);
+  opacity: .78;
+}
+.tcard.miss .tcyear { background: none; -webkit-background-clip: border-box;
+  background-clip: border-box; color: #ff92b4; text-decoration: line-through; }
+.tcmark {
+  margin-top: .2rem;
+  font-size: .66rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #ff92b4;
+}
+
 .tcard.fresh { animation: pop-in .3s cubic-bezier(.2, 1.4, .4, 1), glow 1.2s ease .3s 1; }
 @keyframes glow {
   0% { box-shadow: 0 0 0 0 rgba(182, 255, 61, .8); }

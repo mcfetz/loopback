@@ -17,6 +17,10 @@ anderen joinen per Session-Code vom Handy, tippen ihre Platzierung und sehen ihr
 - Das Spiel endet nach der eingestellten Rundenzahl — 5, 10, 15 oder 20, Vorgabe 10 — egal ob
   richtig oder falsch getippt wurde.
 
+Die Timeline ist zugleich die Runde-Historie: richtig gelegte Karten stehen grün, die
+Startkarte neutral, und danebengelegte Karten erscheinen rot an der Stelle, an die sie
+gehört hätten („daneben", zählen nicht mit). Eine separate Verlaufsliste gibt es nicht.
+
 **Punkte:** Jede richtige Antwort gibt 100 Punkte mal Zeitbonus. Der Bonus startet bei ×3,0
 und sinkt linear auf ×1,0 nach 20 Sekunden — wer zuerst tippt, bekommt also bis zu 300 Punkte,
 wer nach 20 Sekunden tippt nur noch 100. Der Stempel wird beim Tippen gesetzt, ein späteres

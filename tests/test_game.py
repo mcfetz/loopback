@@ -343,6 +343,44 @@ def test_winner_is_the_points_leader():
     assert room.winner == p1.name
 
 
+def test_wrong_guess_is_kept_as_miss_for_the_timeline():
+    room, _ = make_room(1)
+    room.start()
+    card = room.next_round()
+    player = room.players["p0"]
+    wrong = 0 if card.year >= player.timeline[0].year else 1
+    room.place("p0", wrong)
+    room.reveal()
+    assert [c.key for c in player.misses] == [card.key]
+    assert player.misses[0].year == card.year          # Jahr fuer die rote Karte
+    assert card.key not in [c.key for c in player.timeline]
+    snap = room.snapshot("p0")
+    assert snap["me"]["misses"][0]["year"] == card.year
+    assert snap["seed_key"] == room.seed.key
+
+
+def test_correct_guess_leaves_no_miss():
+    room, _ = make_room(1)
+    room.start()
+    card = room.next_round()
+    player = room.players["p0"]
+    years = [c.year for c in player.timeline]
+    room.place("p0", sum(1 for y in years if y <= card.year))
+    room.reveal()
+    assert player.misses == []
+    assert card.key in [c.key for c in player.timeline]
+
+
+def test_new_game_clears_misses():
+    room, _ = make_room(1)
+    room.start()
+    room.next_round()
+    room.reveal()                       # ohne Tipp = Fehlgriff
+    assert room.players["p0"].misses
+    room.reset()
+    assert room.players["p0"].misses == []
+
+
 def test_no_guess_no_points():
     room, _ = make_room(1)
     room.start()
