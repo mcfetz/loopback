@@ -143,15 +143,20 @@ async def fetch_playlist(client: httpx.AsyncClient, pid: str) -> tuple[dict, lis
     return meta, tracks
 
 
-async def album_genres(client: httpx.AsyncClient, album_id) -> list[str]:
+async def album_genres(client: httpx.AsyncClient, album_id, with_date: bool = False):
+    """Album-Genres holen; mit with_date kommt das ganze Album-Objekt zurueck."""
     if not album_id:
-        return []
+        return {} if with_date else []
     try:
         resp = await client.get(f"{DEEZER}/album/{album_id}")
         resp.raise_for_status()
         album = resp.json()
     except (httpx.HTTPError, ValueError):
-        return []
+        return {} if with_date else []
+    if with_date:
+        return {"date": album.get("release_date"),
+                "genres": [g.get("name") for g in (album.get("genres") or {}).get("data") or []
+                           if g.get("name")]}
     return [g.get("name") for g in (album.get("genres") or {}).get("data") or [] if g.get("name")]
 
 
@@ -197,6 +202,7 @@ async def import_playlist(playlist_id: str, job: Job | None = None, limit: int =
                 if (track.get("duration") or 0) < MIN_SECONDS:
                     skipped["zu_kurz"] += 1
                     continue
+                title = catalog.search_title(title)     # "(2015 Remaster)" & Co. weg
                 if any(same_song({"title": title, "artist": artist}, c) for c in keep + new_cards):
                     skipped["schon_vorhanden"] += 1
                     continue
@@ -207,10 +213,21 @@ async def import_playlist(playlist_id: str, job: Job | None = None, limit: int =
                 album = track.get("album") or {}
                 deezer_year = (album.get("release_date") or "")[:4]
                 deezer_year = int(deezer_year) if deezer_year.isdigit() else None
+                manual_year = catalog.MANUAL_YEARS.get(catalog.slug(title, artist))
                 apple_year = await asyncio.to_thread(catalog.apple_year, title, artist)
                 await asyncio.sleep(0.35)
 
-                year = apple_year or deezer_year
+                year = manual_year or apple_year or deezer_year
+                fallback_used = False
+                if year is None and album.get("id"):
+                    # Letzte Quelle: das Album selbst. Kann ein Compilation-Jahr sein, taugt fuer
+                    # die Timeline also nur als Notloesung — deshalb kommt es auf die Pruefliste.
+                    album_detail = await album_genres(client, album.get("id"), with_date=True)
+                    raw_date = (album_detail.get("date") or "")[:4]
+                    if raw_date.isdigit():
+                        deezer_year = int(raw_date)
+                        year = deezer_year
+                        fallback_used = True
                 if year is None:
                     skipped["kein_jahr"] += 1
                     continue
@@ -228,15 +245,22 @@ async def import_playlist(playlist_id: str, job: Job | None = None, limit: int =
                     "genres": genres,
                     "deezer_genres": raw_genres,
                     "isrc": isrc or None,
-                    "year_source": "itunes" if apple_year else "deezer-album",
+                    "year_source": ("kuratiert" if manual_year
+                                    else "itunes" if apple_year else "deezer-album"),
                     "playlist": playlist_id,
                     "_apple": apple_year,
                     "_deezer": deezer_year,
+                    "_fallback": fallback_used,
                 })
+                job.added = len(new_cards)
 
         review: list[str] = []
         for card in new_cards:
             apple_year, deezer_year = card.pop("_apple"), card.pop("_deezer")
+            fallback = card.pop("_fallback", False)
+            if fallback:
+                review.append(f"JAHR NUR AUS ALBUM (Notloesung): {card['title']} — "
+                              f"{card['artist']} | {card['year']}")
             if apple_year and deezer_year and abs(apple_year - deezer_year) > YEAR_TOLERANCE:
                 review.append(f"JAHR ABWEICHEND: {card['title']} — {card['artist']} | "
                               f"Apple {apple_year} | Deezer-Album {deezer_year}")

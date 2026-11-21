@@ -2,6 +2,13 @@
   "version": 1,
   "playlists": [
     {
+      "id": "14942764043",
+      "title": "HITSTER : ROCK EDITION",
+      "nb_tracks": 225,
+      "cards": 195,
+      "imported_at": "2026-11-21T17:19:35"
+    },
+    {
       "id": "12204287271",
       "title": "Hitster",
       "nb_tracks": 308,

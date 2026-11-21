@@ -46,7 +46,33 @@ DEUTSCH = {
 # Alben ohne Genre-Angabe (z. B. Live-Scheiben) bekommen hier ihr Genre.
 MANUAL_GENRES = {"bob-marley-no-woman-no-cry": "Reggae"}
 
+# Jahre, die Apple Music nicht findet und bei denen das Album-Datum nachweislich falsch ist
+# (Remaster-/Jubilaeums-Scheiben). Schluessel = slug(Interpret, Titel) wie im Pool.
+MANUAL_YEARS = {
+    "rage-against-the-machine-killing-in-the-name": 1992,   # Album-Fallback sagte 2012
+    "danzig-mother": 1988,                                  # 2009
+    "limp-bizkit-behind-blue-eyes": 2003,                   # 2005
+    "yngwie-malmsteen-rising-force": 1984,                  # 1988
+    "maroon-5-this-love": 2002,                             # 2007
+}
+
 FALLBACK_GENRE = "Sonstige"
+
+# Editions-Rauschen im Titel ("(2015 Remaster)", "(Single Version)", "(Deluxe Edition)"):
+# fuer die Apple-Suche und die Anzeige stoert es nur — und verhindert das Finden des Originals.
+NOISE_WORDS = (r"(?:remaster|remastered|version|edit|mono|stereo|deluxe|anniversary|bonus|"
+               r"reissue)")
+NOISE_RE = re.compile(
+    r"\s*\([^)]*" + NOISE_WORDS + r"[^)]*\)"
+    r"|\s*\[[^\]]*" + NOISE_WORDS + r"[^\]]*\]",
+    re.IGNORECASE,
+)
+
+
+def search_title(title: str) -> str:
+    """Titel ohne Editions-Zusatz, z. B. 'Wasted Years (2015 Remaster)' -> 'Wasted Years'."""
+    cleaned = NOISE_RE.sub("", title or "").strip(" -–")
+    return cleaned or (title or "").strip()
 
 
 def norm(text: str) -> str:
@@ -108,9 +134,8 @@ def itunes_year(title: str, artist: str, results: list[dict]) -> int | None:
     return min(year for year, count in counts.items() if count == best)
 
 
-def _apple_request(title: str, artist: str) -> list[dict]:
-    query = urllib.parse.urlencode({"term": f"{title} {artist}", "entity": "song",
-                                   "limit": 25, "country": "DE"})
+def _apple_request(params: dict) -> list[dict]:
+    query = urllib.parse.urlencode(params)
     req = urllib.request.Request(f"{ITUNES}?{query}", headers={"User-Agent": UA})
     with urllib.request.urlopen(req, timeout=15) as resp:
         data = json.loads(resp.read().decode("utf-8", "replace"))
@@ -118,12 +143,25 @@ def _apple_request(title: str, artist: str) -> list[dict]:
 
 
 def apple_year(title: str, artist: str) -> int | None:
-    """Erstveroeffentlichungsjahr laut Apple Music (synchron, mit einem Retry)."""
-    for _ in range(2):
-        try:
-            return itunes_year(title, artist, _apple_request(title, artist))
-        except Exception:
-            continue
+    """Erstveroeffentlichungsjahr laut Apple Music (synchron).
+
+    Zwei Anlaeufe: erst Titel+Interpret, dann nur der Titel. Bei bekannten Alben liefert Apple
+    mit limit=25 sonst nur Nachbartracks — "American Idiot" von Green Day fehlte in den ersten
+    25 Treffern komplett, die Albumtracks belegten die Liste.
+    """
+    query_title = search_title(title)
+    attempts = [
+        {"term": f"{query_title} {artist}", "entity": "song", "limit": 50, "country": "DE"},
+        {"term": query_title, "entity": "song", "limit": 50, "country": "DE"},
+    ]
+    for params in attempts:
+        for _ in range(2):
+            try:
+                year = itunes_year(query_title, artist, _apple_request(params))
+            except Exception:
+                continue
+            if year:
+                return year
     return None
 
 

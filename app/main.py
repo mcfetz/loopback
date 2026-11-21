@@ -30,12 +30,17 @@ ROOMS: dict[str, Room] = {}
 CONNS: dict[str, list[dict]] = {}       # code -> [{"ws","pid","host"}]
 
 
-def pool_cards(genres: list[str] | None = None, playlist: str | None = None) -> list[Card]:
-    items = deezer.load_pool()
+def playlist_filtered(items: list[dict], playlist: str | None) -> list[dict]:
+    """Karten einer Quelle: '' = alle, 'kuratiert' = ohne Playlist, sonst Playlist-ID."""
     if playlist == "kuratiert":
-        items = [i for i in items if not i.get("playlist")]
-    elif playlist:
-        items = [i for i in items if i.get("playlist") == playlist]
+        return [i for i in items if not i.get("playlist")]
+    if playlist:
+        return [i for i in items if i.get("playlist") == playlist]
+    return items
+
+
+def pool_cards(genres: list[str] | None = None, playlist: str | None = None) -> list[Card]:
+    items = playlist_filtered(deezer.load_pool(), playlist)
     cards = [Card(**{k: item[k] for k in ("key", "title", "artist", "year", "deezer_id")},
                   genres=tuple(item.get("genres") or []))
              for item in items]
@@ -66,9 +71,10 @@ async def index() -> FileResponse:
 
 
 @app.get("/api/genres")
-async def genres() -> list[dict]:
-    """Verfuegbare Genres mit Kartenzahl, haeufigste zuerst."""
-    return catalog.grouped_genres(importer.pool_cards())
+async def genres(playlist: str = "") -> list[dict]:
+    """Verfuegbare Genres der gewaehlten Quelle, haeufigste zuerst."""
+    items = playlist_filtered(importer.pool_cards(), playlist or None)
+    return catalog.grouped_genres(items)
 
 
 @app.get("/api/playlists")

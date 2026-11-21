@@ -75,3 +75,12 @@ def test_grouped_genres_counts_sorted():
     cards = [{"genres": ["Pop"]}, {"genres": ["Pop", "Rock"]}, {"genres": ["Rock"]}]
     assert catalog.grouped_genres(cards) == [{"name": "Pop", "count": 2},
                                              {"name": "Rock", "count": 2}]
+
+
+def test_search_title_strips_edition_noise():
+    assert catalog.search_title("Wasted Years (2015 Remaster)") == "Wasted Years"
+    assert catalog.search_title("Self Esteem (2008 Remaster)") == "Self Esteem"
+    assert catalog.search_title("Song 2 (Single Version)") == "Song 2"
+    # Klammern, die zum Titel gehoeren, bleiben stehen
+    assert catalog.search_title("(I Can't Get No) Satisfaction") == "(I Can't Get No) Satisfaction"
+    assert catalog.search_title("Stayin Alive") == "Stayin Alive"

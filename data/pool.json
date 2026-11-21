@@ -4287,6 +4287,3561 @@
       "isrc": "USUM70972068",
       "year_source": "itunes",
       "playlist": "12204287271"
+    },
+    {
+      "key": "metallica-one",
+      "title": "One",
+      "artist": "Metallica",
+      "year": 1988,
+      "deezer_id": "575867572",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "QMKHM1700138",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "disturbed-the-sound-of-silence",
+      "title": "The Sound of Silence",
+      "artist": "Disturbed",
+      "year": 2015,
+      "deezer_id": "105765234",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USRE11500180",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "dream-theater-pull-me-under",
+      "title": "Pull Me Under",
+      "artist": "Dream Theater",
+      "year": 1987,
+      "deezer_id": "2814112",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "USEE10180251",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "billy-talent-red-flag",
+      "title": "Red Flag",
+      "artist": "Billy Talent",
+      "year": 2006,
+      "deezer_id": "713380",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Rock",
+        "Indie Rock/Rock Pop"
+      ],
+      "isrc": "USAT20612281",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "linkin-park-numb",
+      "title": "Numb",
+      "artist": "Linkin Park",
+      "year": 2003,
+      "deezer_id": "677232",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "USWB10300474",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "scorpions-still-loving-you",
+      "title": "Still Loving You",
+      "artist": "Scorpions",
+      "year": 1984,
+      "deezer_id": "14299463",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "DEE861101524",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "scorpions-send-me-an-angel",
+      "title": "Send Me An Angel",
+      "artist": "Scorpions",
+      "year": 1990,
+      "deezer_id": "927907",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USPG19090044",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "thirty-seconds-to-mars-the-kill",
+      "title": "The Kill",
+      "artist": "Thirty Seconds to Mars",
+      "year": 2005,
+      "deezer_id": "3090875",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USVI20500136",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "blind-guardian-the-bard-s-song-in-the-forest",
+      "title": "The Bard's Song - In the Forest",
+      "artist": "Blind Guardian",
+      "year": 1992,
+      "deezer_id": "679582582",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "DED831700989",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "breaking-benjamin-the-diary-of-jane",
+      "title": "The Diary of Jane",
+      "artist": "Breaking Benjamin",
+      "year": 2006,
+      "deezer_id": "130132899",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USHR10622153",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "dio-rainbow-in-the-dark",
+      "title": "Rainbow In The Dark",
+      "artist": "Dio",
+      "year": 1983,
+      "deezer_id": "1122938",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "GBF080300553",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "hammerfall-hearts-on-fire",
+      "title": "Hearts on Fire",
+      "artist": "HammerFall",
+      "year": 2002,
+      "deezer_id": "651480792",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "DED830264702",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "him-wings-of-a-butterfly",
+      "title": "Wings of a Butterfly",
+      "artist": "HIM",
+      "year": 2005,
+      "deezer_id": "1874678807",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "USWB10503444",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "iron-maiden-wasted-years",
+      "title": "Wasted Years",
+      "artist": "Iron Maiden",
+      "year": 1986,
+      "deezer_id": "585864292",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBCHB1800046",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "ufo-doctor-doctor",
+      "title": "Doctor Doctor",
+      "artist": "UFO",
+      "year": 1974,
+      "deezer_id": "1787639967",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBAYK0700203",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "red-hot-chili-peppers-by-the-way",
+      "title": "By the Way",
+      "artist": "Red Hot Chili Peppers",
+      "year": 2002,
+      "deezer_id": "725929",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "USWB10201688",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "muse-starlight",
+      "title": "Starlight",
+      "artist": "Muse",
+      "year": 2006,
+      "deezer_id": "3590185",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "GBAHT0500592",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "evanescence-bring-me-to-life",
+      "title": "Bring Me To Life",
+      "artist": "Evanescence",
+      "year": 2003,
+      "deezer_id": "80274512",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USWU30200093",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-offspring-self-esteem",
+      "title": "Self Esteem",
+      "artist": "The Offspring",
+      "year": 1994,
+      "deezer_id": "378299601",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USEP40710208",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "papa-roach-last-resort",
+      "title": "Last Resort",
+      "artist": "Papa Roach",
+      "year": 2000,
+      "deezer_id": "6435662",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USDW10021712",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "rammstein-engel",
+      "title": "Engel",
+      "artist": "Rammstein",
+      "year": 1997,
+      "deezer_id": "630595112",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "DED579702410",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "rammstein-sonne",
+      "title": "Sonne",
+      "artist": "Rammstein",
+      "year": 2001,
+      "deezer_id": "14381638",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "DEN120003766",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "volbeat-cape-of-our-hero",
+      "title": "Cape Of Our Hero",
+      "artist": "Volbeat",
+      "year": 2013,
+      "deezer_id": "66931086",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "DKNE11300105",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "dropkick-murphys-i-m-shipping-up-to-boston",
+      "title": "I'm Shipping Up To Boston",
+      "artist": "Dropkick Murphys",
+      "year": 2005,
+      "deezer_id": "378350101",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USHEL0504111",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "dropkick-murphys-rose-tattoo",
+      "title": "Rose Tattoo",
+      "artist": "Dropkick Murphys",
+      "year": 2002,
+      "deezer_id": "72011057",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "USK251300003",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "green-day-american-idiot",
+      "title": "American Idiot",
+      "artist": "Green Day",
+      "year": 2004,
+      "deezer_id": "773367",
+      "deezer_release_year": "2004",
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "USRE10400888",
+      "year_source": "deezer-album",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "ac-dc-thunderstruck",
+      "title": "Thunderstruck",
+      "artist": "AC/DC",
+      "year": 1990,
+      "deezer_id": "92720102",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "AUAP09000014",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "ac-dc-back-in-black",
+      "title": "Back In Black",
+      "artist": "AC/DC",
+      "year": 1980,
+      "deezer_id": "92720046",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock",
+        "Hard Rock",
+        "Heavy Metal"
+      ],
+      "isrc": "AUAP08000046",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "ozzy-osbourne-crazy-train",
+      "title": "Crazy Train",
+      "artist": "Ozzy Osbourne",
+      "year": 1980,
+      "deezer_id": "83919037",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock",
+        "Hard Rock",
+        "Heavy Metal"
+      ],
+      "isrc": "USSM11002845",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "t-rex-20th-century-boy",
+      "title": "20th Century Boy",
+      "artist": "T. Rex",
+      "year": 1973,
+      "deezer_id": "75921883",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBBLG1400033",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "guns-n-roses-welcome-to-the-jungle",
+      "title": "Welcome To The Jungle",
+      "artist": "Guns N' Roses",
+      "year": 1987,
+      "deezer_id": "518457252",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USGF18714801",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "foo-fighters-the-pretender",
+      "title": "The Pretender",
+      "artist": "Foo Fighters",
+      "year": 2007,
+      "deezer_id": "4311597",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "USRW30700007",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "alice-cooper-poison",
+      "title": "Poison",
+      "artist": "Alice Cooper",
+      "year": 1989,
+      "deezer_id": "1015071",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USSM18900004",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "kiss-i-was-made-for-lovin-you",
+      "title": "I Was Made For Lovin' You",
+      "artist": "KISS",
+      "year": 1979,
+      "deezer_id": "908011",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USPR39330175",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "iron-maiden-run-to-the-hills",
+      "title": "Run to the Hills",
+      "artist": "Iron Maiden",
+      "year": 1982,
+      "deezer_id": "585704642",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBCHB1800025",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "judas-priest-breaking-the-law",
+      "title": "Breaking the Law",
+      "artist": "Judas Priest",
+      "year": 1980,
+      "deezer_id": "557625",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock",
+        "Hard Rock",
+        "Heavy Metal"
+      ],
+      "isrc": "GBBBN8000007",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "blink-182-all-the-small-things",
+      "title": "All The Small Things",
+      "artist": "blink-182",
+      "year": 1999,
+      "deezer_id": "127354207",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USMC19959123",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-cranberries-zombie",
+      "title": "Zombie",
+      "artist": "The Cranberries",
+      "year": 1994,
+      "deezer_id": "3498055251",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USUM72009888",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-killers-mr-brightside",
+      "title": "Mr. Brightside",
+      "artist": "The Killers",
+      "year": 2003,
+      "deezer_id": "71955234",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "USIR20400274",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "starship-we-built-this-city",
+      "title": "We Built This City",
+      "artist": "Starship",
+      "year": 2002,
+      "deezer_id": "602137972",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USRC18503424",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "billy-joel-we-didn-t-start-the-fire",
+      "title": "We Didn't Start the Fire",
+      "artist": "Billy Joel",
+      "year": 1989,
+      "deezer_id": "626123",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USSM18900217",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "heart-barracuda",
+      "title": "Barracuda",
+      "artist": "Heart",
+      "year": 1977,
+      "deezer_id": "1080638",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM10009075",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-bangles-walk-like-an-egyptian",
+      "title": "Walk Like An Egyptian",
+      "artist": "The Bangles",
+      "year": 1985,
+      "deezer_id": "1056919",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USSM19802606",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "rage-against-the-machine-killing-in-the-name",
+      "title": "Killing In The Name",
+      "artist": "Rage Against the Machine",
+      "year": 1992,
+      "deezer_id": "62082829",
+      "deezer_release_year": "2012",
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock",
+        "Hard Rock",
+        "Heavy Metal"
+      ],
+      "isrc": "USSM11205433",
+      "year_source": "kuratiert",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-rolling-stones-paint-it-black",
+      "title": "Paint It, Black",
+      "artist": "The Rolling Stones",
+      "year": 1966,
+      "deezer_id": "7677788",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USA176610020",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-clash-should-i-stay-or-should-i-go",
+      "title": "Should I Stay or Should I Go",
+      "artist": "The Clash",
+      "year": 1982,
+      "deezer_id": "69962764",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Indie Rock",
+        "Pop",
+        "International Pop",
+        "Rock"
+      ],
+      "isrc": "GBARL1200670",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "limp-bizkit-take-a-look-around",
+      "title": "Take A Look Around",
+      "artist": "Limp Bizkit",
+      "year": 2000,
+      "deezer_id": "1143493",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USIR10000604",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "good-charlotte-lifestyles-of-the-rich-famous",
+      "title": "Lifestyles of the Rich & Famous",
+      "artist": "Good Charlotte",
+      "year": 2002,
+      "deezer_id": "7675610",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM10210275",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "guano-apes-open-your-eyes",
+      "title": "Open Your Eyes",
+      "artist": "Guano Apes",
+      "year": 1997,
+      "deezer_id": "959455",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "DEC689700412",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "foo-fighters-everlong",
+      "title": "Everlong",
+      "artist": "Foo Fighters",
+      "year": 1997,
+      "deezer_id": "4762041",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "USRW29600011",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "ramones-blitzkrieg-bop",
+      "title": "Blitzkrieg Bop",
+      "artist": "Ramones",
+      "year": 1976,
+      "deezer_id": "131744724",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Indie Rock",
+        "Rock"
+      ],
+      "isrc": "USRH11601901",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "black-sabbath-iron-man",
+      "title": "Iron Man",
+      "artist": "Black Sabbath",
+      "year": 1970,
+      "deezer_id": "4191978",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBAJE7000085",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "creedence-clearwater-revival-lookin-out-my-back-door",
+      "title": "Lookin' Out My Back Door",
+      "artist": "Creedence Clearwater Revival",
+      "year": 1970,
+      "deezer_id": "112839936",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USC4R0817630",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "kansas-carry-on-wayward-son",
+      "title": "Carry on Wayward Son",
+      "artist": "Kansas",
+      "year": 1976,
+      "deezer_id": "4006895",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM17600874",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "blue-yster-cult-don-t-fear-the-reaper",
+      "title": "(Don't Fear) The Reaper",
+      "artist": "Blue Öyster Cult",
+      "year": 1976,
+      "deezer_id": "82692320",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM17600477",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "boston-peace-of-mind",
+      "title": "Peace of Mind",
+      "artist": "Boston",
+      "year": 1976,
+      "deezer_id": "84340027",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM17600644",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "styx-renegade",
+      "title": "Renegade",
+      "artist": "Styx",
+      "year": 1995,
+      "deezer_id": "2289262",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USAM17800365",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "rainbow-since-you-been-gone",
+      "title": "Since You Been Gone",
+      "artist": "Rainbow",
+      "year": 1979,
+      "deezer_id": "2262518",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USPR37930021",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "sweet-the-ballroom-blitz",
+      "title": "The Ballroom Blitz",
+      "artist": "Sweet",
+      "year": 1973,
+      "deezer_id": "497909272",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBARL7300027",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "fleetwood-mac-go-your-own-way",
+      "title": "Go Your Own Way",
+      "artist": "Fleetwood Mac",
+      "year": 1977,
+      "deezer_id": "63480990",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USWB10400050",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "manfred-mann-s-earth-band-blinded-by-the-light",
+      "title": "Blinded by the Light",
+      "artist": "Manfred Mann's Earth Band",
+      "year": 1976,
+      "deezer_id": "1885322217",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBBXM7610001",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "asia-heat-of-the-moment",
+      "title": "Heat Of The Moment",
+      "artist": "Asia",
+      "year": 1982,
+      "deezer_id": "908021",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USGF18200801",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "styx-boat-on-the-river",
+      "title": "Boat On The River",
+      "artist": "Styx",
+      "year": 1979,
+      "deezer_id": "61286644",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USAM17902302",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "billy-joel-the-longest-time",
+      "title": "The Longest Time",
+      "artist": "Billy Joel",
+      "year": 1983,
+      "deezer_id": "1025654",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USSM18300273",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "peter-gabriel-solsbury-hill",
+      "title": "Solsbury Hill",
+      "artist": "Peter Gabriel",
+      "year": 1977,
+      "deezer_id": "540502722",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBCPB0900635",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "whitesnake-here-i-go-again",
+      "title": "Here I Go Again",
+      "artist": "Whitesnake",
+      "year": 1982,
+      "deezer_id": "3217757",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GB01A0800485",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "billy-joel-the-downeaster-alexa",
+      "title": "The Downeaster 'Alexa'",
+      "artist": "Billy Joel",
+      "year": 1989,
+      "deezer_id": "626038",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USSM18900221",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "barclay-james-harvest-life-is-for-living",
+      "title": "Life Is For Living",
+      "artist": "Barclay James Harvest",
+      "year": 1980,
+      "deezer_id": "1178567",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "GBF068100090",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "norman-greenbaum-spirit-in-the-sky",
+      "title": "Spirit In The Sky",
+      "artist": "Norman Greenbaum",
+      "year": 1969,
+      "deezer_id": "673832662",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USRE19600416",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "ugly-kid-joe-cats-in-the-cradle",
+      "title": "Cats In The Cradle",
+      "artist": "Ugly Kid Joe",
+      "year": 1974,
+      "deezer_id": "1115742",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USPG19290051",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-white-stripes-seven-nation-army",
+      "title": "Seven Nation Army",
+      "artist": "The White Stripes",
+      "year": 2003,
+      "deezer_id": "1092293262",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Rock"
+      ],
+      "isrc": "USVT10300001",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "def-leppard-pour-some-sugar-on-me",
+      "title": "Pour Some Sugar On Me",
+      "artist": "Def Leppard",
+      "year": 1987,
+      "deezer_id": "447558052",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBUM71701307",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "van-halen-panama",
+      "title": "Panama",
+      "artist": "Van Halen",
+      "year": 1984,
+      "deezer_id": "97098412",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock",
+        "Hard Rock"
+      ],
+      "isrc": "USWB11403681",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "rush-subdivisions",
+      "title": "Subdivisions",
+      "artist": "Rush",
+      "year": 1982,
+      "deezer_id": "2499119",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USMR18210018",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "jimmy-eat-world-the-middle",
+      "title": "The Middle",
+      "artist": "Jimmy Eat World",
+      "year": 2001,
+      "deezer_id": "623714212",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USDW10110256",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "stone-sour-bother",
+      "title": "Bother",
+      "artist": "Stone Sour",
+      "year": 2002,
+      "deezer_id": "847227",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "NLA320219861",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "madsen-du-schreibst-geschichte",
+      "title": "Du schreibst Geschichte",
+      "artist": "Madsen",
+      "year": 2006,
+      "deezer_id": "2301016",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "DEUM70602217",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "die-toten-hosen-bonnie-clyde",
+      "title": "Bonnie & Clyde",
+      "artist": "Die Toten Hosen",
+      "year": 1996,
+      "deezer_id": "142393473",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "DEF240712435",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-rasmus-in-the-shadows",
+      "title": "In the Shadows",
+      "artist": "The Rasmus",
+      "year": 2003,
+      "deezer_id": "61914316",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Pop",
+        "Rock"
+      ],
+      "isrc": "SEVJH0201601",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-offspring-the-kids-aren-t-alright",
+      "title": "The Kids Aren't Alright",
+      "artist": "The Offspring",
+      "year": 1998,
+      "deezer_id": "137233986",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM19804363",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "don-henley-the-boys-of-summer",
+      "title": "The Boys Of Summer",
+      "artist": "Don Henley",
+      "year": 1984,
+      "deezer_id": "3977905",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USGF18502601",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "bon-jovi-wanted-dead-or-alive",
+      "title": "Wanted Dead Or Alive",
+      "artist": "Bon Jovi",
+      "year": 1986,
+      "deezer_id": "538586992",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USPR39402222",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-offspring-pretty-fly-for-a-white-guy",
+      "title": "Pretty Fly (For A White Guy)",
+      "artist": "The Offspring",
+      "year": 1998,
+      "deezer_id": "137233982",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM19804199",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "iron-maiden-for-the-greater-good-of-god",
+      "title": "For the Greater Good of God",
+      "artist": "Iron Maiden",
+      "year": 2006,
+      "deezer_id": "585864642",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBCHB1800130",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "iron-maiden-hallowed-be-thy-name",
+      "title": "Hallowed Be Thy Name",
+      "artist": "Iron Maiden",
+      "year": 1982,
+      "deezer_id": "585704662",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBCHB1800027",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "warrant-cherry-pie",
+      "title": "Cherry Pie",
+      "artist": "Warrant",
+      "year": 1990,
+      "deezer_id": "594917",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM10006917",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "beastie-boys-fight-for-your-right",
+      "title": "Fight For Your Right",
+      "artist": "Beastie Boys",
+      "year": 1986,
+      "deezer_id": "1085495",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "Rap/Hip Hop"
+      ],
+      "isrc": "USDJ28600007",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-darkness-i-believe-in-a-thing-called-love",
+      "title": "I Believe In A Thing Called Love",
+      "artist": "The Darkness",
+      "year": 2003,
+      "deezer_id": "3868470",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBAHS0300635",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "danzig-mother",
+      "title": "Mother",
+      "artist": "Danzig",
+      "year": 1988,
+      "deezer_id": "7597630",
+      "deezer_release_year": "2009",
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "USSM18800169",
+      "year_source": "kuratiert",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "r-e-m-it-s-the-end-of-the-world-as-we-know-it-and-i-feel-fin",
+      "title": "It's The End Of The World As We Know It (And I Feel Fine)",
+      "artist": "R.E.M.",
+      "year": 1987,
+      "deezer_id": "3152587",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USIR38700037",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "lenny-kravitz-are-you-gonna-go-my-way",
+      "title": "Are You Gonna Go My Way",
+      "artist": "Lenny Kravitz",
+      "year": 1993,
+      "deezer_id": "3107395",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USVI29300001",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "spin-doctors-two-princes",
+      "title": "Two Princes",
+      "artist": "Spin Doctors",
+      "year": 1991,
+      "deezer_id": "1066624",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM19000350",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "wolfmother-joker-and-the-thief",
+      "title": "Joker And The Thief",
+      "artist": "Wolfmother",
+      "year": 2005,
+      "deezer_id": "1182053",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "AUUM70500115",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "led-zeppelin-black-dog",
+      "title": "Black Dog",
+      "artist": "Led Zeppelin",
+      "year": 1971,
+      "deezer_id": "88003853",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USAT21300956",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-who-behind-blue-eyes",
+      "title": "Behind Blue Eyes",
+      "artist": "The Who",
+      "year": 1971,
+      "deezer_id": "2121812",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBAKW7100099",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-rolling-stones-sympathy-for-the-devil",
+      "title": "Sympathy For The Devil",
+      "artist": "The Rolling Stones",
+      "year": 1968,
+      "deezer_id": "584242072",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USA171810010",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-killers-somebody-told-me",
+      "title": "Somebody Told Me",
+      "artist": "The Killers",
+      "year": 2004,
+      "deezer_id": "2947342",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBFFP0300054",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-black-keys-lonely-boy",
+      "title": "Lonely Boy",
+      "artist": "The Black Keys",
+      "year": 2011,
+      "deezer_id": "14380718",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Rock",
+        "Indie Rock/Rock Pop"
+      ],
+      "isrc": "USNO11100273",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "nightwish-the-phantom-of-the-opera",
+      "title": "The Phantom Of The Opera",
+      "artist": "Nightwish",
+      "year": 2002,
+      "deezer_id": "2137209847",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "FISFS0200009",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "nightwish-nemo",
+      "title": "Nemo",
+      "artist": "Nightwish",
+      "year": 2004,
+      "deezer_id": "668823972",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "DED830471903",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "my-chemical-romance-welcome-to-the-black-parade",
+      "title": "Welcome to the Black Parade",
+      "artist": "My Chemical Romance",
+      "year": 2006,
+      "deezer_id": "676573",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "USRE10602613",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "godsmack-i-stand-alone",
+      "title": "I Stand Alone",
+      "artist": "Godsmack",
+      "year": 2002,
+      "deezer_id": "144958718",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USUR10111257",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "disturbed-down-with-the-sickness",
+      "title": "Down with the Sickness",
+      "artist": "Disturbed",
+      "year": 2000,
+      "deezer_id": "663984",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock",
+        "Hard Rock"
+      ],
+      "isrc": "USGI19900180",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "system-of-a-down-chop-suey",
+      "title": "Chop Suey!",
+      "artist": "System of a Down",
+      "year": 2001,
+      "deezer_id": "859699",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USSM10107256",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "dragonforce-through-the-fire-and-flames",
+      "title": "Through The Fire And Flames",
+      "artist": "DragonForce",
+      "year": 2005,
+      "deezer_id": "2213061847",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "FIUM72000106",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "slipknot-psychosocial",
+      "title": "Psychosocial",
+      "artist": "Slipknot",
+      "year": 2008,
+      "deezer_id": "1195560",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "NLA320886993",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "ko-n-y-all-want-a-single",
+      "title": "Y'all Want a Single",
+      "artist": "KoЯn",
+      "year": 2003,
+      "deezer_id": "82700702",
+      "deezer_release_year": "2003",
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM10313528",
+      "year_source": "deezer-album",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "airbourne-runnin-wild",
+      "title": "Runnin' Wild",
+      "artist": "Airbourne",
+      "year": 2007,
+      "deezer_id": "1744059787",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock",
+        "Hard Rock"
+      ],
+      "isrc": "NLA320786218",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "marilyn-manson-tainted-love",
+      "title": "Tainted Love",
+      "artist": "Marilyn Manson",
+      "year": 2003,
+      "deezer_id": "2516603",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USIR10120378",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "slayer-raining-blood",
+      "title": "Raining Blood",
+      "artist": "Slayer",
+      "year": 1986,
+      "deezer_id": "65690449",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM18600241",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "limp-bizkit-behind-blue-eyes",
+      "title": "Behind Blue Eyes",
+      "artist": "Limp Bizkit",
+      "year": 2003,
+      "deezer_id": "1143499",
+      "deezer_release_year": "2005",
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USIR10312186",
+      "year_source": "kuratiert",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "megadeth-a-tout-le-monde",
+      "title": "A Tout Le Monde",
+      "artist": "Megadeth",
+      "year": 1994,
+      "deezer_id": "3088984",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "USCA20400543",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "whitesnake-still-of-the-night",
+      "title": "Still Of The Night",
+      "artist": "Whitesnake",
+      "year": 1987,
+      "deezer_id": "3746038472",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GB01A1700002",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "m-tley-cr-e-home-sweet-home",
+      "title": "Home Sweet Home",
+      "artist": "Mötley Crüe",
+      "year": 1985,
+      "deezer_id": "3788403452",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USBY29900177",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-offspring-you-re-gonna-go-far-kid",
+      "title": "You're Gonna Go Far, Kid",
+      "artist": "The Offspring",
+      "year": 2008,
+      "deezer_id": "137234202",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM10801605",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "bloodhound-gang-the-bad-touch",
+      "title": "The Bad Touch",
+      "artist": "Bloodhound Gang",
+      "year": 1999,
+      "deezer_id": "89748393",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USIR19902530",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "america-a-horse-with-no-name",
+      "title": "A Horse with No Name",
+      "artist": "America",
+      "year": 1971,
+      "deezer_id": "774835",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USWB10603240",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "p-o-d-youth-of-the-nation",
+      "title": "Youth of the Nation",
+      "artist": "P.O.D",
+      "year": 2001,
+      "deezer_id": "4087048",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USAT20106877",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "3-doors-down-kryptonite",
+      "title": "Kryptonite",
+      "artist": "3 Doors Down",
+      "year": 2000,
+      "deezer_id": "2511224",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USUR19980187",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "kenny-loggins-danger-zone-from-top-gun-original-soundtrack",
+      "title": "Danger Zone (From \"Top Gun\" Original Soundtrack)",
+      "artist": "Kenny Loggins",
+      "year": 1986,
+      "deezer_id": "4208400",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM18600108",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-goo-goo-dolls-iris",
+      "title": "Iris",
+      "artist": "The Goo Goo Dolls",
+      "year": 1998,
+      "deezer_id": "4290138",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USWB19800160",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "bryan-adams-heaven",
+      "title": "Heaven",
+      "artist": "Bryan Adams",
+      "year": 1984,
+      "deezer_id": "88845663",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USAM18490004",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "free-all-right-now",
+      "title": "All Right Now",
+      "artist": "Free",
+      "year": 1970,
+      "deezer_id": "929222",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBAAN7000001",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "cream-sunshine-of-your-love",
+      "title": "Sunshine Of Your Love",
+      "artist": "Cream",
+      "year": 1967,
+      "deezer_id": "1175615",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "GBA076700020",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "little-richard-long-tall-sally",
+      "title": "Long Tall Sally",
+      "artist": "Little Richard",
+      "year": 1956,
+      "deezer_id": "2203628",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "R&B"
+      ],
+      "isrc": "USC4R0817278",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "jerry-lee-lewis-great-balls-of-fire",
+      "title": "Great Balls Of Fire",
+      "artist": "Jerry Lee Lewis",
+      "year": 1957,
+      "deezer_id": "514451972",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Folk & Country"
+      ],
+      "deezer_genres": [
+        "Country"
+      ],
+      "isrc": "USIR20400813",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "tom-petty-runnin-down-a-dream",
+      "title": "Runnin' Down A Dream",
+      "artist": "Tom Petty",
+      "year": 1989,
+      "deezer_id": "588236372",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USMC18925680",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "greta-van-fleet-highway-tune",
+      "title": "Highway Tune",
+      "artist": "Greta Van Fleet",
+      "year": 2017,
+      "deezer_id": "424587822",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USUM71702892",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "paramore-decode",
+      "title": "Decode",
+      "artist": "Paramore",
+      "year": 2008,
+      "deezer_id": "2723257",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Film & Games"
+      ],
+      "deezer_genres": [
+        "Filme/Videospiele",
+        "Filmmusik"
+      ],
+      "isrc": "USAT20804057",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "pantera-walk",
+      "title": "Walk",
+      "artist": "Pantera",
+      "year": 1992,
+      "deezer_id": "662879",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USEE10170088",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "fall-out-boy-thnks-fr-th-mmrs",
+      "title": "Thnks fr th Mmrs",
+      "artist": "Fall Out Boy",
+      "year": 2007,
+      "deezer_id": "911496",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "USUM70700326",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "social-distortion-story-of-my-life",
+      "title": "Story of My Life",
+      "artist": "Social Distortion",
+      "year": 1990,
+      "deezer_id": "1068528",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM10022478",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "sex-pistols-anarchy-in-the-uk",
+      "title": "Anarchy In The UK",
+      "artist": "Sex Pistols",
+      "year": 1977,
+      "deezer_id": "33255551",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Indie Rock"
+      ],
+      "isrc": "GBUM71200591",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "lynyrd-skynyrd-free-bird",
+      "title": "Free Bird",
+      "artist": "Lynyrd Skynyrd",
+      "year": 1973,
+      "deezer_id": "1559717",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USMC17301722",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "u2-sunday-bloody-sunday",
+      "title": "Sunday Bloody Sunday",
+      "artist": "U2",
+      "year": 1983,
+      "deezer_id": "1579265",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBUM70713138",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "r-e-m-losing-my-religion",
+      "title": "Losing My Religion",
+      "artist": "R.E.M.",
+      "year": 1991,
+      "deezer_id": "136334560",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "USC4R1605373",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "puddle-of-mudd-she-hates-me",
+      "title": "She Hates Me",
+      "artist": "Puddle of Mudd",
+      "year": 2001,
+      "deezer_id": "7408923",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USIR10110582",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "kinks-you-really-got-me",
+      "title": "You Really Got Me",
+      "artist": "Kinks",
+      "year": 1964,
+      "deezer_id": "2319655705",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "DESK99091901",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-animals-house-of-the-rising-sun",
+      "title": "House of the Rising Sun",
+      "artist": "The Animals",
+      "year": 1963,
+      "deezer_id": "3155135",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBAYE6400209",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-beatles-hey-jude",
+      "title": "Hey Jude",
+      "artist": "The Beatles",
+      "year": 1968,
+      "deezer_id": "116348632",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBUM71505902",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-beatles-a-hard-day-s-night",
+      "title": "A Hard Day's Night",
+      "artist": "The Beatles",
+      "year": 1964,
+      "deezer_id": "116348426",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBAYE0601438",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-kinks-sunny-afternoon",
+      "title": "Sunny Afternoon",
+      "artist": "The Kinks",
+      "year": 1966,
+      "deezer_id": "3786491532",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBAJE6600005",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-lovin-spoonful-summer-in-the-city",
+      "title": "Summer in the City",
+      "artist": "The Lovin' Spoonful",
+      "year": 1966,
+      "deezer_id": "600434",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USBR10300026",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "bob-dylan-blowin-in-the-wind",
+      "title": "Blowin' in the Wind",
+      "artist": "Bob Dylan",
+      "year": 1963,
+      "deezer_id": "68584634",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Folk & Country"
+      ],
+      "deezer_genres": [
+        "Folk"
+      ],
+      "isrc": "USSM19900534",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "m-neskin-i-wanna-be-your-slave",
+      "title": "I WANNA BE YOUR SLAVE",
+      "artist": "Måneskin",
+      "year": 2021,
+      "deezer_id": "1279728532",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "ITB002100115",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "itchy-why-still-bother",
+      "title": "Why Still Bother",
+      "artist": "ITCHY",
+      "year": 2011,
+      "deezer_id": "3761767752",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Indie Rock"
+      ],
+      "isrc": "DEZ651030638",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "showaddywaddy-under-the-moon-of-love",
+      "title": "Under the Moon of Love",
+      "artist": "Showaddywaddy",
+      "year": 1976,
+      "deezer_id": "12189647",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "GBBPJ9800694",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "barclay-james-harvest-hymn",
+      "title": "Hymn",
+      "artist": "Barclay James Harvest",
+      "year": 1977,
+      "deezer_id": "1178560",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "GBF067700010",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-outfield-your-love",
+      "title": "Your Love",
+      "artist": "The Outfield",
+      "year": 1985,
+      "deezer_id": "1081291",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USSM10100176",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "midnight-oil-beds-are-burning",
+      "title": "Beds Are Burning",
+      "artist": "Midnight Oil",
+      "year": 1987,
+      "deezer_id": "13158212",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "AUBM00700707",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "good-charlotte-the-anthem",
+      "title": "The Anthem",
+      "artist": "Good Charlotte",
+      "year": 2002,
+      "deezer_id": "7675611",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USSM10209827",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "loverboy-working-for-the-weekend",
+      "title": "Working For The Weekend",
+      "artist": "Loverboy",
+      "year": 1981,
+      "deezer_id": "13268006",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Pop",
+        "Rock",
+        "Hard Rock"
+      ],
+      "isrc": "CAC220600030",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "w-a-s-p-i-wanna-be-somebody",
+      "title": "I Wanna Be Somebody",
+      "artist": "W.A.S.P.",
+      "year": 1984,
+      "deezer_id": "1677452",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock",
+        "Hard Rock"
+      ],
+      "isrc": "GBCQV8400008",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "billy-squier-lonely-is-the-night",
+      "title": "Lonely Is The Night",
+      "artist": "Billy Squier",
+      "year": 1981,
+      "deezer_id": "6494534",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USCA21001207",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "tesla-modern-day-cowboy",
+      "title": "Modern Day Cowboy",
+      "artist": "Tesla",
+      "year": 1986,
+      "deezer_id": "2120063",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USGF18612007",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "reo-speedwagon-keep-on-loving-you",
+      "title": "Keep on Loving You",
+      "artist": "REO Speedwagon",
+      "year": 1980,
+      "deezer_id": "12754208",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USSM11102617",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-j-geils-band-centerfold",
+      "title": "Centerfold",
+      "artist": "The J. Geils Band",
+      "year": 1981,
+      "deezer_id": "3168236",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USCA28100075",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "yngwie-malmsteen-rising-force",
+      "title": "Rising Force",
+      "artist": "Yngwie Malmsteen",
+      "year": 1984,
+      "deezer_id": "1159257",
+      "deezer_release_year": "1988",
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USF068825490",
+      "year_source": "kuratiert",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "van-halen-why-can-t-this-be-love",
+      "title": "Why Can't This Be Love",
+      "artist": "Van Halen",
+      "year": 1986,
+      "deezer_id": "3826810",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock",
+        "Hard Rock"
+      ],
+      "isrc": "USWB10902261",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "3-doors-down-here-without-you",
+      "title": "Here Without You",
+      "artist": "3 Doors Down",
+      "year": 2002,
+      "deezer_id": "2172900",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USUR10200764",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "him-right-here-in-my-arms",
+      "title": "Right Here In My Arms",
+      "artist": "HIM",
+      "year": 1999,
+      "deezer_id": "637369",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "FIBAR9900313",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "maroon-5-this-love",
+      "title": "This Love",
+      "artist": "Maroon 5",
+      "year": 2002,
+      "deezer_id": "1165301",
+      "deezer_release_year": "2007",
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USJAY0300080",
+      "year_source": "kuratiert",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "ben-e-king-save-the-last-dance-for-me",
+      "title": "Save the Last Dance for Me",
+      "artist": "Ben E. King",
+      "year": 1960,
+      "deezer_id": "136710488",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Sonstige"
+      ],
+      "deezer_genres": [],
+      "isrc": "USAT20505444",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-runaways-cherry-bomb",
+      "title": "Cherry Bomb",
+      "artist": "The Runaways",
+      "year": 1976,
+      "deezer_id": "5677465",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USIR20200576",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "iggy-pop-the-passenger",
+      "title": "The Passenger",
+      "artist": "Iggy Pop",
+      "year": 1977,
+      "deezer_id": "3121463",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USVI20700278",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "minutemen-corona",
+      "title": "Corona",
+      "artist": "Minutemen",
+      "year": 1984,
+      "deezer_id": "1601890",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Indie Rock",
+        "Rock",
+        "Hard Rock"
+      ],
+      "isrc": "USA370538099",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "rammstein-ohne-dich",
+      "title": "Ohne dich",
+      "artist": "Rammstein",
+      "year": 2004,
+      "deezer_id": "630594552",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "DEN120405585",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "anthrax-indians",
+      "title": "Indians",
+      "artist": "Anthrax",
+      "year": 1987,
+      "deezer_id": "1103953",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USIR28600022",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "iron-maiden-brave-new-world",
+      "title": "Brave New World",
+      "artist": "Iron Maiden",
+      "year": 2000,
+      "deezer_id": "585584952",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBCHB1800104",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "sum-41-still-waiting",
+      "title": "Still Waiting",
+      "artist": "Sum 41",
+      "year": 2002,
+      "deezer_id": "1104656",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USIR20200792",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-struts-could-have-been-me",
+      "title": "Could Have Been Me",
+      "artist": "The Struts",
+      "year": 2013,
+      "deezer_id": "120306392",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBUM71304611",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "stray-cats-runaway-boys",
+      "title": "Runaway Boys",
+      "artist": "Stray Cats",
+      "year": 1980,
+      "deezer_id": "69070709",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Pop",
+        "International Pop",
+        "Rock"
+      ],
+      "isrc": "GBARK8000013",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "gruppo-sportivo-rock-n-roll",
+      "title": "Rock 'n Roll",
+      "artist": "Gruppo Sportivo",
+      "year": 1978,
+      "deezer_id": "486285902",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "NLA200200498",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-doors-riders-on-the-storm",
+      "title": "Riders on the Storm",
+      "artist": "The Doors",
+      "year": 1971,
+      "deezer_id": "65445466",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USEE19900773",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "peter-koelewijn-angeline-m-n-blonde-sexmachine",
+      "title": "Angeline (M'n Blonde Sexmachine)",
+      "artist": "Peter Koelewijn",
+      "year": 1986,
+      "deezer_id": "3576212841",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "NLS241200168",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "heart-crazy-on-you",
+      "title": "Crazy On You",
+      "artist": "Heart",
+      "year": 1976,
+      "deezer_id": "540501232",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USCA29700923",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "shocking-blue-never-marry-a-railroad-man",
+      "title": "Never Marry A Railroad Man",
+      "artist": "Shocking Blue",
+      "year": 1970,
+      "deezer_id": "60703396",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "NLC287000001",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "focus-sylvia",
+      "title": "Sylvia",
+      "artist": "Focus",
+      "year": 1972,
+      "deezer_id": "60704043",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "NLC287200147",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "focus-hocus-pocus",
+      "title": "Hocus Pocus",
+      "artist": "Focus",
+      "year": 1971,
+      "deezer_id": "60704074",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "NLC287100132",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "alice-cooper-school-s-out",
+      "title": "School's Out",
+      "artist": "Alice Cooper",
+      "year": 1972,
+      "deezer_id": "730866",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USWB19900782",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "herman-brood-his-wild-romance-rock-n-roll-junkie",
+      "title": "Rock 'N' Roll Junkie",
+      "artist": "Herman Brood & His Wild Romance",
+      "year": 1978,
+      "deezer_id": "1024570",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "NLA209700071",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "long-tall-ernie-do-you-remember",
+      "title": "Do You Remember",
+      "artist": "Long Tall Ernie",
+      "year": 1977,
+      "deezer_id": "1993932047",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Sonstige"
+      ],
+      "deezer_genres": [],
+      "isrc": "NLA340931033",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "deep-purple-smoke-on-the-water",
+      "title": "Smoke On The Water",
+      "artist": "Deep Purple",
+      "year": 1994,
+      "deezer_id": "60840057",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "GBDXG1200006",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "uriah-heep-easy-livin",
+      "title": "Easy Livin'",
+      "artist": "Uriah Heep",
+      "year": 1972,
+      "deezer_id": "5748605",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Pop",
+        "Heavy Metal"
+      ],
+      "isrc": "USMR17287066",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "normaal-alie",
+      "title": "Alie",
+      "artist": "Normaal",
+      "year": 1977,
+      "deezer_id": "74812467",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "NLAX70923280",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "eagles-one-of-these-nights",
+      "title": "One of These Nights",
+      "artist": "Eagles",
+      "year": 1975,
+      "deezer_id": "68094422",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "USEE11300344",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "catapult-let-your-hair-hang-down",
+      "title": "Let Your Hair Hang Down",
+      "artist": "Catapult",
+      "year": 1976,
+      "deezer_id": "998695422",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock",
+        "Rock & Roll/Rockabilly"
+      ],
+      "isrc": "NLB600800146",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "bachman-turner-overdrive-you-ain-t-seen-nothing-yet",
+      "title": "You Ain't Seen Nothing Yet",
+      "artist": "Bachman-Turner Overdrive",
+      "year": 1974,
+      "deezer_id": "778212132",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "USIR20000662",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "royal-blood-figure-it-out",
+      "title": "Figure It Out",
+      "artist": "Royal Blood",
+      "year": 2014,
+      "deezer_id": "82917990",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "GBAHT1400222",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "bruce-springsteen-born-in-the-u-s-a",
+      "title": "Born in the U.S.A.",
+      "artist": "Bruce Springsteen",
+      "year": 1984,
+      "deezer_id": "15586213",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Pop",
+        "International Pop",
+        "Rock"
+      ],
+      "isrc": "USSM18400406",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "imagine-dragons-radioactive",
+      "title": "Radioactive",
+      "artist": "Imagine Dragons",
+      "year": 2012,
+      "deezer_id": "63510358",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ],
+      "isrc": "USUM71201074",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "kensington-streets",
+      "title": "Streets",
+      "artist": "Kensington",
+      "year": 2014,
+      "deezer_id": "81363878",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "NLUB41400023",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "nazareth-love-hurts",
+      "title": "Love Hurts",
+      "artist": "Nazareth",
+      "year": 1975,
+      "deezer_id": "3786090492",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ],
+      "isrc": "GBCBR0402270",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "the-scene-iedereen-is-van-de-wereld",
+      "title": "Iedereen Is Van De Wereld",
+      "artist": "The Scene",
+      "year": 1990,
+      "deezer_id": "2181977",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ],
+      "isrc": "NLA309000003",
+      "year_source": "itunes",
+      "playlist": "14942764043"
+    },
+    {
+      "key": "metallica-master-of-puppets",
+      "title": "Master Of Puppets",
+      "artist": "Metallica",
+      "year": 1986,
+      "deezer_id": "424562692",
+      "deezer_release_year": null,
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ],
+      "isrc": "QMKHM1600219",
+      "year_source": "itunes",
+      "playlist": "14942764043"
     }
   ]
 }

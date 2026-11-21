@@ -130,9 +130,21 @@ function renderChips() {
 
 async function loadGenres() {
   try {
-    const res = await fetch("/api/genres");
+    const source = localStorage.getItem("jahresringe-source") || "";
+    const res = await fetch(`/api/genres?playlist=${encodeURIComponent(source)}`);
     const all = await res.json();
     genreOptions = all.filter((g) => g.count >= 2);
+    // Genres, die es in dieser Quelle nicht gibt, aus der Auswahl nehmen — sonst startet
+    // die Runde mit einem Filter, der nichts trifft.
+    const available = new Set(genreOptions.map((g) => g.name));
+    let changed = false;
+    for (const name of [...pickedGenres]) {
+      if (!available.has(name)) {
+        pickedGenres.delete(name);
+        changed = true;
+      }
+    }
+    if (changed) saveGenres();
     renderChips();
   } catch (err) {
     console.warn("Genres konnten nicht geladen werden", err);
@@ -174,6 +186,7 @@ function renderSources() {
         pickedSource = opt.id;
         localStorage.setItem("jahresringe-source", pickedSource);
         renderSources();
+        loadGenres();                 // Genre-Zaehler gehoeren zur gewaehlten Quelle
       };
       box.appendChild(chip);
     }

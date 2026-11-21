@@ -50,7 +50,9 @@ zusammen und ergänzt „Deutsch" anhand einer Interpretenliste. Die Tabellen st
 
 Die Startseite hat oben einen Block **Quelle**: Chips für „Alle Karten", „Kuratiert" und jede
 importierte Playlist (mit Kartenzahl). Die Auswahl gilt für Host- und Solo-Runden; der Host
-sieht sie unter dem Session-Code („Quelle: Hitster · Genres: Rock").
+sieht sie unter dem Session-Code („Quelle: Hitster · Genres: Rock"). Die Genre-Chips zählen
+innerhalb der gewählten Quelle (`GET /api/genres?playlist=…`) — beim Wechsel der Quelle
+aktualisieren sie sich, und Genres, die es dort nicht gibt, fliegen aus der Auswahl.
 
 Import direkt im UI: Deezer-Link oder Playlist-ID ins Feld, „Importieren" — der Import läuft
 als Hintergrund-Job im Server (`app/importer.py`), die Seite zeigt den Fortschritt
