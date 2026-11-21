@@ -11,7 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from app.game import Card, GameError, Room, TARGET_CARDS, slot_is_correct
+from app.game import Card, GameError, Room, TARGET_CARDS, filter_pool, slot_is_correct
 
 
 def make_pool(n: int = 20) -> list[Card]:
@@ -235,3 +235,25 @@ def test_host_plays_along_and_still_does_not_see_the_answer():
     assert len(results) == 2
     assert room.players["host"].score == 2
     assert room.snapshot(pid="host", is_host=True)["current"]["year"] == card.year
+
+
+def test_filter_pool_by_genre():
+    cards = [
+        Card("a", "A", "X", 1970, "1", ("Rock",)),
+        Card("b", "B", "X", 1980, "2", ("Pop", "Deutsch")),
+        Card("c", "C", "X", 1990, "3", ()),
+    ]
+    assert len(filter_pool(cards, [])) == 3
+    assert len(filter_pool(cards, None)) == 3
+    assert [c.key for c in filter_pool(cards, ["Rock"])] == ["a"]
+    assert [c.key for c in filter_pool(cards, ["pop"])] == ["b"]        # Gross-/Kleinschreibung egal
+    assert sorted(c.key for c in filter_pool(cards, ["Deutsch", "Rock"])) == ["a", "b"]
+
+
+def test_filtered_room_contains_only_matching_cards():
+    rock = [Card(f"r{i}", f"R{i}", "A", 1970 + i, str(i), ("Rock",)) for i in range(12)]
+    pop = [Card(f"p{i}", f"P{i}", "B", 1990 + i, str(100 + i), ("Pop",)) for i in range(12)]
+    room = Room.create(filter_pool(rock + pop, ["Rock"]), host_id="h", code="F1",
+                       rng=random.Random(1))
+    assert all("Rock" in c.genres for c in room.deck + [room.seed])
+    assert len(room.deck) + 1 == 12

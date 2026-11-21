@@ -122,6 +122,41 @@ async def fetch(client: httpx.AsyncClient, path: str, **params) -> dict | None:
 BAD_WORDS = ("instrumental", "karaoke", "cover", "tribute", "made famous", "in the style of",
              "live at", "live from", "commentary", "remix", "mixed", "medley")
 
+# Deezer liefert Genres pro Album und sehr feinkoernig (18 verschiedene bei 77 Karten, viele
+# mit einem einzigen Titel). Fuer eine Party-Filterung wird daraus eine Handvoll Schubladen.
+GENRE_BUCKETS = {
+    "pop": "Pop", "international pop": "Pop", "electro pop/electro rock": "Pop",
+    "singer & songwriter": "Pop", "indie pop": "Pop", "chanson": "Pop",
+    "rock": "Rock", "indie rock": "Rock", "alternative": "Rock", "heavy metal": "Rock",
+    "hard rock": "Rock", "punk": "Rock", "metal": "Rock", "alternative rock": "Rock",
+    "rap/hip hop": "Hip-Hop", "r&b": "Hip-Hop", "trap": "Hip-Hop", "hip hop": "Hip-Hop",
+    "electro": "Electronic", "dance": "Electronic", "techno/house": "Electronic",
+    "house": "Electronic", "disco": "Electronic", "trance": "Electronic",
+    "soul & funk": "Soul & Funk", "soul": "Soul & Funk", "funk": "Soul & Funk",
+    "filmmusik": "Film & Games", "filme/videospiele": "Film & Games",
+    "soundtrack": "Film & Games", "musical": "Film & Games",
+    "jazz": "Jazz & Blues", "blues": "Jazz & Blues",
+    "folk": "Folk & Country", "country": "Folk & Country",
+    "reggae": "Reggae", "klassik": "Klassik", "classical": "Klassik",
+}
+
+# Deutschsprachig ist kein Deezer-Genre, fuer eine deutsche Runde aber der naheliegendste Filter.
+DEUTSCH = {
+    "nena", "peter schilling", "herbert grönemeyer", "die ärzte", "rammstein", "cro",
+    "marteria", "deichkind", "kraftklub", "apache 207", "falco", "fettes brot",
+}
+
+
+def bucket_genres(raw: list[str], artist: str) -> list[str]:
+    buckets = {GENRE_BUCKETS[g.lower()] for g in raw if g.lower() in GENRE_BUCKETS}
+    if artist.lower() in DEUTSCH:
+        buckets.add("Deutsch")
+    return sorted(buckets)
+
+
+# Alben ohne Genre-Angabe (z.B. Live-Scheiben) bekommen hier ihr Genre.
+MANUAL_GENRES = {"no-woman-no-cry": "Reggae"}
+
 
 def score(hit: dict, title: str, artist: str) -> float:
     """Treffer bewerten: Titel/Interpret nah dran, keine Instrumental-/Karaoke-Fassung, populaer.
@@ -226,15 +261,31 @@ async def build() -> int:
             seen.add(str(track["id"]))
             album_year = (detail.get("album") or {}).get("release_date") or ""
             got = album_year[:4]
+            album_id = (detail.get("album") or {}).get("id")
+            raw_genres: list[str] = []
+            if album_id:
+                album = await fetch(client, f"album/{album_id}") or {}
+                await asyncio.sleep(0.16)
+                raw_genres = [g.get("name") for g in (album.get("genres") or {}).get("data") or []
+                              if g.get("name")]
+            artist_name = (detail.get("artist") or {}).get("name") or artist
+            card_key = slug(title, artist)
+            genres = bucket_genres(raw_genres, artist_name)
+            if not genres and card_key in MANUAL_GENRES:
+                genres = [MANUAL_GENRES[card_key]]
             cards.append({
-                "key": slug(title, artist),
+                "key": card_key,
                 "title": detail.get("title") or track.get("title") or title,
-                "artist": (detail.get("artist") or {}).get("name") or artist,
+                "artist": artist_name,
                 "year": year,
                 "deezer_id": str(track["id"]),
                 "deezer_release_year": got or None,
                 "preview_ok": bool(detail.get("preview")),
+                "genres": genres,
+                "deezer_genres": raw_genres,
             })
+            if not genres:
+                problems.append(f"OHNE GENRE: {title} — {artist} ({raw_genres})")
             if not detail.get("preview"):
                 problems.append(f"KEIN PREVIEW: {title} — {artist}")
             if got and got != str(year):

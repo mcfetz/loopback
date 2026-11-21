@@ -15,7 +15,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app import deezer
-from app.game import Card, GameError, Player, Room, new_code
+from app.game import Card, GameError, Player, Room, TARGET_CARDS, filter_pool, new_code
 
 log = logging.getLogger("song-timeline")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -30,14 +30,43 @@ ROOMS: dict[str, Room] = {}
 CONNS: dict[str, list[dict]] = {}       # code -> [{"ws","pid","host"}]
 
 
-def pool_cards() -> list[Card]:
-    return [Card(**{k: item[k] for k in ("key", "title", "artist", "year", "deezer_id")})
-            for item in deezer.load_pool()]
+def pool_cards(genres: list[str] | None = None) -> list[Card]:
+    cards = [Card(**{k: item[k] for k in ("key", "title", "artist", "year", "deezer_id")},
+                  genres=tuple(item.get("genres") or []))
+             for item in deezer.load_pool()]
+    return filter_pool(cards, genres)
+
+
+def wanted_genres(msg: dict) -> list[str]:
+    raw = msg.get("genres") or []
+    if isinstance(raw, str):
+        raw = [raw]
+    return [str(g)[:32] for g in raw][:8]
+
+
+def room_pool(msg: dict) -> tuple[list[Card], list[str]]:
+    genres = wanted_genres(msg)
+    cards = pool_cards(genres)
+    if len(cards) < TARGET_CARDS + 2:
+        raise GameError(f"Zu wenige Karten fuer diese Genres ({len(cards)} statt "
+                        f"{TARGET_CARDS + 2}) — bitte mehr Genres waehlen")
+    return cards, genres
 
 
 @app.get("/")
 async def index() -> FileResponse:
     return FileResponse(STATIC_DIR / "index.html")
+
+
+@app.get("/api/genres")
+async def genres() -> list[dict]:
+    """Verfuegbare Genres mit Kartenzahl, haeufigste zuerst."""
+    counts: dict[str, int] = {}
+    for item in deezer.load_pool():
+        for name in item.get("genres") or []:
+            counts[name] = counts.get(name, 0) + 1
+    return [{"name": name, "count": count}
+            for name, count in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))]
 
 
 @app.get("/api/health")
@@ -90,8 +119,10 @@ async def ws_endpoint(sock: WebSocket) -> None:
             try:
                 if action == "create":
                     host_id = secrets.token_urlsafe(8)
-                    room = Room.create(pool_cards(), host_id=host_id,
+                    cards, genres = room_pool(msg)
+                    room = Room.create(cards, host_id=host_id,
                                        code=new_code(set(ROOMS)))
+                    room.filter_genres = genres
                     host_name = str(msg.get("name") or "Host").strip()[:24] or "Host"
                     room.add_player(host_id, host_name)     # Host raet mit
                     ROOMS[room.code] = room
@@ -107,7 +138,9 @@ async def ws_endpoint(sock: WebSocket) -> None:
                 elif action == "solo":
                     # Ein Geraet, eine Person: derselbe Client steuert und tippt, ohne Code.
                     solo_pid = secrets.token_urlsafe(8)
-                    room = Room.create(pool_cards(), host_id=solo_pid, code=new_code(set(ROOMS)))
+                    cards, genres = room_pool(msg)
+                    room = Room.create(cards, host_id=solo_pid, code=new_code(set(ROOMS)))
+                    room.filter_genres = genres
                     room.solo = True
                     name = str(msg.get("name") or "Solo").strip()[:24] or "Solo"
                     room.add_player(solo_pid, name)

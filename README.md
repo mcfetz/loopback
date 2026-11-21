@@ -33,7 +33,20 @@ Oder als Container: `docker compose up -d --build`, dann `http://<host>:8123` au
 Host: „Spiel erstellen" → Code ansagen. Spieler: `http://<host>:8123/?code=CODE` öffnen,
 Namen eintragen, fertig.
 
-## Kartenpool
+## Genres
+
+Vor dem Start lassen sich Genres als Chips auswählen (nichts gewählt = alle). Der Filter gilt
+für Host-Runden und Solo-Runden; Spieler übernehmen ihn einfach mit dem Beitritt. Reicht der
+gefilterte Pool nicht für ein Spiel (mindestens 12 Karten), meldet der Server das und man
+wählt mehr Genres.
+
+Die Genres stammen aus den Album-Angaben von Deezer, werden aber gebündelt: Deezer liefert
+18 Feinkategorien für 77 Karten (viele mit nur einem Titel), das Skript fasst sie zu Pop,
+Rock, Hip-Hop, Electronic, Soul & Funk, Film & Games, Folk & Country, Reggae und Jazz & Blues
+zusammen und ergänzt „Deutsch" anhand einer Interpretenliste (`GENRE_BUCKETS`/`DEUTSCH` in
+`scripts/build_pool.py`).
+
+## Pool neu bauen
 
 `data/pool.json` enthält die Karten: Titel, Interpret, **kuratiertes Originaljahr**, Deezer-ID.
 Das Jahr ist im Spiel die einzige Wahrheit, weil Deezer nur das Album-Release-Datum kennt

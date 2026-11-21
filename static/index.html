@@ -20,6 +20,8 @@
       <h2>Host</h2>
       <p class="hint">Du spielst das Audio, steuerst die Runden und r&auml;tst selbst mit. Die L&ouml;sung siehst du erst beim Aufl&ouml;sen.</p>
       <label>Dein Name <input id="host-name" maxlength="24" placeholder="Host" value="Host"></label>
+      <label>Genres <span class="chipnote">nichts gewählt = alle</span></label>
+      <div class="chips" data-chips></div>
       <button id="btn-create" class="primary big">Spiel erstellen</button>
     </div>
     <div class="card">
@@ -31,6 +33,8 @@
     <div class="card">
       <h2>Allein</h2>
       <p class="hint">Single-Player: gleiche Regeln, keine Mitspieler, kein Code n&ouml;tig.</p>
+      <label>Genres <span class="chipnote">nichts gewählt = alle</span></label>
+      <div class="chips" data-chips></div>
       <button id="btn-solo" class="big">Solo spielen</button>
     </div>
     <p id="start-error" class="error"></p>
@@ -43,6 +47,7 @@
       <div id="host-code" class="code">-----</div>
       <div id="host-url" class="url"></div>
     </div>
+    <div id="host-filter" class="filterline"></div>
 
     <div class="row">
       <button id="btn-start" class="primary">Spiel starten</button>

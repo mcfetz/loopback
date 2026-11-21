@@ -444,6 +444,36 @@ h3 {
 
 footer { position: relative; z-index: 1; text-align: center; padding: 1rem; }
 
+/* Genre-Chips */
+.chipnote {
+  color: rgba(255, 255, 255, .45);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: .76rem;
+}
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: .35rem 0 .95rem; }
+.chip {
+  padding: .45rem .85rem;
+  font-size: .85rem;
+  font-weight: 800;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .08);
+  border: 1.5px solid var(--line);
+  color: var(--fg);
+  box-shadow: none;
+}
+.chip::after { content: none; }
+.chip .cnt { opacity: .6; font-weight: 700; margin-left: .35rem; font-size: .74rem; }
+.chip.on {
+  background: var(--grad-cool);
+  color: #001a24;
+  border-color: transparent;
+  box-shadow: 0 8px 18px rgba(0, 224, 255, .35);
+}
+.chip.clear { background: transparent; color: var(--muted); border-style: dashed; }
+.filterline { text-align: center; color: var(--muted); font-size: .8rem; margin: -.3rem 0 .7rem; }
+
 @media (prefers-reduced-motion: reduce) {
   body::before, button.primary::after, .winner-banner { animation: none; }
   .reveal, .tcard, .slot.picked { animation: none; }

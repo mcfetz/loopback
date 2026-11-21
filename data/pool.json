@@ -8,7 +8,13 @@
       "year": 1956,
       "deezer_id": "17479889",
       "deezer_release_year": "2001",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "chuck-berry-johnny-b-goode",
@@ -17,7 +23,15 @@
       "year": 1958,
       "deezer_id": "2689636",
       "deezer_release_year": "2008",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Pop",
+        "Rock"
+      ]
     },
     {
       "key": "ray-charles-hit-the-road-jack",
@@ -26,7 +40,13 @@
       "year": 1961,
       "deezer_id": "1102096652",
       "deezer_release_year": "2020",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "R&B"
+      ]
     },
     {
       "key": "the-beatles-she-loves-you",
@@ -35,7 +55,13 @@
       "year": 1963,
       "deezer_id": "2614506842",
       "deezer_release_year": "2024",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "the-kinks-you-really-got-me",
@@ -44,7 +70,13 @@
       "year": 1964,
       "deezer_id": "3474141091",
       "deezer_release_year": "2025",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "the-rolling-stones-i-can-t-get-no-satisfaction",
@@ -53,7 +85,13 @@
       "year": 1965,
       "deezer_id": "7677778",
       "deezer_release_year": "2005",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "the-who-my-generation",
@@ -62,7 +100,13 @@
       "year": 1965,
       "deezer_id": "136341550",
       "deezer_release_year": "1965",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "james-brown-i-got-you-i-feel-good",
@@ -71,7 +115,13 @@
       "year": 1965,
       "deezer_id": "598055772",
       "deezer_release_year": "2014",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "R&B"
+      ]
     },
     {
       "key": "bob-dylan-like-a-rolling-stone",
@@ -80,7 +130,13 @@
       "year": 1965,
       "deezer_id": "14477354",
       "deezer_release_year": "1965",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "jimi-hendrix-hey-joe",
@@ -89,7 +145,13 @@
       "year": 1966,
       "deezer_id": "4952888",
       "deezer_release_year": "2010",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "the-doors-light-my-fire",
@@ -98,7 +160,13 @@
       "year": 1967,
       "deezer_id": "3613547",
       "deezer_release_year": "2007",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "aretha-franklin-respect",
@@ -107,7 +175,13 @@
       "year": 1967,
       "deezer_id": "904732",
       "deezer_release_year": "2018",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "simon-garfunkel-mrs-robinson",
@@ -116,7 +190,14 @@
       "year": 1968,
       "deezer_id": "717247842",
       "deezer_release_year": "2019",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Film & Games"
+      ],
+      "deezer_genres": [
+        "Filme/Videospiele",
+        "Filmmusik"
+      ]
     },
     {
       "key": "creedence-clearwater-revival-fortunate-son",
@@ -125,7 +206,13 @@
       "year": 1969,
       "deezer_id": "883648",
       "deezer_release_year": "2008",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "the-jackson-5-i-want-you-back",
@@ -134,7 +221,13 @@
       "year": 1969,
       "deezer_id": "4188287",
       "deezer_release_year": "2009",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "R&B"
+      ]
     },
     {
       "key": "marvin-gaye-what-s-going-on",
@@ -143,7 +236,13 @@
       "year": 1971,
       "deezer_id": "1133408852",
       "deezer_release_year": "1971",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "R&B"
+      ]
     },
     {
       "key": "led-zeppelin-stairway-to-heaven",
@@ -152,7 +251,13 @@
       "year": 1971,
       "deezer_id": "88003859",
       "deezer_release_year": "2014",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "stevie-wonder-superstition",
@@ -161,7 +266,13 @@
       "year": 1972,
       "deezer_id": "596034702",
       "deezer_release_year": "2007",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "R&B"
+      ]
     },
     {
       "key": "bob-marley-no-woman-no-cry",
@@ -170,7 +281,11 @@
       "year": 1974,
       "deezer_id": "1583148",
       "deezer_release_year": "2001",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Reggae"
+      ],
+      "deezer_genres": []
     },
     {
       "key": "queen-bohemian-rhapsody",
@@ -179,7 +294,13 @@
       "year": 1975,
       "deezer_id": "4091937401",
       "deezer_release_year": "2005",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "abba-dancing-queen",
@@ -188,7 +309,13 @@
       "year": 1976,
       "deezer_id": "884025",
       "deezer_release_year": "2005",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "eagles-hotel-california",
@@ -197,7 +324,13 @@
       "year": 1976,
       "deezer_id": "426703682",
       "deezer_release_year": "2017",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "fleetwood-mac-dreams",
@@ -206,7 +339,13 @@
       "year": 1977,
       "deezer_id": "63480987",
       "deezer_release_year": "1977",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "bee-gees-stayin-alive",
@@ -215,7 +354,13 @@
       "year": 1977,
       "deezer_id": "139138743",
       "deezer_release_year": "2009",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "david-bowie-heroes",
@@ -224,7 +369,13 @@
       "year": 1977,
       "deezer_id": "461043312",
       "deezer_release_year": "2017",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "donna-summer-i-feel-love",
@@ -233,7 +384,13 @@
       "year": 1977,
       "deezer_id": "1560033",
       "deezer_release_year": "1991",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Electronic"
+      ],
+      "deezer_genres": [
+        "Disco"
+      ]
     },
     {
       "key": "kraftwerk-das-model",
@@ -242,7 +399,15 @@
       "year": 1978,
       "deezer_id": "1006803652",
       "deezer_release_year": "2017",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Electronic",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Electro"
+      ]
     },
     {
       "key": "the-clash-london-calling",
@@ -251,7 +416,18 @@
       "year": 1979,
       "deezer_id": "69924599",
       "deezer_release_year": "2001",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Indie Rock",
+        "Pop",
+        "International Pop",
+        "Rock"
+      ]
     },
     {
       "key": "pink-floyd-another-brick-in-the-wall",
@@ -260,7 +436,13 @@
       "year": 1979,
       "deezer_id": "116914094",
       "deezer_release_year": "1979",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "journey-don-t-stop-believin",
@@ -269,7 +451,13 @@
       "year": 1981,
       "deezer_id": "625643",
       "deezer_release_year": "2001",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "toto-africa",
@@ -278,7 +466,13 @@
       "year": 1982,
       "deezer_id": "1079668",
       "deezer_release_year": "1982",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "michael-jackson-billie-jean",
@@ -287,7 +481,16 @@
       "year": 1983,
       "deezer_id": "4603408",
       "deezer_release_year": "2009",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Pop",
+        "International Pop",
+        "Rock"
+      ]
     },
     {
       "key": "the-police-every-breath-you-take",
@@ -296,7 +499,13 @@
       "year": 1983,
       "deezer_id": "2525864",
       "deezer_release_year": "2002",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "eurythmics-sweet-dreams-are-made-of-this",
@@ -305,7 +514,13 @@
       "year": 1983,
       "deezer_id": "2167022",
       "deezer_release_year": "2007",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "new-order-blue-monday",
@@ -314,7 +529,14 @@
       "year": 1983,
       "deezer_id": "7337280",
       "deezer_release_year": "1998",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Film & Games"
+      ],
+      "deezer_genres": [
+        "Filme/Videospiele",
+        "Filmmusik"
+      ]
     },
     {
       "key": "nena-99-luftballons",
@@ -323,7 +545,16 @@
       "year": 1983,
       "deezer_id": "7633179",
       "deezer_release_year": "2010",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Pop",
+        "Rock"
+      ]
     },
     {
       "key": "peter-schilling-major-tom-v-llig-losgel-st",
@@ -332,7 +563,14 @@
       "year": 1982,
       "deezer_id": "3605281",
       "deezer_release_year": "1983",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "prince-purple-rain",
@@ -341,7 +579,13 @@
       "year": 1984,
       "deezer_id": "374283061",
       "deezer_release_year": "2017",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "alphaville-forever-young",
@@ -350,7 +594,13 @@
       "year": 1984,
       "deezer_id": "698274",
       "deezer_release_year": "1984",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "herbert-gr-nemeyer-m-nner",
@@ -359,7 +609,14 @@
       "year": 1984,
       "deezer_id": "3159913",
       "deezer_release_year": "2008",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "a-ha-take-on-me",
@@ -368,7 +625,13 @@
       "year": 1985,
       "deezer_id": "664107",
       "deezer_release_year": "1985",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "falco-rock-me-amadeus",
@@ -377,7 +640,14 @@
       "year": 1985,
       "deezer_id": "542016",
       "deezer_release_year": "2007",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "bon-jovi-livin-on-a-prayer",
@@ -386,7 +656,13 @@
       "year": 1986,
       "deezer_id": "538660022",
       "deezer_release_year": "1998",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "guns-n-roses-sweet-child-o-mine",
@@ -395,7 +671,13 @@
       "year": 1987,
       "deezer_id": "518458172",
       "deezer_release_year": "1987",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "rick-astley-never-gonna-give-you-up",
@@ -404,7 +686,13 @@
       "year": 1987,
       "deezer_id": "14408104",
       "deezer_release_year": "2011",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "whitney-houston-i-wanna-dance-with-somebody",
@@ -413,7 +701,13 @@
       "year": 1987,
       "deezer_id": "75981528",
       "deezer_release_year": "1987",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "R&B"
+      ]
     },
     {
       "key": "madonna-like-a-prayer",
@@ -422,7 +716,13 @@
       "year": 1989,
       "deezer_id": "664507",
       "deezer_release_year": "1989",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "depeche-mode-personal-jesus",
@@ -431,7 +731,13 @@
       "year": 1989,
       "deezer_id": "68513563",
       "deezer_release_year": "2006",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "nirvana-smells-like-teen-spirit",
@@ -440,7 +746,13 @@
       "year": 1991,
       "deezer_id": "13791930",
       "deezer_release_year": "2011",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "red-hot-chili-peppers-under-the-bridge",
@@ -449,7 +761,13 @@
       "year": 1991,
       "deezer_id": "785176",
       "deezer_release_year": "2003",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ]
     },
     {
       "key": "metallica-enter-sandman",
@@ -458,7 +776,13 @@
       "year": 1991,
       "deezer_id": "1483825212",
       "deezer_release_year": "1991",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "radiohead-creep",
@@ -467,7 +791,13 @@
       "year": 1992,
       "deezer_id": "138547415",
       "deezer_release_year": "1993",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ]
     },
     {
       "key": "die-rzte-schrei-nach-liebe",
@@ -476,7 +806,16 @@
       "year": 1993,
       "deezer_id": "1006163552",
       "deezer_release_year": "2006",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Pop",
+        "Rock"
+      ]
     },
     {
       "key": "oasis-wonderwall",
@@ -485,7 +824,15 @@
       "year": 1995,
       "deezer_id": "985745702",
       "deezer_release_year": "1995",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative",
+        "Indie Rock",
+        "Rock"
+      ]
     },
     {
       "key": "the-prodigy-firestarter",
@@ -494,7 +841,13 @@
       "year": 1996,
       "deezer_id": "62126191",
       "deezer_release_year": "2012",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Electronic"
+      ],
+      "deezer_genres": [
+        "Electro"
+      ]
     },
     {
       "key": "blur-song-2",
@@ -503,7 +856,13 @@
       "year": 1997,
       "deezer_id": "3102130",
       "deezer_release_year": "2000",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "rammstein-du-hast",
@@ -512,7 +871,14 @@
       "year": 1997,
       "deezer_id": "630595142",
       "deezer_release_year": "1997",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Heavy Metal"
+      ]
     },
     {
       "key": "britney-spears-baby-one-more-time",
@@ -521,7 +887,16 @@
       "year": 1998,
       "deezer_id": "540175",
       "deezer_release_year": "1999",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Pop",
+        "International Pop",
+        "Rock"
+      ]
     },
     {
       "key": "cher-believe",
@@ -530,7 +905,13 @@
       "year": 1998,
       "deezer_id": "786717",
       "deezer_release_year": "1998",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "eminem-lose-yourself",
@@ -539,7 +920,13 @@
       "year": 2002,
       "deezer_id": "1109731",
       "deezer_release_year": "2005",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "Rap/Hip Hop"
+      ]
     },
     {
       "key": "johnny-cash-hurt",
@@ -548,7 +935,13 @@
       "year": 2002,
       "deezer_id": "128846783",
       "deezer_release_year": "2002",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Folk & Country"
+      ],
+      "deezer_genres": [
+        "Country"
+      ]
     },
     {
       "key": "outkast-hey-ya",
@@ -557,7 +950,13 @@
       "year": 2003,
       "deezer_id": "628266",
       "deezer_release_year": "2002",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "Rap/Hip Hop"
+      ]
     },
     {
       "key": "amy-winehouse-rehab",
@@ -566,7 +965,13 @@
       "year": 2006,
       "deezer_id": "2176852",
       "deezer_release_year": "2006",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "R&B"
+      ]
     },
     {
       "key": "rihanna-umbrella",
@@ -575,7 +980,13 @@
       "year": 2007,
       "deezer_id": "925106",
       "deezer_release_year": "2008",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "lady-gaga-bad-romance",
@@ -584,7 +995,13 @@
       "year": 2009,
       "deezer_id": "4601933",
       "deezer_release_year": "2009",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "adele-rolling-in-the-deep",
@@ -593,7 +1010,13 @@
       "year": 2010,
       "deezer_id": "8086126",
       "deezer_release_year": "2011",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "cro-easy",
@@ -602,7 +1025,14 @@
       "year": 2012,
       "deezer_id": "3786097162",
       "deezer_release_year": "2012",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "Rap/Hip Hop"
+      ]
     },
     {
       "key": "marteria-kids",
@@ -611,7 +1041,14 @@
       "year": 2013,
       "deezer_id": "2344531095",
       "deezer_release_year": "2014",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "Rap/Hip Hop"
+      ]
     },
     {
       "key": "deichkind-leider-geil",
@@ -620,7 +1057,14 @@
       "year": 2012,
       "deezer_id": "82120542",
       "deezer_release_year": "2012",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Electronic"
+      ],
+      "deezer_genres": [
+        "Dance"
+      ]
     },
     {
       "key": "kraftklub-songs-f-r-liam",
@@ -629,7 +1073,14 @@
       "year": 2012,
       "deezer_id": "15914088",
       "deezer_release_year": "2012",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Rock"
+      ]
     },
     {
       "key": "daft-punk-get-lucky",
@@ -638,7 +1089,26 @@
       "year": 2013,
       "deezer_id": "66609426",
       "deezer_release_year": "2013",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Electronic",
+        "Hip-Hop",
+        "Pop",
+        "Rock",
+        "Soul & Funk"
+      ],
+      "deezer_genres": [
+        "Electro",
+        "Electro Pop/Electro Rock",
+        "Techno/House",
+        "Dance",
+        "Pop",
+        "International Pop",
+        "Rock",
+        "R&B",
+        "Disco",
+        "Soul & Funk"
+      ]
     },
     {
       "key": "mark-ronson-uptown-funk",
@@ -647,7 +1117,13 @@
       "year": 2014,
       "deezer_id": "92734438",
       "deezer_release_year": "2015",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "ed-sheeran-shape-of-you",
@@ -656,7 +1132,14 @@
       "year": 2017,
       "deezer_id": "139470659",
       "deezer_release_year": "2017",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop",
+        "Singer & Songwriter"
+      ]
     },
     {
       "key": "billie-eilish-bad-guy",
@@ -665,7 +1148,13 @@
       "year": 2019,
       "deezer_id": "711031072",
       "deezer_release_year": "2019",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Rock"
+      ],
+      "deezer_genres": [
+        "Alternative"
+      ]
     },
     {
       "key": "the-weeknd-blinding-lights",
@@ -674,7 +1163,13 @@
       "year": 2019,
       "deezer_id": "908604612",
       "deezer_release_year": "2020",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "R&B"
+      ]
     },
     {
       "key": "dua-lipa-don-t-start-now",
@@ -683,7 +1178,13 @@
       "year": 2019,
       "deezer_id": "788708262",
       "deezer_release_year": "2019",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Pop"
+      ],
+      "deezer_genres": [
+        "Pop"
+      ]
     },
     {
       "key": "apache-207-roller",
@@ -692,7 +1193,14 @@
       "year": 2019,
       "deezer_id": "735495312",
       "deezer_release_year": "2019",
-      "preview_ok": true
+      "preview_ok": true,
+      "genres": [
+        "Deutsch",
+        "Hip-Hop"
+      ],
+      "deezer_genres": [
+        "Rap/Hip Hop"
+      ]
     }
   ]
 }

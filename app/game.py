@@ -26,6 +26,15 @@ class Card:
     artist: str
     year: int
     deezer_id: str
+    genres: tuple[str, ...] = ()
+
+
+def filter_pool(cards: list[Card], genres: list[str] | None) -> list[Card]:
+    """Karten, deren Genre mindestens einen der Filter trifft. Leerer Filter = alles."""
+    wanted = {g.strip().lower() for g in (genres or []) if g and g.strip()}
+    if not wanted:
+        return list(cards)
+    return [c for c in cards if wanted & {g.lower() for g in c.genres}]
 
 
 @dataclass
@@ -73,6 +82,7 @@ class Room:
     log: list[dict] = field(default_factory=list)
     winner: str | None = None
     solo: bool = False       # Ein-Geraet-Modus: derselbe Client ist Host und Spieler
+    filter_genres: list[str] = field(default_factory=list)
 
     # ---------- Aufbau ----------
 
@@ -125,8 +135,10 @@ class Room:
         if self.state == "lobby":
             self.start()
         if not self.deck:
-            self._finish()
-            raise GameError("Kartenpool ist leer")
+            # Deck leer: der Beste gewinnt, sonst bleibt das Spiel ohne Ergebnis stehen.
+            best = max(self.players.values(), key=lambda p: p.score) if self.players else None
+            self._finish(best)
+            raise GameError("Kartenpool ist leer — Runde beendet")
         self.current = self.deck.pop()
         self.preview = None
         self.round += 1
@@ -227,6 +239,7 @@ class Room:
             "target": TARGET_CARDS,
             "winner": self.winner,
             "deck_left": len(self.deck),
+            "genres": self.filter_genres,
             "players": [
                 {
                     "id": p.id,

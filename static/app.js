@@ -96,11 +96,58 @@ function setStatus(text, isError = false) {
   if (isError) console.warn(text);
 }
 
+// ---------------------------------------------------------------- Genre-Filter
+
+let genreOptions = [];
+let pickedGenres = new Set(JSON.parse(localStorage.getItem("jahresringe-genres") || "[]"));
+
+function saveGenres() {
+  localStorage.setItem("jahresringe-genres", JSON.stringify([...pickedGenres]));
+}
+
+function renderChips() {
+  for (const box of document.querySelectorAll("[data-chips]")) {
+    box.innerHTML = "";
+    for (const g of genreOptions) {
+      const chip = el("button", "chip" + (pickedGenres.has(g.name) ? " on" : ""));
+      chip.type = "button";
+      chip.appendChild(document.createTextNode(g.name));
+      chip.appendChild(el("span", "cnt", String(g.count)));
+      chip.onclick = () => {
+        if (pickedGenres.has(g.name)) pickedGenres.delete(g.name);
+        else pickedGenres.add(g.name);
+        saveGenres();
+        renderChips();
+      };
+      box.appendChild(chip);
+    }
+    const reset = el("button", "chip clear", "zurücksetzen");
+    reset.type = "button";
+    reset.onclick = () => { pickedGenres.clear(); saveGenres(); renderChips(); };
+    box.appendChild(reset);
+  }
+}
+
+async function loadGenres() {
+  try {
+    const res = await fetch("/api/genres");
+    const all = await res.json();
+    genreOptions = all.filter((g) => g.count >= 2);
+    renderChips();
+  } catch (err) {
+    console.warn("Genres konnten nicht geladen werden", err);
+  }
+}
+
+function chosenGenres() {
+  return [...pickedGenres];
+}
+
 $("#btn-create").onclick = () => {
   showError("");
   me.role = "host";
   me.name = ($("#host-name").value || "Host").trim().slice(0, 24);
-  send({ action: "create", name: me.name });
+  send({ action: "create", name: me.name, genres: chosenGenres() });
 };
 
 $("#btn-join").onclick = () => {
@@ -116,7 +163,7 @@ $("#btn-join").onclick = () => {
 $("#btn-solo").onclick = () => {
   showError("");
   me.role = "solo";
-  send({ action: "solo", name: "Solo" });
+  send({ action: "solo", name: "Solo", genres: chosenGenres() });
 };
 
 $("#btn-leave").onclick = () => {
@@ -132,7 +179,7 @@ for (const [id, action] of [["#btn-start", "start"], ["#btn-next", "next"], ["#b
 $("#solo-next").onclick = () => send({ action: "next" });
 $("#solo-reveal").onclick = () => send({ action: "reveal" });
 $("#solo-skip").onclick = () => send({ action: "skip" });
-$("#solo-restart").onclick = () => send({ action: "solo", name: "Solo" });
+$("#solo-restart").onclick = () => send({ action: "solo", name: "Solo", genres: chosenGenres() });
 
 // ---------------------------------------------------------------- Audio
 
@@ -180,6 +227,8 @@ function playPreview(name, url) {
 function renderHost() {
   $("#host-code").textContent = state.code;
   $("#host-url").textContent = `${location.origin}/?code=${state.code}`;
+  const active = state.genres || [];
+  $("#host-filter").textContent = active.length ? `Genres: ${active.join(", ")}` : "Genres: alle";
 
   const st = state.state;
   const playing = st === "playing";
@@ -489,4 +538,5 @@ if (saved && saved.role && saved.role !== "solo") {
   showOnly(viewForRole(saved.role));
   $("#btn-leave").classList.remove("hidden");
 }
+loadGenres();
 connect();
