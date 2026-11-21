@@ -11,7 +11,13 @@ anderen joinen per Session-Code vom Handy, tippen ihre Platzierung und sehen ihr
   (davor / zwischen zwei Jahren / danach).
 - Auflösen: Passt die Platzierung, wandert die Karte in die Timeline und gibt einen Punkt.
   Falsch getippt oder gar nicht getippt: Karte verfällt.
-- Wer zuerst 10 Karten in der Timeline hat, gewinnt.
+- Wer zuerst 10 Karten in der Timeline hat, beendet das Spiel.
+
+**Punkte:** Jede richtige Antwort gibt 100 Punkte mal Zeitbonus. Der Bonus startet bei ×3,0
+und sinkt linear auf ×1,0 nach 20 Sekunden — wer zuerst tippt, bekommt also bis zu 300 Punkte,
+wer nach 20 Sekunden tippt nur noch 100. Der Stempel wird beim Tippen gesetzt, ein späteres
+Umentscheiden kostet Zeit. Falsch oder gar nicht getippt: 0 Punkte. Gewinner ist, wer am Ende
+die meisten Punkte hat (bei Gleichstand entscheiden die Karten).
 
 Der Host ist Moderator **und** Mitspieler: er hat eine eigene Timeline und tippt mit. Die
 Lösung sieht er trotzdem erst beim Auflösen — der Rechner steht ja im Partyraum.

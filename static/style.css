@@ -421,6 +421,29 @@ h3 {
 }
 .players .pdot { color: var(--lime); font-size: .72rem; font-weight: 800;
   letter-spacing: .1em; text-transform: uppercase; }
+.players .pcards { color: var(--muted); font-size: .8rem; font-weight: 800; min-width: 2.6rem;
+  text-align: right; }
+
+/* Zeitbonus-Anzeige */
+.mult {
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 900;
+  letter-spacing: .02em;
+  margin: .15rem 0 .35rem;
+  color: #fff;
+  text-shadow: 0 0 14px rgba(255, 207, 46, .9), 0 0 30px rgba(255, 46, 147, .6);
+  animation: multpulse 1s ease-in-out infinite;
+}
+.mult.low {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, .5);
+  text-shadow: none;
+  animation: none;
+}
+@keyframes multpulse {
+  50% { transform: scale(1.07); }
+}
 
 .log { padding-left: 1.15rem; color: var(--muted); font-size: .85rem; }
 .log li { margin: .3rem 0; }

@@ -12,6 +12,38 @@ const el = (tag, cls, text) => {
 let ws = null;
 let me = { role: null, id: null, name: null, code: null };
 let state = null;
+let clockOffset = 0;      // Sekunden: Browseruhr minus Serveruhr
+
+// ---------------------------------------------------------------- Zeitbonus
+
+function fmtMult(value) {
+  return `×${value.toFixed(1).replace(".", ",")}`;
+}
+
+function multiplierNow() {
+  if (!state || state.state !== "playing" || !state.round_started) return null;
+  const elapsed = Math.max(0, Date.now() / 1000 - clockOffset - state.round_started);
+  const fast = state.fast_seconds || 20;
+  const max = state.max_multiplier || 3;
+  if (elapsed >= fast) return 1;
+  return Math.max(1, Math.round((1 + (max - 1) * (1 - elapsed / fast)) * 10) / 10);
+}
+
+function updateMultiplier() {
+  const value = multiplierNow();
+  for (const [view, badge] of [["#view-host", "#host-mult"], ["#view-player", "#player-mult"],
+                               ["#view-solo", "#solo-mult"]]) {
+    const node = $(badge);
+    if (!node) continue;
+    const visible = value !== null && !$(view).classList.contains("hidden");
+    node.classList.toggle("hidden", !visible);
+    if (visible) {
+      node.textContent = fmtMult(value);
+      node.classList.toggle("low", value <= 1.2);
+    }
+  }
+}
+setInterval(updateMultiplier, 200);
 
 // ---------------------------------------------------------------- Verbindung
 
@@ -43,6 +75,7 @@ function send(obj) {
 function handle(msg) {
   if (msg.type === "state") {
     state = msg;
+    if (msg.now) clockOffset = Date.now() / 1000 - msg.now;   // Serverzeit statt Browseruhr
     me.code = msg.code;
     if (me.role === "host") renderHost();
     else if (me.role === "solo") renderSolo();
@@ -370,7 +403,8 @@ function renderHost() {
 
   const mine = state.me;
   if (mine) {
-    $("#host-mine").textContent = `${mine.score} Karte${mine.score === 1 ? "" : "n"}`;
+    $("#host-mine").textContent = `${mine.score} Karte${mine.score === 1 ? "" : "n"} · `
+      + `${mine.points} Punkte`;
     renderTimeline($("#timeline-host"), mine);
     bumpScore($("#host-mine"), mine.score);
     celebrate(mine, $("#timeline-host"), $("#host-reveal"));
@@ -402,7 +436,8 @@ function renderPlayer() {
   const mine = state.me;
   if (!mine) return;
   $("#player-name").textContent = mine.name;
-  $("#player-score").textContent = `${mine.score} Karte${mine.score === 1 ? "" : "n"}`;
+  $("#player-score").textContent = `${mine.score} Karte${mine.score === 1 ? "" : "n"} · `
+    + `${mine.points} Punkte`;
 
   const st = state.state;
   if (st === "lobby") setStatus("Warte auf den Host …");
@@ -411,7 +446,9 @@ function renderPlayer() {
     setStatus(mine.pending === null ? "Hör zu und tippe, wohin die Karte gehört."
       : "Getippt — kannst noch ändern, bis der Host auflöst.");
   } else if (st === "revealed") {
-    setStatus(mine.correct_last === true ? "Richtig!" : "Leider falsch.", mine.correct_last === false);
+    const delta = mine.delta ? ` +${mine.delta} Punkte (${fmtMult(mine.multiplier || 1)})` : "";
+    setStatus((mine.correct_last === true ? "Richtig!" : "Leider falsch.") + delta,
+              mine.correct_last === false);
   } else if (st === "finished") {
     setStatus(state.winner === mine.name ? "Du hast gewonnen!" : `Gewonnen: ${state.winner}`);
   }
@@ -433,7 +470,7 @@ function renderSolo() {
   const playing = st === "playing";
 
   $("#solo-label").textContent = "Solo";
-  $("#solo-score").textContent = `${mine.score} / ${state.target}`;
+  $("#solo-score").textContent = `${mine.score} / ${state.target} · ${mine.points} Punkte`;
   $("#solo-next").classList.toggle("hidden", !(st === "ready" || st === "revealed"));
   $("#solo-next").textContent = state.round === 0 ? "Erste Karte abspielen" : "Nächste Karte";
   $("#solo-reveal").classList.toggle("hidden", !playing);
@@ -444,9 +481,11 @@ function renderSolo() {
   else if (st === "playing") {
     setStatus(mine.pending === null ? "Wo gehört die Karte hin?" : "Getippt — jetzt auflösen.");
   } else if (st === "revealed") {
-    setStatus(mine.correct_last === true ? "Richtig!" : "Leider falsch.", mine.correct_last === false);
+    const delta = mine.delta ? ` +${mine.delta} Punkte (${fmtMult(mine.multiplier || 1)})` : "";
+    setStatus((mine.correct_last === true ? "Richtig!" : "Leider falsch.") + delta,
+              mine.correct_last === false);
   } else if (st === "finished") {
-    setStatus(`${state.target} Karten geschafft — neues Spiel?`);
+    setStatus(`${state.target} Karten geschafft — ${mine.points} Punkte. Neues Spiel?`);
   }
 
   renderReveal($("#solo-revealbox"));
@@ -623,12 +662,19 @@ function slotLabel(cards, i) {
 function renderResults(box) {
   if (!box) return;
   box.innerHTML = "";
-  if (state.winner) box.appendChild(el("div", "winner-banner", `Gewonnen: ${state.winner}`));
+  if (state.winner) {
+    const leader = state.players.find((p) => p.name === state.winner);
+    const detail = leader ? ` (${leader.points} Punkte, ${leader.score} Karten)` : "";
+    box.appendChild(el("div", "winner-banner", `Gewonnen: ${state.winner}${detail}`));
+  }
   if (state.state !== "revealed" && state.state !== "finished") return;
   for (const r of state.results) {
     const row = el("div", "resultrow " + (r.correct ? "ok" : "bad"));
     row.appendChild(el("span", "rname", r.name));
-    row.appendChild(el("span", "rmark", r.correct ? "richtig" : "falsch"));
+    const mark = r.correct
+      ? `+${r.delta} · ${fmtMult(r.multiplier || 1)} · ${r.points} P`
+      : "falsch";
+    row.appendChild(el("span", "rmark", mark));
     box.appendChild(row);
   }
 }
@@ -639,7 +685,8 @@ function renderPlayers(box) {
   for (const p of state.players) {
     const li = el("li", p.connected ? "" : "offline");
     li.appendChild(el("span", "pname", p.name));
-    li.appendChild(el("span", "pscore", String(p.score)));
+    li.appendChild(el("span", "pscore", String(p.points)));
+    li.appendChild(el("span", "pcards", `${p.score} K`));
     if (state.state === "playing" && p.pending) li.appendChild(el("span", "pdot", "getippt"));
     box.appendChild(li);
   }

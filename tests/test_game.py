@@ -11,7 +11,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from app.game import Card, GameError, Room, TARGET_CARDS, filter_pool, slot_is_correct
+from app.game import (BASE_POINTS, FAST_SECONDS, MAX_MULTIPLIER, Card, GameError, Room,
+                      TARGET_CARDS, filter_pool, slot_is_correct, speed_multiplier)
 
 
 def make_pool(n: int = 20) -> list[Card]:
@@ -257,3 +258,77 @@ def test_filtered_room_contains_only_matching_cards():
                        rng=random.Random(1))
     assert all("Rock" in c.genres for c in room.deck + [room.seed])
     assert len(room.deck) + 1 == 12
+
+
+def test_speed_multiplier_curve():
+    assert speed_multiplier(None) == 1.0
+    assert speed_multiplier(0) == MAX_MULTIPLIER
+    assert speed_multiplier(FAST_SECONDS / 2) == 2.0
+    assert speed_multiplier(FAST_SECONDS) == 1.0
+    assert speed_multiplier(FAST_SECONDS + 10) == 1.0
+    werte = [speed_multiplier(t) for t in (0, 2, 5, 10, 15, 20)]
+    assert werte == sorted(werte, reverse=True), werte
+
+
+def test_fast_guess_gets_full_multiplier():
+    room, _ = make_room(1)
+    room.start()
+    card = room.next_round()
+    player = room.players["p0"]
+    years = [c.year for c in player.timeline]
+    room.place("p0", sum(1 for y in years if y <= card.year))
+    result = room.reveal()[0]
+    assert result["correct"] is True
+    assert result["multiplier"] == MAX_MULTIPLIER
+    assert result["delta"] == round(BASE_POINTS * MAX_MULTIPLIER)
+    assert player.points == result["delta"]
+
+
+def test_slow_guess_gets_only_base_points():
+    room, _ = make_room(1)
+    room.start()
+    card = room.next_round()
+    player = room.players["p0"]
+    years = [c.year for c in player.timeline]
+    room.place("p0", sum(1 for y in years if y <= card.year))
+    room.round_started -= 30          # Tipp kam erst nach 30 Sekunden
+    result = room.reveal()[0]
+    assert result["multiplier"] == 1.0
+    assert result["delta"] == BASE_POINTS
+
+
+def test_wrong_guess_scores_nothing():
+    room, _ = make_room(1)
+    room.start()
+    card = room.next_round()
+    player = room.players["p0"]
+    wrong = 0 if card.year >= player.timeline[0].year else 1
+    room.place("p0", wrong)
+    result = room.reveal()[0]
+    assert result["delta"] == 0
+    assert player.points == 0
+
+
+def test_winner_is_the_points_leader():
+    room, _ = make_room(2)
+    p0, p1 = room.players["p0"], room.players["p1"]
+    room.start()
+    # p0 hat schon 10 Karten (Spielende waere erreicht), aber keine Punkte
+    p0.timeline = [Card(f"a{i}", "A", "X", 1960 + i, str(i)) for i in range(10)]
+    p1.points = 900
+    card = room.next_round()
+    years = [c.year for c in p1.timeline]
+    room.place("p1", sum(1 for y in years if y <= card.year))
+    room.reveal()
+    assert room.state == "finished"
+    assert room.winner == p1.name
+
+
+def test_no_guess_no_points():
+    room, _ = make_room(1)
+    room.start()
+    room.next_round()
+    result = room.reveal()[0]
+    assert result["delta"] == 0
+    assert result["multiplier"] == 1.0
+    assert room.players["p0"].points == 0

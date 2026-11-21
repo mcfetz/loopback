@@ -8,11 +8,29 @@ from __future__ import annotations
 
 import random
 import secrets
+import time
 from dataclasses import dataclass, field
 
-TARGET_CARDS = 10   # wer so viele Karten in seiner Timeline hat, gewinnt
+TARGET_CARDS = 10   # wer so viele Karten in seiner Timeline hat, beendet das Spiel
 SEED_CARDS = 1      # jeder startet mit einer offenen Karte
 CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"   # ohne O/0/I/1 (Verwechslung am Telefon)
+
+BASE_POINTS = 100      # Punkte fuer eine richtige Antwort ohne Zeitbonus
+MAX_MULTIPLIER = 3.0   # direkt nach dem Start der Runde
+FAST_SECONDS = 20.0    # danach bleibt es beim Grundwert (x1,0)
+
+
+def speed_multiplier(elapsed: float | None) -> float:
+    """Zeitbonus: x3,0 sofort, linear runter auf x1,0 nach FAST_SECONDS."""
+    if elapsed is None:
+        return 1.0
+    if elapsed <= 0:
+        return MAX_MULTIPLIER
+    if elapsed >= FAST_SECONDS:
+        return 1.0
+    factor = 1 + (MAX_MULTIPLIER - 1) * (1 - elapsed / FAST_SECONDS)
+    return round(factor, 1)
+
 
 
 class GameError(Exception):
@@ -45,6 +63,10 @@ class Player:
     pending: int | None = None      # Slot, den der Spieler getippt hat
     correct_last: bool | None = None
     connected: bool = True
+    points: int = 0
+    guessed_at: float | None = None
+    last_delta: int = 0
+    last_multiplier: float = 1.0
 
     @property
     def score(self) -> int:
@@ -84,6 +106,7 @@ class Room:
     solo: bool = False       # Ein-Geraet-Modus: derselbe Client ist Host und Spieler
     filter_genres: list[str] = field(default_factory=list)
     filter_playlist: str = ""
+    round_started: float | None = None
 
     # ---------- Aufbau ----------
 
@@ -129,6 +152,12 @@ class Room:
         self.winner = None
         self.current = None
         self.preview = None
+        self.round_started = None
+        for player in self.players.values():
+            player.points = 0
+            player.last_delta = 0
+            player.last_multiplier = 1.0
+            player.guessed_at = None
 
     def next_round(self) -> Card:
         if self.state not in ("lobby", "ready", "revealed"):
@@ -145,9 +174,12 @@ class Room:
         self.round += 1
         self.state = "playing"
         self.results = []
+        self.round_started = time.time()
         for player in self.players.values():
             player.pending = None
             player.correct_last = None
+            player.guessed_at = None
+            player.last_delta = 0
         return self.current
 
     def place(self, pid: str, slot: int) -> None:
@@ -161,6 +193,7 @@ class Room:
         if not 0 <= slot <= len(player.timeline):
             raise GameError(f"Slot {slot} gibt es nicht (0..{len(player.timeline)})")
         player.pending = int(slot)
+        player.guessed_at = time.time()      # Aenderung kostet Zeit, also neuen Stempel setzen
 
     def reveal(self) -> list[dict]:
         if self.state != "playing" or self.current is None:
@@ -169,7 +202,15 @@ class Room:
         results = []
         for player in self.players.values():
             ok = player.pending is not None and slot_is_correct(player.timeline, player.pending, card)
+            elapsed = None
+            if player.guessed_at is not None and self.round_started is not None:
+                elapsed = player.guessed_at - self.round_started
+            multiplier = speed_multiplier(elapsed)
+            delta = round(BASE_POINTS * multiplier) if ok else 0
             player.correct_last = ok
+            player.last_multiplier = multiplier
+            player.last_delta = delta
+            player.points += delta
             if ok:
                 player.timeline.insert(player.pending, card)
             results.append({
@@ -178,8 +219,12 @@ class Room:
                 "slot": player.pending,
                 "correct": ok,
                 "score": player.score,
+                "points": player.points,
+                "delta": delta,
+                "multiplier": multiplier,
+                "seconds": round(elapsed, 1) if elapsed is not None else None,
             })
-        self.results = sorted(results, key=lambda r: r["score"], reverse=True)
+        self.results = sorted(results, key=lambda r: (r["points"], r["score"]), reverse=True)
         self.log.append({
             "round": self.round,
             "key": card.key,
@@ -189,9 +234,9 @@ class Room:
             "correct": [r["name"] for r in results if r["correct"]],
         })
         self.state = "revealed"
-        winners = [p for p in self.players.values() if p.score >= TARGET_CARDS]
-        if winners:
-            best = max(winners, key=lambda p: p.score)
+        if any(p.score >= TARGET_CARDS for p in self.players.values()):
+            # Meiste Punkte gewinnt, Karten entscheiden bei Gleichstand (schnelles Tippen zaehlt).
+            best = max(self.players.values(), key=lambda p: (p.points, p.score))
             self._finish(best)
         return self.results
 
@@ -213,6 +258,8 @@ class Room:
         for player in self.players.values():
             player.pending = None
             player.correct_last = None
+            player.guessed_at = None
+            player.last_delta = 0
 
     def reset(self) -> None:
         self.state = "lobby"
@@ -222,10 +269,15 @@ class Room:
         self.results = []
         self.log = []
         self.winner = None
+        self.round_started = None
         for player in self.players.values():
             player.timeline = [self.seed]
             player.pending = None
             player.correct_last = None
+            player.points = 0
+            player.guessed_at = None
+            player.last_delta = 0
+            player.last_multiplier = 1.0
 
     # ---------- Sicht je Client ----------
 
@@ -242,11 +294,19 @@ class Room:
             "deck_left": len(self.deck),
             "genres": self.filter_genres,
             "playlist": self.filter_playlist,
+            "round_started": self.round_started,
+            "now": time.time(),
+            "base_points": BASE_POINTS,
+            "fast_seconds": FAST_SECONDS,
+            "max_multiplier": MAX_MULTIPLIER,
             "players": [
                 {
                     "id": p.id,
                     "name": p.name,
                     "score": p.score,
+                    "points": p.points,
+                    "delta": p.last_delta,
+                    "multiplier": p.last_multiplier,
                     "pending": p.pending is not None,
                     "connected": p.connected,
                 }
@@ -269,10 +329,17 @@ class Room:
             snap["current"] = entry
         if pid and pid in self.players:
             me = self.players[pid]
+            elapsed_now = None
+            if self.state == "playing" and self.round_started:
+                elapsed_now = time.time() - self.round_started
             snap["me"] = {
                 "id": me.id,
                 "name": me.name,
                 "score": me.score,
+                "points": me.points,
+                "delta": me.last_delta,
+                "multiplier": me.last_multiplier,
+                "multiplier_now": speed_multiplier(elapsed_now),
                 "pending": me.pending,
                 "correct_last": me.correct_last,
                 "timeline": [
