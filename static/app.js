@@ -238,11 +238,9 @@ function highscorePlace(points) {
 }
 
 function maybeOpenRoundModal() {
-  if (!state || !state.me) return;
-  const relevant = state.state === "finished"
-    || (state.state === "revealed" && (state.results || []).length > 0);
-  if (!relevant) return;
-  const key = `${state.round}:${state.state}`;
+  // Nur am Ende der ganzen Partie, nicht nach jeder Runde.
+  if (!state || !state.me || state.state !== "finished") return;
+  const key = `finished:${state.round}`;
   if (key === modalKey) return;
   modalKey = key;
   renderRoundModal();
@@ -260,18 +258,15 @@ function renderRoundModal() {
   const body = $("#modal-body");
   if (!body) return;
   const mine = state.me;
-  const finished = state.state === "finished";
-  $("#modal-title").textContent = finished
-    ? "Spiel beendet"
-    : `Runde ${state.round} von ${state.target}`;
-  $("#modal-next").textContent = finished ? "Schließen"
-    : (me.role === "host" || me.role === "solo") ? "Nächste Karte" : "Weiter";
+  $("#modal-title").textContent = `Spiel beendet — ${state.round} Runden`;
+  $("#modal-next").textContent = "Schließen";
   body.innerHTML = "";
 
   const result = (state.results || []).find((r) => r.player_id === mine.id);
   if (result) {
     const line = el("div", "modal-line " + (result.correct ? "ok" : "bad"));
-    line.appendChild(el("span", "mlabel", result.correct ? "Richtig" : "Daneben"));
+    line.appendChild(el("span", "mlabel", result.correct ? "Letzte Runde: richtig"
+                                                         : "Letzte Runde: daneben"));
     line.appendChild(el("span", "mval", result.correct
       ? `+${result.delta} P · ${fmtMult(result.multiplier || 1)}`
       : "+0 P"));
@@ -291,12 +286,12 @@ function renderRoundModal() {
   score("Punkte gesamt", mine.points);
   score("Platz in dieser Partie", place > 0 ? `${place} von ${rows.length}` : "—");
   const placeEternal = highscorePlace(mine.points);
-  score(finished ? "Platz in der Highscore" : "Highscore-Platz (vorläufig)",
+  score("Platz in der ewigen Highscore",
         placeEternal ? `Platz ${placeEternal}` : "noch nicht gelistet");
   body.appendChild(kv);
 
   if (rows.length > 1) {
-    body.appendChild(el("div", "modal-sub", "Diese Partie"));
+    body.appendChild(el("div", "modal-sub", "Endstand"));
     const table = el("ul", "modal-table");
     rows.forEach((p, index) => {
       const li = el("li", p.id === mine.id ? "me" : "");
@@ -523,12 +518,7 @@ $("#modal-close").onclick = () => closeRoundModal();
 $("#roundmodal").onclick = (event) => {
   if (event.target === $("#roundmodal")) closeRoundModal();     // Klick auf den Hintergrund
 };
-$("#modal-next").onclick = () => {
-  closeRoundModal();
-  if (state && state.state === "revealed" && (me.role === "host" || me.role === "solo")) {
-    send({ action: "next" });
-  }
-};
+$("#modal-next").onclick = () => closeRoundModal();
 
 $("#solo-next").onclick = () => send({ action: "next" });
 $("#solo-skip").onclick = () => send({ action: "skip" });

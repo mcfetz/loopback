@@ -515,7 +515,17 @@ h3 {
 @keyframes modalpop {
   from { transform: translateY(14px) scale(.96); opacity: .3; }
 }
-#modal-body { overflow-y: auto; min-height: 0; flex: 1 1 auto; }
+#modal-body {
+  overflow-y: auto;
+  min-height: 0;
+  flex: 1 1 auto;
+  padding-right: .2rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, .25) transparent;
+}
+#modal-body::-webkit-scrollbar { width: 6px; }
+#modal-body::-webkit-scrollbar-track { background: transparent; }
+#modal-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .22); border-radius: 3px; }
 .modal-card .row { margin: .7rem 0 0; flex: 0 0 auto; }
 .modal-card h2 {
   margin: 0 0 .8rem;
