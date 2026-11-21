@@ -1,4 +1,4 @@
-// Bandsalat — Client.
+// LoopBack — Client.
 // Drei Rollen: host (steuert die Runden und spielt das Audio, raet nicht mit),
 // player (tippt und sieht den Punktestand), solo (beides auf einem Geraet, ohne Code).
 const $ = (sel) => document.querySelector(sel);

@@ -1,4 +1,4 @@
-# Bandsalat
+# LoopBack
 
 Musik-Partyspiel im Stil von Hitster, aber mit Deezer statt Spotify — und ohne dass jemand
 ein Konto verbinden muss. Ein Gerät ist Host und spielt die 30-Sekunden-Ausschnitte, alle

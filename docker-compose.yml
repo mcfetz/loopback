@@ -1,8 +1,8 @@
 services:
-  bandsalat:
+  loopback:
     build: .
-    image: bandsalat:local
-    container_name: bandsalat
+    image: loopback:local
+    container_name: loopback
     ports:
       - "8123:8000"
     restart: unless-stopped
