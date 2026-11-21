@@ -194,3 +194,44 @@ def test_pool_too_small_is_refused():
         raise AssertionError("zu kleiner Pool muss scheitern")
     except GameError:
         pass
+
+
+def test_solo_room_plays_a_full_round():
+    room = Room.create(make_pool(), host_id="solo", code="SOLO1", rng=random.Random(3))
+    room.solo = True
+    room.add_player("solo", "Solo")
+    room.start()
+    assert room.state == "ready"
+    card = room.next_round()
+    player = room.players["solo"]
+    assert room.state == "playing"
+    years = [c.year for c in player.timeline]
+    room.place("solo", sum(1 for y in years if y <= card.year))
+    room.reveal()
+    assert player.score == 2
+    assert room.solo is True
+    # Solo-Snapshot: Host-Sicht plus eigene Timeline
+    snap = room.snapshot(pid="solo", is_host=True)
+    assert snap["me"]["score"] == 2
+    assert snap["current"]["year"] == card.year
+
+
+def test_host_plays_along_and_still_does_not_see_the_answer():
+    room = Room.create(make_pool(), host_id="host", code="HOST1", rng=random.Random(5))
+    room.add_player("host", "Daniel")          # Host ist Spieler
+    room.add_player("p1", "Anna")
+    room.start()
+    card = room.next_round()
+    me = room.players["host"]
+    years = [c.year for c in me.timeline]
+    room.place("host", sum(1 for y in years if y <= card.year))
+
+    snap = room.snapshot(pid="host", is_host=True)
+    assert snap["me"]["pending"] is not None, "Host muss tippen koennen"
+    assert "year" not in snap["current"], "Host darf die Loesung nicht vorher sehen"
+    assert "title" not in snap["current"]
+
+    results = room.reveal()
+    assert len(results) == 2
+    assert room.players["host"].score == 2
+    assert room.snapshot(pid="host", is_host=True)["current"]["year"] == card.year

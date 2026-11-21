@@ -1,4 +1,6 @@
-// Jahresringe — Client: Host steuert und spielt Audio, Spieler tippen ihre Platzierung.
+// Jahresringe — Client.
+// Drei Rollen: host (steuert die Runden und spielt das Audio, raet nicht mit),
+// player (tippt und sieht den Punktestand), solo (beides auf einem Geraet, ohne Code).
 const $ = (sel) => document.querySelector(sel);
 const el = (tag, cls, text) => {
   const n = document.createElement(tag);
@@ -10,8 +12,6 @@ const el = (tag, cls, text) => {
 let ws = null;
 let me = { role: null, id: null, name: null, code: null };
 let state = null;
-let audio = null;
-let playTimer = null;
 
 // ---------------------------------------------------------------- Verbindung
 
@@ -24,7 +24,7 @@ function connect() {
   ws = new WebSocket(wsUrl());
   ws.onopen = () => {
     const saved = JSON.parse(localStorage.getItem("jahresringe") || "null");
-    if (saved && saved.code && saved.id) {
+    if (saved && saved.code && saved.id && saved.role !== "solo") {
       me = { ...saved };
       send({ action: "join", code: saved.code, player_id: saved.id, name: saved.name });
     }
@@ -45,6 +45,7 @@ function handle(msg) {
     state = msg;
     me.code = msg.code;
     if (me.role === "host") renderHost();
+    else if (me.role === "solo") renderSolo();
     else renderPlayer();
   } else if (msg.type === "joined") {
     me.role = msg.role;
@@ -52,7 +53,7 @@ function handle(msg) {
     me.code = msg.code;
     if (msg.name) me.name = msg.name;
     localStorage.setItem("jahresringe", JSON.stringify(me));
-    showOnly(msg.role === "host" ? "#view-host" : "#view-player");
+    showOnly(viewForRole(msg.role));
     $("#btn-leave").classList.remove("hidden");
   } else if (msg.type === "error") {
     setStatus(msg.message, true);
@@ -60,6 +61,10 @@ function handle(msg) {
   } else if (msg.type === "warning") {
     setStatus(msg.message, true);
   }
+}
+
+function viewForRole(role) {
+  return role === "host" ? "#view-host" : role === "solo" ? "#view-solo" : "#view-player";
 }
 
 // ---------------------------------------------------------------- Start
@@ -71,13 +76,19 @@ function showOnly(sel) {
 
 function showError(text) {
   const box = $("#start-error");
-  if (box && !$("#view-start").classList.contains("hidden")) {
-    box.textContent = text || "";
+  if (box && !$("#view-start").classList.contains("hidden")) box.textContent = text || "";
+}
+
+function currentStatusBox() {
+  for (const [view, box] of [["#view-host", "#host-status"], ["#view-player", "#player-status"],
+                             ["#view-solo", "#solo-status"]]) {
+    if (!$(view).classList.contains("hidden")) return $(box);
   }
+  return null;
 }
 
 function setStatus(text, isError = false) {
-  const box = $("#player-status");
+  const box = currentStatusBox();
   if (box) {
     box.textContent = text || "";
     box.classList.toggle("error", isError);
@@ -88,7 +99,8 @@ function setStatus(text, isError = false) {
 $("#btn-create").onclick = () => {
   showError("");
   me.role = "host";
-  send({ action: "create" });
+  me.name = ($("#host-name").value || "Host").trim().slice(0, 24);
+  send({ action: "create", name: me.name });
 };
 
 $("#btn-join").onclick = () => {
@@ -101,6 +113,12 @@ $("#btn-join").onclick = () => {
   send({ action: "join", code, name });
 };
 
+$("#btn-solo").onclick = () => {
+  showError("");
+  me.role = "solo";
+  send({ action: "solo", name: "Solo" });
+};
+
 $("#btn-leave").onclick = () => {
   localStorage.removeItem("jahresringe");
   location.reload();
@@ -109,6 +127,48 @@ $("#btn-leave").onclick = () => {
 for (const [id, action] of [["#btn-start", "start"], ["#btn-next", "next"], ["#btn-reveal", "reveal"],
                             ["#btn-skip", "skip"], ["#btn-reset", "reset"]]) {
   $(id).onclick = () => send({ action });
+}
+
+$("#solo-next").onclick = () => send({ action: "next" });
+$("#solo-reveal").onclick = () => send({ action: "reveal" });
+$("#solo-skip").onclick = () => send({ action: "skip" });
+$("#solo-restart").onclick = () => send({ action: "solo", name: "Solo" });
+
+// ---------------------------------------------------------------- Audio
+
+function audioBox(name) {
+  const box = document.querySelector(`[data-audio="${name}"]`);
+  if (!box) return null;
+  if (!box.dataset.wired) {
+    box.dataset.wired = "1";
+    box.audio = box.querySelector("audio");
+    box.bar = box.querySelector(".bar");
+    box.clock = box.querySelector(".clock");
+    box.hint = box.querySelector(".hint");
+    box.querySelector(".play").onclick = () => {
+      if (!box.audio.src) return;
+      box.audio.currentTime = 0;
+      box.audio.play().catch(() => {});
+    };
+    box.audio.ontimeupdate = () => {
+      const dur = box.audio.duration || 30;
+      box.bar.style.width = `${Math.min(100, (box.audio.currentTime / dur) * 100)}%`;
+      box.clock.textContent = `${box.audio.currentTime.toFixed(1).replace(".", ",")} s`;
+    };
+  }
+  return box;
+}
+
+function playPreview(name, url) {
+  const box = audioBox(name);
+  if (!box || box.audio.dataset.src === url) return;
+  box.audio.dataset.src = url;
+  box.audio.src = url;
+  box.audio.currentTime = 0;
+  box.hint.textContent = "";
+  box.audio.play()
+    .then(() => { box.hint.textContent = "30 Sekunden Ausschnitt — Play nochmal für den Anfang."; })
+    .catch(() => { box.hint.textContent = "Autoplay blockiert: auf Play drücken."; });
 }
 
 // ---------------------------------------------------------------- Host
@@ -128,59 +188,33 @@ function renderHost() {
 
   renderPlayers($("#host-players"));
   renderResults($("#host-results"));
+  renderReveal($("#host-reveal"));
 
-  const cur = state.current;
-  if (cur && cur.revealed) {
-    $("#host-reveal").classList.remove("hidden");
-    $("#host-reveal").innerHTML =
-      `<div class="year">${cur.year}</div><div class="title">${esc(cur.title)}</div>` +
-      `<div class="artist">${esc(cur.artist)}</div>`;
-  } else if (!cur) {
-    $("#host-reveal").classList.add("hidden");
-  } else {
-    $("#host-reveal").classList.add("hidden");
+  const mine = state.me;
+  if (mine) {
+    $("#host-mine").textContent = `${mine.score} Karte${mine.score === 1 ? "" : "n"}`;
+    renderTimeline($("#timeline-host"), mine);
+    if (playing) {
+      setStatus(mine.pending === null ? "Du bist dran: tippe unten in deiner Timeline."
+        : "Getippt — kannst noch ändern, bis du auflöst.");
+    } else if (st === "revealed" && mine.correct_last !== null) {
+      setStatus(mine.correct_last ? "Richtig!" : "Leider falsch.", mine.correct_last === false);
+    }
   }
 
   const log = $("#host-log");
   log.innerHTML = "";
   for (const entry of state.log) {
     const li = el("li");
-    li.appendChild(el("span", "lyear", entry.skipped ? "—" : entry.year));
+    li.appendChild(el("span", "lyear", entry.skipped ? "—" : String(entry.year)));
     li.appendChild(el("span", "ltitle", `${entry.title} — ${entry.artist}`));
     if (!entry.skipped) li.appendChild(el("span", "lwho", entry.correct.join(", ") || "niemand"));
     log.appendChild(li);
   }
 
   if (state.winner) setStatus(`Gewonnen: ${state.winner}`);
-  if (cur && cur.preview && cur.preview !== audio?.dataset.src) startAudio(cur.preview);
+  if (state.current && state.current.preview && playing) playPreview("host", state.current.preview);
 }
-
-function startAudio(url) {
-  if (!audio) {
-    audio = $("#audio");
-    audio.onended = () => clearInterval(playTimer);
-    audio.ontimeupdate = () => {
-      const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
-      $("#audio-progress").style.width = `${pct}%`;
-      $("#audio-clock").textContent = `${audio.currentTime.toFixed(1).replace(".", ",")} s`;
-    };
-  }
-  audio.dataset.src = url;
-  audio.src = url;
-  audio.currentTime = 0;
-  $("#audio-hint").textContent = "";
-  audio.play().then(() => {
-    $("#audio-hint").textContent = "30 Sekunden Ausschnitt — Play nochmal für den Anfang.";
-  }).catch(() => {
-    $("#audio-hint").textContent = "Autoplay blockiert: auf Play drücken.";
-  });
-}
-
-$("#btn-play").onclick = () => {
-  if (!audio || !audio.src) return;
-  audio.currentTime = 0;
-  audio.play().catch(() => {});
-};
 
 // ---------------------------------------------------------------- Spieler
 
@@ -190,34 +224,79 @@ function renderPlayer() {
   $("#player-name").textContent = mine.name;
   $("#player-score").textContent = `${mine.score} Karte${mine.score === 1 ? "" : "n"}`;
 
-  if (state.state === "lobby") setStatus("Warte auf den Host …");
-  else if (state.state === "ready") setStatus("Gleich geht's los — der Host spielt die erste Karte.");
-  else if (state.state === "playing") {
-    setStatus(mine.pending === null ? "Hör zu und tippe, wohin die Karte gehört." :
-      "Getippt — kannst noch ändern, bis der Host auflöst.");
-  } else if (state.state === "revealed") {
+  const st = state.state;
+  if (st === "lobby") setStatus("Warte auf den Host …");
+  else if (st === "ready") setStatus("Gleich geht's los — der Host spielt die erste Karte.");
+  else if (st === "playing") {
+    setStatus(mine.pending === null ? "Hör zu und tippe, wohin die Karte gehört."
+      : "Getippt — kannst noch ändern, bis der Host auflöst.");
+  } else if (st === "revealed") {
     setStatus(mine.correct_last === true ? "Richtig!" : "Leider falsch.", mine.correct_last === false);
-  } else if (state.state === "finished") {
+  } else if (st === "finished") {
     setStatus(state.winner === mine.name ? "Du hast gewonnen!" : `Gewonnen: ${state.winner}`);
   }
 
-  const reveal = $("#player-reveal");
-  const cur = state.current;
-  if (cur && cur.revealed) {
-    reveal.classList.remove("hidden");
-    reveal.innerHTML = `<div class="year">${cur.year}</div><div class="title">${esc(cur.title)}</div>` +
-      `<div class="artist">${esc(cur.artist)}</div>`;
-  } else {
-    reveal.classList.add("hidden");
-  }
-
-  renderTimeline(mine);
+  renderReveal($("#player-reveal"));
+  renderTimeline($("#timeline"), mine);
   renderResults($("#player-results"));
   renderPlayers($("#player-players"));
 }
 
-function renderTimeline(mine) {
-  const box = $("#timeline");
+// ---------------------------------------------------------------- Solo
+
+function renderSolo() {
+  const mine = state.me;
+  if (!mine) return;
+  const st = state.state;
+  const playing = st === "playing";
+
+  $("#solo-label").textContent = "Solo";
+  $("#solo-score").textContent = `${mine.score} / ${state.target}`;
+  $("#solo-next").classList.toggle("hidden", !(st === "ready" || st === "revealed"));
+  $("#solo-next").textContent = state.round === 0 ? "Erste Karte abspielen" : "Nächste Karte";
+  $("#solo-reveal").classList.toggle("hidden", !playing);
+  $("#solo-skip").classList.toggle("hidden", !playing);
+  $("#solo-audio-box").classList.toggle("hidden", !(playing && state.current));
+
+  if (st === "lobby" || st === "ready") setStatus("Karte abspielen, dann tippen, wo sie hingehört.");
+  else if (st === "playing") {
+    setStatus(mine.pending === null ? "Wo gehört die Karte hin?" : "Getippt — jetzt auflösen.");
+  } else if (st === "revealed") {
+    setStatus(mine.correct_last === true ? "Richtig!" : "Leider falsch.", mine.correct_last === false);
+  } else if (st === "finished") {
+    setStatus(`${state.target} Karten geschafft — neues Spiel?`);
+  }
+
+  renderReveal($("#solo-revealbox"));
+  renderTimeline($("#timeline-solo"), mine);
+
+  const log = $("#solo-log");
+  log.innerHTML = "";
+  for (const entry of state.log) {
+    const li = el("li");
+    li.appendChild(el("span", "lyear", entry.skipped ? "—" : String(entry.year)));
+    li.appendChild(el("span", "ltitle", `${entry.title} — ${entry.artist}`));
+    if (!entry.skipped) li.appendChild(el("span", "lwho", entry.correct.length ? "richtig" : "falsch"));
+    log.appendChild(li);
+  }
+
+  if (state.current && state.current.preview && playing) playPreview("solo", state.current.preview);
+}
+
+// ---------------------------------------------------------------- Bausteine
+
+function renderReveal(box) {
+  const cur = state.current;
+  if (cur && cur.revealed) {
+    box.classList.remove("hidden");
+    box.innerHTML = `<div class="year">${cur.year}</div><div class="title">${esc(cur.title)}</div>` +
+      `<div class="artist">${esc(cur.artist)}</div>`;
+  } else {
+    box.classList.add("hidden");
+  }
+}
+
+function renderTimeline(box, mine) {
   box.innerHTML = "";
   const cards = mine.timeline;
   const canTap = state.state === "playing";
@@ -233,7 +312,7 @@ function renderTimeline(mine) {
       const c = cards[i];
       const card = el("div", "tcard");
       card.appendChild(el("div", "tcyear", String(c.year)));
-      card.appendChild(el("div", "tctitle", `${c.title}`));
+      card.appendChild(el("div", "tctitle", c.title));
       card.appendChild(el("div", "tcartist", c.artist));
       box.appendChild(card);
     }
@@ -265,7 +344,7 @@ function renderPlayers(box) {
   for (const p of state.players) {
     const li = el("li", p.connected ? "" : "offline");
     li.appendChild(el("span", "pname", p.name));
-    li.appendChild(el("span", "pscore", `${p.score}`));
+    li.appendChild(el("span", "pscore", String(p.score)));
     if (state.state === "playing" && p.pending) li.appendChild(el("span", "pdot", "getippt"));
     box.appendChild(li);
   }
@@ -284,9 +363,9 @@ if (params.get("code")) {
   $("#join-name").focus();
 }
 const saved = JSON.parse(localStorage.getItem("jahresringe") || "null");
-if (saved && saved.role) {
+if (saved && saved.role && saved.role !== "solo") {
   me = { ...saved };
-  showOnly(saved.role === "host" ? "#view-host" : "#view-player");
+  showOnly(viewForRole(saved.role));
   $("#btn-leave").classList.remove("hidden");
 }
 connect();

@@ -76,12 +76,20 @@ async def main() -> int:
     assert anna_state["me"]["pending"] == 0
     ben_slot = len((await recv(players["Ben"][0], lambda m: m["type"] == "state" and "me" in m))["me"]["timeline"])
     await players["Ben"][0].send(json.dumps({"action": "place", "slot": ben_slot}))
-    print("7) Beide haben getippt")
+    print("7) Beide Spieler haben getippt")
+
+    # der Host raet mit: eigene Timeline, eigener Tipp
+    host_state = await recv(host, lambda m: m["type"] == "state" and "me" in m)
+    assert host_state["me"]["timeline"], "Host hat keine eigene Timeline"
+    assert "year" not in host_state["current"], "Host darf die Loesung nicht vorher sehen"
+    await host.send(json.dumps({"action": "place", "slot": 0}))
+    host_state = await recv(host, lambda m: m["type"] == "state" and m.get("me", {}).get("pending") == 0)
+    print(f"7b) Host tippt mit ({host_state['me']['score']} Karte in seiner Timeline, Lösung noch verdeckt)")
 
     await host.send(json.dumps({"action": "reveal"}))
     hs = await recv(host, is_state("revealed"))
     results = hs["results"]
-    assert len(results) == 2, results
+    assert len(results) == 3, results
     assert "year" in hs["current"] and "title" in hs["current"]
     print(f"8) Aufgeloest: {hs['current']['title']} — {hs['current']['artist']} ({hs['current']['year']})")
     for r in results:
@@ -97,6 +105,38 @@ async def main() -> int:
     await host.send(json.dumps({"action": "skip"}))
     await recv(host, is_state("revealed"))
     print("10) Karte uebersprungen, keine Punkte vergeben")
+
+    # ---- Solo-Modus: ein Client, kein Code fuer Mitspieler
+    solo = await websockets.connect(WS)
+    await solo.send(json.dumps({"action": "solo", "name": "Solo"}))
+    sj = await recv(solo, lambda m: m["type"] == "joined")
+    assert sj["role"] == "solo", sj
+    st = await recv(solo, lambda m: m["type"] == "state")
+    assert st["state"] == "ready" and st["me"]["score"] == 1, st["state"]
+    print(f"11) Solo-Runde offen (Startkarte {st['me']['timeline'][0]['year']})")
+
+    await solo.send(json.dumps({"action": "next"}))
+    st = await recv(solo, lambda m: m["type"] == "state" and m["state"] == "playing")
+    assert st["current"]["preview"].startswith("http")
+    assert "year" not in st["current"], "Solo darf die Loesung auch nicht vorher sehen"
+    slot = len(st["me"]["timeline"])
+    print(f"12) Solo: Runde {st['round']}, Audio da, {slot} Karte(n) in der Timeline")
+
+    await solo.send(json.dumps({"action": "place", "slot": slot}))
+    await recv(solo, lambda m: m["type"] == "state" and m.get("me", {}).get("pending") is not None)
+    await solo.send(json.dumps({"action": "reveal"}))
+    st = await recv(solo, lambda m: m["type"] == "state" and m["state"] == "revealed")
+    assert "year" in st["current"]
+    res = st["results"][0]
+    print(f"13) Solo aufgeloest: {st['current']['title']} ({st['current']['year']}) — "
+          f"{'richtig' if res['correct'] else 'falsch'}, {res['score']} Karten")
+
+    intruder = await websockets.connect(WS)
+    await intruder.send(json.dumps({"action": "join", "code": sj["code"], "name": "Rein"}))
+    err = await recv(intruder, lambda m: m["type"] == "error")
+    print(f"14) Beitritt zur Solo-Runde abgelehnt: {err['message']}")
+    await intruder.close()
+    await solo.close()
 
     for sock, _ in players.values():
         await sock.close()

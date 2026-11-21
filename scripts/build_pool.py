@@ -119,6 +119,90 @@ async def fetch(client: httpx.AsyncClient, path: str, **params) -> dict | None:
         return None
 
 
+BAD_WORDS = ("instrumental", "karaoke", "cover", "tribute", "made famous", "in the style of",
+             "live at", "live from", "commentary", "remix", "mixed", "medley")
+
+
+def score(hit: dict, title: str, artist: str) -> float:
+    """Treffer bewerten: Titel/Interpret nah dran, keine Instrumental-/Karaoke-Fassung, populaer.
+
+    Ohne das landete bei "Firestarter" die Instrumental-Version im Pool (im Test aufgefallen) —
+    fuer ein Ratespiel ist eine Fassung ohne Gesang eine Falle.
+    """
+    got_title = (hit.get("title") or "").lower()
+    got_artist = ((hit.get("artist") or {}).get("name") or "").lower()
+    s = 0.0
+    if title.lower() in got_title:
+        s += 3.0
+    if got_title.strip() == title.lower():
+        s += 2.0
+    if artist.lower() in got_artist or got_artist in artist.lower():
+        s += 3.0
+    if any(bad in got_title or bad in got_artist for bad in BAD_WORDS):
+        s -= 6.0
+    s += min(2.0, ((hit.get("rank") or 0) / 400000.0))
+    return s
+
+
+def norm(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", (text or "").lower().replace("ß", "ss")).strip()
+
+
+def is_clean(title: str) -> bool:
+    low = (title or "").lower()
+    if " / " in low or "medley" in low:      # Medleys wie "Jailhouse Rock / Hound Dog / ..."
+        return False
+    return not any(bad in low for bad in BAD_WORDS)
+
+
+def best_artist(artists: list[dict], artist: str) -> dict | None:
+    """Den richtigen Artist-Treffer waehlen: Name muss passen, dann die meiste Reichweite.
+
+    Der erste Treffer der Artist-Suche ist nicht immer das Original — bei "Rihanna" kam ein
+    Karaoke-Profil mit "Umbrella (feat. Jayme Claire)" zurueck.
+    """
+    want = norm(artist)
+    matching = [a for a in artists if norm(a.get("name")) == want]
+    if not matching:
+        return artists[0] if artists else None
+    return max(matching, key=lambda a: a.get("nb_fan") or 0)
+
+
+async def pick_track(client: httpx.AsyncClient, title: str, artist: str) -> tuple[dict | None, str]:
+    """Track waehlen: erst die Artist-Toptracks, dann die normale Suche.
+
+    Die Suche von Deezer liefert bei bekannten Titeln bevorzugt Cover, Karaoke und Remixe —
+    bei "Don't Start Now" waren es 25 Treffer ohne das Original. Die Toptracks des
+    Interpreten enthalten die Originalfassung fast immer.
+    """
+    want = norm(title)
+    artists = (await fetch(client, "search/artist", q=artist, limit=10) or {}).get("data") or []
+    await asyncio.sleep(0.16)
+    chosen_artist = best_artist(artists, artist)
+    if chosen_artist:
+        top = (await fetch(client, f"artist/{chosen_artist['id']}/top", limit=60) or {}).get("data") or []
+        await asyncio.sleep(0.16)
+        clean = [t for t in top if is_clean(t.get("title"))]
+        exact = [t for t in clean if norm(t.get("title")) == want]
+        if exact:
+            return max(exact, key=lambda t: t.get("rank") or 0), "artist-top"
+        starts = [t for t in clean if want and norm(t.get("title")).startswith(want)]
+        if starts:
+            return max(starts, key=lambda t: t.get("rank") or 0), "artist-top-fuzzy"
+
+    hits = (await fetch(client, "search", q=f"{title} {artist}", limit=25) or {}).get("data") or []
+    await asyncio.sleep(0.16)
+    if not hits:
+        return None, "kein Treffer"
+    same_artist = [h for h in hits if norm((h.get("artist") or {}).get("name", "")) == norm(artist)]
+    ranked = same_artist or hits
+    clean = [h for h in ranked if is_clean(h.get("title"))]
+    chosen = clean or ranked
+    chosen.sort(key=lambda h: score(h, title, artist), reverse=True)
+    return chosen[0], "suche" if clean else "suche-schmutzig"
+
+
+
 async def build() -> int:
     cards: list[dict] = []
     problems: list[str] = []
@@ -126,12 +210,14 @@ async def build() -> int:
 
     async with httpx.AsyncClient(timeout=12.0, headers={"User-Agent": UA}) as client:
         for title, artist, year in CARDS:
-            hit = (await fetch(client, "search", q=f"{title} {artist}", limit=5) or {}).get("data") or []
-            await asyncio.sleep(0.16)
-            if not hit:
+            track, how = await pick_track(client, title, artist)
+            if track is None:
                 problems.append(f"KEIN TREFFER: {title} — {artist} ({year})")
                 continue
-            track = hit[0]
+            if how == "suche-schmutzig":
+                problems.append(f"NUR SCHMUTZIGE TREFFER: {title} — {artist} -> {track.get('title')}")
+            elif how == "artist-top-fuzzy":
+                problems.append(f"UEBER ARTIST-TOP (unscharf): {title} — {artist} -> {track.get('title')}")
             detail = await fetch(client, f"track/{track['id']}") or {}
             await asyncio.sleep(0.16)
             if str(detail.get("id") or track["id"]) in seen:

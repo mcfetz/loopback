@@ -21,29 +21,29 @@
     },
     {
       "key": "ray-charles-hit-the-road-jack",
-      "title": "Hit the Road Jack",
+      "title": "Hit the Road Jack (8D)",
       "artist": "Ray Charles",
       "year": 1961,
-      "deezer_id": "62882810",
-      "deezer_release_year": "2012",
+      "deezer_id": "1102096652",
+      "deezer_release_year": "2020",
       "preview_ok": true
     },
     {
       "key": "the-beatles-she-loves-you",
-      "title": "She Loves You (Mono / Remastered)",
+      "title": "She Loves You (Live)",
       "artist": "The Beatles",
       "year": 1963,
-      "deezer_id": "116348596",
-      "deezer_release_year": "2015",
+      "deezer_id": "2614506842",
+      "deezer_release_year": "2024",
       "preview_ok": true
     },
     {
       "key": "the-kinks-you-really-got-me",
-      "title": "You Really Got Me",
-      "artist": "Kinks",
+      "title": "You Really Got Me (Live)",
+      "artist": "The Kinks",
       "year": 1964,
-      "deezer_id": "2319655705",
-      "deezer_release_year": "2023",
+      "deezer_id": "3474141091",
+      "deezer_release_year": "2025",
       "preview_ok": true
     },
     {
@@ -84,20 +84,20 @@
     },
     {
       "key": "jimi-hendrix-hey-joe",
-      "title": "Hey Joe (Live at The Woodstock Music & Art Fair, August 18, 1969)",
+      "title": "Hey Joe",
       "artist": "Jimi Hendrix",
       "year": 1966,
-      "deezer_id": "4952941",
+      "deezer_id": "4952888",
       "deezer_release_year": "2010",
       "preview_ok": true
     },
     {
       "key": "the-doors-light-my-fire",
-      "title": "Light My Fire",
+      "title": "Light My Fire (New Stereo Mix)",
       "artist": "The Doors",
       "year": 1967,
-      "deezer_id": "3614129",
-      "deezer_release_year": "1967",
+      "deezer_id": "3613547",
+      "deezer_release_year": "2007",
       "preview_ok": true
     },
     {
@@ -114,8 +114,8 @@
       "title": "Mrs. Robinson",
       "artist": "Simon & Garfunkel",
       "year": 1968,
-      "deezer_id": "16148946",
-      "deezer_release_year": "1997",
+      "deezer_id": "717247842",
+      "deezer_release_year": "2019",
       "preview_ok": true
     },
     {
@@ -150,8 +150,8 @@
       "title": "Stairway to Heaven (Remaster)",
       "artist": "Led Zeppelin",
       "year": 1971,
-      "deezer_id": "111628786",
-      "deezer_release_year": "1971",
+      "deezer_id": "88003859",
+      "deezer_release_year": "2014",
       "preview_ok": true
     },
     {
@@ -165,11 +165,11 @@
     },
     {
       "key": "bob-marley-no-woman-no-cry",
-      "title": "No Woman, No Cry (Live At The Lyceum, London/1975)",
+      "title": "No Woman No Cry",
       "artist": "Bob Marley & The Wailers",
       "year": 1974,
-      "deezer_id": "530300621",
-      "deezer_release_year": "2002",
+      "deezer_id": "1583148",
+      "deezer_release_year": "2001",
       "preview_ok": true
     },
     {
@@ -210,11 +210,11 @@
     },
     {
       "key": "bee-gees-stayin-alive",
-      "title": "Stayin' Alive",
+      "title": "Stayin Alive",
       "artist": "Bee Gees",
       "year": 1977,
-      "deezer_id": "406815322",
-      "deezer_release_year": "1977",
+      "deezer_id": "139138743",
+      "deezer_release_year": "2009",
       "preview_ok": true
     },
     {
@@ -237,11 +237,11 @@
     },
     {
       "key": "kraftwerk-das-model",
-      "title": "The Model (2009 Remaster)",
+      "title": "Das Model",
       "artist": "Kraftwerk",
       "year": 1978,
-      "deezer_id": "4262789",
-      "deezer_release_year": "2009",
+      "deezer_id": "1006803652",
+      "deezer_release_year": "2017",
       "preview_ok": true
     },
     {
@@ -255,10 +255,10 @@
     },
     {
       "key": "pink-floyd-another-brick-in-the-wall",
-      "title": "Another Brick in the Wall, Pt. 1",
+      "title": "Another Brick in the Wall, Pt. 2",
       "artist": "Pink Floyd",
       "year": 1979,
-      "deezer_id": "116914090",
+      "deezer_id": "116914094",
       "deezer_release_year": "1979",
       "preview_ok": true
     },
@@ -300,20 +300,20 @@
     },
     {
       "key": "eurythmics-sweet-dreams-are-made-of-this",
-      "title": "Sweet Dreams (Are Made of This) (2005 Remaster)",
+      "title": "Sweet Dreams (Are Made of This)",
       "artist": "Eurythmics",
       "year": 1983,
-      "deezer_id": "561836",
-      "deezer_release_year": "2003",
+      "deezer_id": "2167022",
+      "deezer_release_year": "2007",
       "preview_ok": true
     },
     {
       "key": "new-order-blue-monday",
-      "title": "Blue Monday (2016 Remaster)",
+      "title": "Blue Monday",
       "artist": "New Order",
       "year": 1983,
-      "deezer_id": "131744046",
-      "deezer_release_year": "2005",
+      "deezer_id": "7337280",
+      "deezer_release_year": "1998",
       "preview_ok": true
     },
     {
@@ -321,17 +321,17 @@
       "title": "99 Luftballons",
       "artist": "Nena",
       "year": 1983,
-      "deezer_id": "3786206112",
-      "deezer_release_year": "1984",
+      "deezer_id": "7633179",
+      "deezer_release_year": "2010",
       "preview_ok": true
     },
     {
       "key": "peter-schilling-major-tom-v-llig-losgel-st",
-      "title": "Major Tom (Völlig losgelöst) (Single Version)",
+      "title": "Major Tom (...völlig losgelöst)",
       "artist": "Peter Schilling",
       "year": 1982,
-      "deezer_id": "1222024892",
-      "deezer_release_year": "1982",
+      "deezer_id": "3605281",
+      "deezer_release_year": "1983",
       "preview_ok": true
     },
     {
@@ -354,11 +354,11 @@
     },
     {
       "key": "herbert-gr-nemeyer-m-nner",
-      "title": "Männer (Remastered 2016)",
+      "title": "Männer",
       "artist": "Herbert Grönemeyer",
       "year": 1984,
-      "deezer_id": "570430352",
-      "deezer_release_year": "1984",
+      "deezer_id": "3159913",
+      "deezer_release_year": "2008",
       "preview_ok": true
     },
     {
@@ -372,11 +372,11 @@
     },
     {
       "key": "falco-rock-me-amadeus",
-      "title": "Rock Me Amadeus (Full Length Gold Mix)",
+      "title": "Rock Me Amadeus",
       "artist": "Falco",
       "year": 1985,
-      "deezer_id": "958977102",
-      "deezer_release_year": "2020",
+      "deezer_id": "542016",
+      "deezer_release_year": "2007",
       "preview_ok": true
     },
     {
@@ -420,8 +420,8 @@
       "title": "Like a Prayer",
       "artist": "Madonna",
       "year": 1989,
-      "deezer_id": "3824997381",
-      "deezer_release_year": "2009",
+      "deezer_id": "664507",
+      "deezer_release_year": "1989",
       "preview_ok": true
     },
     {
@@ -483,17 +483,17 @@
       "title": "Wonderwall",
       "artist": "Oasis",
       "year": 1995,
-      "deezer_id": "985985832",
-      "deezer_release_year": "2008",
+      "deezer_id": "985745702",
+      "deezer_release_year": "1995",
       "preview_ok": true
     },
     {
       "key": "the-prodigy-firestarter",
-      "title": "Firestarter (Instrumental)",
+      "title": "Firestarter",
       "artist": "The Prodigy",
       "year": 1996,
-      "deezer_id": "1095162692",
-      "deezer_release_year": "1996",
+      "deezer_id": "62126191",
+      "deezer_release_year": "2012",
       "preview_ok": true
     },
     {
@@ -618,7 +618,7 @@
       "title": "Leider geil (Leider geil)",
       "artist": "Deichkind",
       "year": 2012,
-      "deezer_id": "1331569012",
+      "deezer_id": "82120542",
       "deezer_release_year": "2012",
       "preview_ok": true
     },
@@ -633,10 +633,10 @@
     },
     {
       "key": "daft-punk-get-lucky",
-      "title": "Get Lucky (feat. Pharrell Williams and Nile Rodgers)",
+      "title": "Get Lucky (Radio Edit - feat. Pharrell Williams and Nile Rodgers)",
       "artist": "Daft Punk",
       "year": 2013,
-      "deezer_id": "67238735",
+      "deezer_id": "66609426",
       "deezer_release_year": "2013",
       "preview_ok": true
     },
@@ -660,10 +660,10 @@
     },
     {
       "key": "billie-eilish-bad-guy",
-      "title": "bad guy",
+      "title": "bad guy (with Justin Bieber)",
       "artist": "Billie Eilish",
       "year": 2019,
-      "deezer_id": "655095912",
+      "deezer_id": "711031072",
       "deezer_release_year": "2019",
       "preview_ok": true
     },
@@ -678,11 +678,11 @@
     },
     {
       "key": "dua-lipa-don-t-start-now",
-      "title": "Don't Start Now (Zach Witness Remix / Malibu Mermaids Version)",
+      "title": "Don't Start Now",
       "artist": "Dua Lipa",
       "year": 2019,
-      "deezer_id": "846483432",
-      "deezer_release_year": "2020",
+      "deezer_id": "788708262",
+      "deezer_release_year": "2019",
       "preview_ok": true
     },
     {

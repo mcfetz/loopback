@@ -17,7 +17,8 @@
   <section id="view-start" class="view">
     <div class="card">
       <h2>Host</h2>
-      <p class="hint">Du spielst das Audio und steuerst die Runden. Handy an die Box, Bildschirm darf sichtbar sein.</p>
+      <p class="hint">Du spielst das Audio, steuerst die Runden und r&auml;tst selbst mit. Die L&ouml;sung siehst du erst beim Aufl&ouml;sen.</p>
+      <label>Dein Name <input id="host-name" maxlength="24" placeholder="Host" value="Host"></label>
       <button id="btn-create" class="primary big">Spiel erstellen</button>
     </div>
     <div class="card">
@@ -25,6 +26,11 @@
       <label>Session-Code <input id="join-code" maxlength="5" autocapitalize="characters" placeholder="ABCD2"></label>
       <label>Dein Name <input id="join-name" maxlength="24" placeholder="Daniel"></label>
       <button id="btn-join" class="big">Beitreten</button>
+    </div>
+    <div class="card">
+      <h2>Allein</h2>
+      <p class="hint">Single-Player: gleiche Regeln, keine Mitspieler, kein Code n&ouml;tig.</p>
+      <button id="btn-solo" class="big">Solo spielen</button>
     </div>
     <p id="start-error" class="error"></p>
   </section>
@@ -45,17 +51,21 @@
       <button id="btn-reset" class="ghost">Neustart</button>
     </div>
 
-    <div id="host-audio-box" class="audio hidden">
-      <audio id="audio" preload="auto"></audio>
+    <div id="host-status" class="status"></div>
+
+    <div id="host-audio-box" class="audio hidden" data-audio="host">
+      <audio preload="auto"></audio>
       <div class="audiobar">
-        <button id="btn-play" class="primary">&#9654; Play</button>
-        <div class="progress"><div id="audio-progress"></div></div>
-        <span id="audio-clock">0,0 s</span>
+        <button class="play primary">&#9654; Play</button>
+        <div class="progress"><div class="bar"></div></div>
+        <span class="clock">0,0 s</span>
       </div>
-      <p class="hint" id="audio-hint"></p>
+      <p class="hint"></p>
     </div>
 
     <div id="host-reveal" class="reveal hidden"></div>
+    <div class="scorebar"><span>Deine Timeline</span><span id="host-mine" class="score">1 Karte</span></div>
+    <div id="timeline-host" class="timeline"></div>
     <div id="host-results" class="results"></div>
     <h3>Spieler</h3>
     <ul id="host-players" class="players"></ul>
@@ -66,7 +76,7 @@
   <!-- Spieler -->
   <section id="view-player" class="view hidden">
     <div class="scorebar">
-      <span id="player-name">—</span>
+      <span id="player-name">&mdash;</span>
       <span id="player-score" class="score">1 Karte</span>
     </div>
     <p id="player-status" class="status"></p>
@@ -77,6 +87,37 @@
     <div id="player-results" class="results"></div>
     <h3>Punkte</h3>
     <ul id="player-players" class="players"></ul>
+  </section>
+
+  <!-- Solo -->
+  <section id="view-solo" class="view hidden">
+    <div class="scorebar">
+      <span id="solo-label">Solo</span>
+      <span id="solo-score" class="score">1 / 10</span>
+    </div>
+    <p id="solo-status" class="status"></p>
+
+    <div class="row">
+      <button id="solo-next" class="primary">Karte abspielen</button>
+      <button id="solo-reveal" class="hidden">Aufl&ouml;sen</button>
+      <button id="solo-skip" class="ghost hidden">Karte &uuml;berspringen</button>
+      <button id="solo-restart" class="ghost">Neues Spiel</button>
+    </div>
+
+    <div id="solo-audio-box" class="audio hidden" data-audio="solo">
+      <audio preload="auto"></audio>
+      <div class="audiobar">
+        <button class="play primary">&#9654; Play</button>
+        <div class="progress"><div class="bar"></div></div>
+        <span class="clock">0,0 s</span>
+      </div>
+      <p class="hint"></p>
+    </div>
+
+    <div id="solo-revealbox" class="reveal hidden"></div>
+    <div id="timeline-solo" class="timeline"></div>
+    <h3>Verlauf</h3>
+    <ol id="solo-log" class="log"></ol>
   </section>
 </main>
 

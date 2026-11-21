@@ -72,6 +72,7 @@ class Room:
     results: list[dict] = field(default_factory=list)
     log: list[dict] = field(default_factory=list)
     winner: str | None = None
+    solo: bool = False       # Ein-Geraet-Modus: derselbe Client ist Host und Spieler
 
     # ---------- Aufbau ----------
 

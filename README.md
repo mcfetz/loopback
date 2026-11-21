@@ -6,12 +6,20 @@ anderen joinen per Session-Code vom Handy, tippen ihre Platzierung und sehen ihr
 
 ## Regeln
 
-- Jeder startet mit einer offenen Karte in seiner Timeline (Jahr sichtbar).
-- Der Host spielt eine Karte ab. Alle anderen tippen, wo sie in *ihre* Timeline gehört
+- Jeder startet mit einer offenen Karte in seiner Timeline (Jahr sichtbar) — auch der Host.
+- Der Host spielt eine Karte ab. Alle tippen, wo sie in *ihre* Timeline gehört
   (davor / zwischen zwei Jahren / danach).
 - Auflösen: Passt die Platzierung, wandert die Karte in die Timeline und gibt einen Punkt.
   Falsch getippt oder gar nicht getippt: Karte verfällt.
 - Wer zuerst 10 Karten in der Timeline hat, gewinnt.
+
+Der Host ist Moderator **und** Mitspieler: er hat eine eigene Timeline und tippt mit. Die
+Lösung sieht er trotzdem erst beim Auflösen — der Rechner steht ja im Partyraum.
+
+## Solo
+
+„Solo spielen" auf der Startseite: gleiche Regeln auf einem Gerät, ohne Session-Code,
+ohne Mitspieler. Man steuert selbst und tippt selbst, 10 Karten sind das Ziel.
 
 ## Starten
 
@@ -38,7 +46,10 @@ python scripts/build_pool.py
 ```
 
 Das Skript sucht jede Karte bei Deezer, prüft, ob ein Preview existiert, und listet jede
-Jahr-Abweichung zur Kontrolle auf. Neue Karten also in `scripts/build_pool.py` in `CARDS`
+Jahr-Abweichung zur Kontrolle auf. Die Trefferauswahl nimmt zuerst die Toptracks des
+Interpreten und verwirft Instrumental-, Karaoke-, Live-, Remix- und Medley-Fassungen —
+die normale Suche liefert bei bekannten Titeln sonst genau die („Don't Start Now": 25
+Treffer, kein Original). Neue Karten also in `scripts/build_pool.py` in `CARDS`
 eintragen (Titel, Interpret, Jahr) und das Skript laufen lassen.
 
 ## Technik

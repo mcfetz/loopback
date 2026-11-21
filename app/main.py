@@ -92,20 +92,42 @@ async def ws_endpoint(sock: WebSocket) -> None:
                     host_id = secrets.token_urlsafe(8)
                     room = Room.create(pool_cards(), host_id=host_id,
                                        code=new_code(set(ROOMS)))
+                    host_name = str(msg.get("name") or "Host").strip()[:24] or "Host"
+                    room.add_player(host_id, host_name)     # Host raet mit
                     ROOMS[room.code] = room
                     CONNS[room.code] = []
                     code, pid, is_host = room.code, host_id, True
                     CONNS[code].append({"ws": sock, "pid": pid, "host": True})
                     await send_to(sock, {"type": "joined", "role": "host",
-                                         "code": room.code, "player_id": pid})
+                                         "code": room.code, "player_id": pid,
+                                         "name": host_name})
                     log.info("Raum %s angelegt (Pool %d Karten)", room.code, len(room.deck) + 1)
                     await send_state(room.code)
+
+                elif action == "solo":
+                    # Ein Geraet, eine Person: derselbe Client steuert und tippt, ohne Code.
+                    solo_pid = secrets.token_urlsafe(8)
+                    room = Room.create(pool_cards(), host_id=solo_pid, code=new_code(set(ROOMS)))
+                    room.solo = True
+                    name = str(msg.get("name") or "Solo").strip()[:24] or "Solo"
+                    room.add_player(solo_pid, name)
+                    room.start()
+                    ROOMS[room.code] = room
+                    CONNS[room.code] = []
+                    code, pid, is_host = room.code, solo_pid, True
+                    CONNS[code].append({"ws": sock, "pid": pid, "host": True})
+                    await send_to(sock, {"type": "joined", "role": "solo",
+                                         "code": code, "player_id": pid, "name": name})
+                    log.info("Solo-Runde %s gestartet", room.code)
+                    await send_state(code)
 
                 elif action == "join":
                     join_code = str(msg.get("code", "")).strip().upper()
                     room = ROOMS.get(join_code)
                     if room is None:
                         raise GameError("Session nicht gefunden")
+                    if room.solo:
+                        raise GameError("Das ist eine Solo-Runde")
                     existing = str(msg.get("player_id") or "")
                     if existing and existing == room.host_id:      # Host-Reconnect
                         code, pid, is_host = room.code, existing, True
