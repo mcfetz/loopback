@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Jahresringe</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>Jahresringe</h1>
+  <p class="sub">Musik raten, Jahre sortieren</p>
+</header>
+
+<main>
+  <!-- Start -->
+  <section id="view-start" class="view">
+    <div class="card">
+      <h2>Host</h2>
+      <p class="hint">Du spielst das Audio und steuerst die Runden. Handy an die Box, Bildschirm darf sichtbar sein.</p>
+      <button id="btn-create" class="primary big">Spiel erstellen</button>
+    </div>
+    <div class="card">
+      <h2>Mitspielen</h2>
+      <label>Session-Code <input id="join-code" maxlength="5" autocapitalize="characters" placeholder="ABCD2"></label>
+      <label>Dein Name <input id="join-name" maxlength="24" placeholder="Daniel"></label>
+      <button id="btn-join" class="big">Beitreten</button>
+    </div>
+    <p id="start-error" class="error"></p>
+  </section>
+
+  <!-- Host -->
+  <section id="view-host" class="view hidden">
+    <div class="codebox">
+      <div class="label">Session-Code</div>
+      <div id="host-code" class="code">-----</div>
+      <div id="host-url" class="url"></div>
+    </div>
+
+    <div class="row">
+      <button id="btn-start" class="primary">Spiel starten</button>
+      <button id="btn-next" class="primary hidden">Karte abspielen</button>
+      <button id="btn-reveal" class="hidden">Aufl&ouml;sen</button>
+      <button id="btn-skip" class="ghost hidden">Karte &uuml;berspringen</button>
+      <button id="btn-reset" class="ghost">Neustart</button>
+    </div>
+
+    <div id="host-audio-box" class="audio hidden">
+      <audio id="audio" preload="auto"></audio>
+      <div class="audiobar">
+        <button id="btn-play" class="primary">&#9654; Play</button>
+        <div class="progress"><div id="audio-progress"></div></div>
+        <span id="audio-clock">0,0 s</span>
+      </div>
+      <p class="hint" id="audio-hint"></p>
+    </div>
+
+    <div id="host-reveal" class="reveal hidden"></div>
+    <div id="host-results" class="results"></div>
+    <h3>Spieler</h3>
+    <ul id="host-players" class="players"></ul>
+    <h3>Gelegt</h3>
+    <ol id="host-log" class="log"></ol>
+  </section>
+
+  <!-- Spieler -->
+  <section id="view-player" class="view hidden">
+    <div class="scorebar">
+      <span id="player-name">—</span>
+      <span id="player-score" class="score">1 Karte</span>
+    </div>
+    <p id="player-status" class="status"></p>
+
+    <div id="timeline" class="timeline"></div>
+
+    <div id="player-reveal" class="reveal hidden"></div>
+    <div id="player-results" class="results"></div>
+    <h3>Punkte</h3>
+    <ul id="player-players" class="players"></ul>
+  </section>
+</main>
+
+<footer><button id="btn-leave" class="ghost small hidden">verlassen</button></footer>
+<script src="/static/app.js"></script>
+</body>
+</html>

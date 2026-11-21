@@ -1,0 +1,698 @@
+{
+  "version": 1,
+  "cards": [
+    {
+      "key": "elvis-presley-hound-dog",
+      "title": "Hound Dog",
+      "artist": "Elvis Presley",
+      "year": 1956,
+      "deezer_id": "17479889",
+      "deezer_release_year": "2001",
+      "preview_ok": true
+    },
+    {
+      "key": "chuck-berry-johnny-b-goode",
+      "title": "Johnny B. Goode",
+      "artist": "Chuck Berry",
+      "year": 1958,
+      "deezer_id": "2689636",
+      "deezer_release_year": "2008",
+      "preview_ok": true
+    },
+    {
+      "key": "ray-charles-hit-the-road-jack",
+      "title": "Hit the Road Jack",
+      "artist": "Ray Charles",
+      "year": 1961,
+      "deezer_id": "62882810",
+      "deezer_release_year": "2012",
+      "preview_ok": true
+    },
+    {
+      "key": "the-beatles-she-loves-you",
+      "title": "She Loves You (Mono / Remastered)",
+      "artist": "The Beatles",
+      "year": 1963,
+      "deezer_id": "116348596",
+      "deezer_release_year": "2015",
+      "preview_ok": true
+    },
+    {
+      "key": "the-kinks-you-really-got-me",
+      "title": "You Really Got Me",
+      "artist": "Kinks",
+      "year": 1964,
+      "deezer_id": "2319655705",
+      "deezer_release_year": "2023",
+      "preview_ok": true
+    },
+    {
+      "key": "the-rolling-stones-i-can-t-get-no-satisfaction",
+      "title": "(I Can't Get No) Satisfaction (Mono)",
+      "artist": "The Rolling Stones",
+      "year": 1965,
+      "deezer_id": "7677778",
+      "deezer_release_year": "2005",
+      "preview_ok": true
+    },
+    {
+      "key": "the-who-my-generation",
+      "title": "My Generation",
+      "artist": "The Who",
+      "year": 1965,
+      "deezer_id": "136341550",
+      "deezer_release_year": "1965",
+      "preview_ok": true
+    },
+    {
+      "key": "james-brown-i-got-you-i-feel-good",
+      "title": "I Got You (I Feel Good)",
+      "artist": "James Brown",
+      "year": 1965,
+      "deezer_id": "598055772",
+      "deezer_release_year": "2014",
+      "preview_ok": true
+    },
+    {
+      "key": "bob-dylan-like-a-rolling-stone",
+      "title": "Like a Rolling Stone",
+      "artist": "Bob Dylan",
+      "year": 1965,
+      "deezer_id": "14477354",
+      "deezer_release_year": "1965",
+      "preview_ok": true
+    },
+    {
+      "key": "jimi-hendrix-hey-joe",
+      "title": "Hey Joe (Live at The Woodstock Music & Art Fair, August 18, 1969)",
+      "artist": "Jimi Hendrix",
+      "year": 1966,
+      "deezer_id": "4952941",
+      "deezer_release_year": "2010",
+      "preview_ok": true
+    },
+    {
+      "key": "the-doors-light-my-fire",
+      "title": "Light My Fire",
+      "artist": "The Doors",
+      "year": 1967,
+      "deezer_id": "3614129",
+      "deezer_release_year": "1967",
+      "preview_ok": true
+    },
+    {
+      "key": "aretha-franklin-respect",
+      "title": "Respect",
+      "artist": "Aretha Franklin",
+      "year": 1967,
+      "deezer_id": "904732",
+      "deezer_release_year": "2018",
+      "preview_ok": true
+    },
+    {
+      "key": "simon-garfunkel-mrs-robinson",
+      "title": "Mrs. Robinson",
+      "artist": "Simon & Garfunkel",
+      "year": 1968,
+      "deezer_id": "16148946",
+      "deezer_release_year": "1997",
+      "preview_ok": true
+    },
+    {
+      "key": "creedence-clearwater-revival-fortunate-son",
+      "title": "Fortunate Son",
+      "artist": "Creedence Clearwater Revival",
+      "year": 1969,
+      "deezer_id": "883648",
+      "deezer_release_year": "2008",
+      "preview_ok": true
+    },
+    {
+      "key": "the-jackson-5-i-want-you-back",
+      "title": "I Want You Back",
+      "artist": "Jackson 5",
+      "year": 1969,
+      "deezer_id": "4188287",
+      "deezer_release_year": "2009",
+      "preview_ok": true
+    },
+    {
+      "key": "marvin-gaye-what-s-going-on",
+      "title": "What's Going On",
+      "artist": "Marvin Gaye",
+      "year": 1971,
+      "deezer_id": "1133408852",
+      "deezer_release_year": "1971",
+      "preview_ok": true
+    },
+    {
+      "key": "led-zeppelin-stairway-to-heaven",
+      "title": "Stairway to Heaven (Remaster)",
+      "artist": "Led Zeppelin",
+      "year": 1971,
+      "deezer_id": "111628786",
+      "deezer_release_year": "1971",
+      "preview_ok": true
+    },
+    {
+      "key": "stevie-wonder-superstition",
+      "title": "Superstition",
+      "artist": "Stevie Wonder",
+      "year": 1972,
+      "deezer_id": "596034702",
+      "deezer_release_year": "2007",
+      "preview_ok": true
+    },
+    {
+      "key": "bob-marley-no-woman-no-cry",
+      "title": "No Woman, No Cry (Live At The Lyceum, London/1975)",
+      "artist": "Bob Marley & The Wailers",
+      "year": 1974,
+      "deezer_id": "530300621",
+      "deezer_release_year": "2002",
+      "preview_ok": true
+    },
+    {
+      "key": "queen-bohemian-rhapsody",
+      "title": "Bohemian Rhapsody",
+      "artist": "Queen",
+      "year": 1975,
+      "deezer_id": "4091937401",
+      "deezer_release_year": "2005",
+      "preview_ok": true
+    },
+    {
+      "key": "abba-dancing-queen",
+      "title": "Dancing Queen",
+      "artist": "ABBA",
+      "year": 1976,
+      "deezer_id": "884025",
+      "deezer_release_year": "2005",
+      "preview_ok": true
+    },
+    {
+      "key": "eagles-hotel-california",
+      "title": "Hotel California (2013 Remaster)",
+      "artist": "Eagles",
+      "year": 1976,
+      "deezer_id": "426703682",
+      "deezer_release_year": "2017",
+      "preview_ok": true
+    },
+    {
+      "key": "fleetwood-mac-dreams",
+      "title": "Dreams (2004 Remaster)",
+      "artist": "Fleetwood Mac",
+      "year": 1977,
+      "deezer_id": "63480987",
+      "deezer_release_year": "1977",
+      "preview_ok": true
+    },
+    {
+      "key": "bee-gees-stayin-alive",
+      "title": "Stayin' Alive",
+      "artist": "Bee Gees",
+      "year": 1977,
+      "deezer_id": "406815322",
+      "deezer_release_year": "1977",
+      "preview_ok": true
+    },
+    {
+      "key": "david-bowie-heroes",
+      "title": "\"Heroes\" (2017 Remaster)",
+      "artist": "David Bowie",
+      "year": 1977,
+      "deezer_id": "461043312",
+      "deezer_release_year": "2017",
+      "preview_ok": true
+    },
+    {
+      "key": "donna-summer-i-feel-love",
+      "title": "I Feel Love",
+      "artist": "Donna Summer",
+      "year": 1977,
+      "deezer_id": "1560033",
+      "deezer_release_year": "1991",
+      "preview_ok": true
+    },
+    {
+      "key": "kraftwerk-das-model",
+      "title": "The Model (2009 Remaster)",
+      "artist": "Kraftwerk",
+      "year": 1978,
+      "deezer_id": "4262789",
+      "deezer_release_year": "2009",
+      "preview_ok": true
+    },
+    {
+      "key": "the-clash-london-calling",
+      "title": "London Calling (Remastered)",
+      "artist": "The Clash",
+      "year": 1979,
+      "deezer_id": "69924599",
+      "deezer_release_year": "2001",
+      "preview_ok": true
+    },
+    {
+      "key": "pink-floyd-another-brick-in-the-wall",
+      "title": "Another Brick in the Wall, Pt. 1",
+      "artist": "Pink Floyd",
+      "year": 1979,
+      "deezer_id": "116914090",
+      "deezer_release_year": "1979",
+      "preview_ok": true
+    },
+    {
+      "key": "journey-don-t-stop-believin",
+      "title": "Don't Stop Believin'",
+      "artist": "Journey",
+      "year": 1981,
+      "deezer_id": "625643",
+      "deezer_release_year": "2001",
+      "preview_ok": true
+    },
+    {
+      "key": "toto-africa",
+      "title": "Africa",
+      "artist": "Toto",
+      "year": 1982,
+      "deezer_id": "1079668",
+      "deezer_release_year": "1982",
+      "preview_ok": true
+    },
+    {
+      "key": "michael-jackson-billie-jean",
+      "title": "Billie Jean",
+      "artist": "Michael Jackson",
+      "year": 1983,
+      "deezer_id": "4603408",
+      "deezer_release_year": "2009",
+      "preview_ok": true
+    },
+    {
+      "key": "the-police-every-breath-you-take",
+      "title": "Every Breath You Take",
+      "artist": "The Police",
+      "year": 1983,
+      "deezer_id": "2525864",
+      "deezer_release_year": "2002",
+      "preview_ok": true
+    },
+    {
+      "key": "eurythmics-sweet-dreams-are-made-of-this",
+      "title": "Sweet Dreams (Are Made of This) (2005 Remaster)",
+      "artist": "Eurythmics",
+      "year": 1983,
+      "deezer_id": "561836",
+      "deezer_release_year": "2003",
+      "preview_ok": true
+    },
+    {
+      "key": "new-order-blue-monday",
+      "title": "Blue Monday (2016 Remaster)",
+      "artist": "New Order",
+      "year": 1983,
+      "deezer_id": "131744046",
+      "deezer_release_year": "2005",
+      "preview_ok": true
+    },
+    {
+      "key": "nena-99-luftballons",
+      "title": "99 Luftballons",
+      "artist": "Nena",
+      "year": 1983,
+      "deezer_id": "3786206112",
+      "deezer_release_year": "1984",
+      "preview_ok": true
+    },
+    {
+      "key": "peter-schilling-major-tom-v-llig-losgel-st",
+      "title": "Major Tom (Völlig losgelöst) (Single Version)",
+      "artist": "Peter Schilling",
+      "year": 1982,
+      "deezer_id": "1222024892",
+      "deezer_release_year": "1982",
+      "preview_ok": true
+    },
+    {
+      "key": "prince-purple-rain",
+      "title": "Purple Rain (2015 Paisley Park Remaster)",
+      "artist": "Prince",
+      "year": 1984,
+      "deezer_id": "374283061",
+      "deezer_release_year": "2017",
+      "preview_ok": true
+    },
+    {
+      "key": "alphaville-forever-young",
+      "title": "Forever Young",
+      "artist": "Alphaville",
+      "year": 1984,
+      "deezer_id": "698274",
+      "deezer_release_year": "1984",
+      "preview_ok": true
+    },
+    {
+      "key": "herbert-gr-nemeyer-m-nner",
+      "title": "Männer (Remastered 2016)",
+      "artist": "Herbert Grönemeyer",
+      "year": 1984,
+      "deezer_id": "570430352",
+      "deezer_release_year": "1984",
+      "preview_ok": true
+    },
+    {
+      "key": "a-ha-take-on-me",
+      "title": "Take on Me",
+      "artist": "a-ha",
+      "year": 1985,
+      "deezer_id": "664107",
+      "deezer_release_year": "1985",
+      "preview_ok": true
+    },
+    {
+      "key": "falco-rock-me-amadeus",
+      "title": "Rock Me Amadeus (Full Length Gold Mix)",
+      "artist": "Falco",
+      "year": 1985,
+      "deezer_id": "958977102",
+      "deezer_release_year": "2020",
+      "preview_ok": true
+    },
+    {
+      "key": "bon-jovi-livin-on-a-prayer",
+      "title": "Livin' On A Prayer",
+      "artist": "Bon Jovi",
+      "year": 1986,
+      "deezer_id": "538660022",
+      "deezer_release_year": "1998",
+      "preview_ok": true
+    },
+    {
+      "key": "guns-n-roses-sweet-child-o-mine",
+      "title": "Sweet Child O' Mine",
+      "artist": "Guns N' Roses",
+      "year": 1987,
+      "deezer_id": "518458172",
+      "deezer_release_year": "1987",
+      "preview_ok": true
+    },
+    {
+      "key": "rick-astley-never-gonna-give-you-up",
+      "title": "Never Gonna Give You Up",
+      "artist": "Rick Astley",
+      "year": 1987,
+      "deezer_id": "14408104",
+      "deezer_release_year": "2011",
+      "preview_ok": true
+    },
+    {
+      "key": "whitney-houston-i-wanna-dance-with-somebody",
+      "title": "I Wanna Dance with Somebody (Who Loves Me)",
+      "artist": "Whitney Houston",
+      "year": 1987,
+      "deezer_id": "75981528",
+      "deezer_release_year": "1987",
+      "preview_ok": true
+    },
+    {
+      "key": "madonna-like-a-prayer",
+      "title": "Like a Prayer",
+      "artist": "Madonna",
+      "year": 1989,
+      "deezer_id": "3824997381",
+      "deezer_release_year": "2009",
+      "preview_ok": true
+    },
+    {
+      "key": "depeche-mode-personal-jesus",
+      "title": "Personal Jesus",
+      "artist": "Depeche Mode",
+      "year": 1989,
+      "deezer_id": "68513563",
+      "deezer_release_year": "2006",
+      "preview_ok": true
+    },
+    {
+      "key": "nirvana-smells-like-teen-spirit",
+      "title": "Smells Like Teen Spirit",
+      "artist": "Nirvana",
+      "year": 1991,
+      "deezer_id": "13791930",
+      "deezer_release_year": "2011",
+      "preview_ok": true
+    },
+    {
+      "key": "red-hot-chili-peppers-under-the-bridge",
+      "title": "Under the Bridge",
+      "artist": "Red Hot Chili Peppers",
+      "year": 1991,
+      "deezer_id": "785176",
+      "deezer_release_year": "2003",
+      "preview_ok": true
+    },
+    {
+      "key": "metallica-enter-sandman",
+      "title": "Enter Sandman (Remastered 2021)",
+      "artist": "Metallica",
+      "year": 1991,
+      "deezer_id": "1483825212",
+      "deezer_release_year": "1991",
+      "preview_ok": true
+    },
+    {
+      "key": "radiohead-creep",
+      "title": "Creep",
+      "artist": "Radiohead",
+      "year": 1992,
+      "deezer_id": "138547415",
+      "deezer_release_year": "1993",
+      "preview_ok": true
+    },
+    {
+      "key": "die-rzte-schrei-nach-liebe",
+      "title": "Schrei nach Liebe",
+      "artist": "Die Ärzte",
+      "year": 1993,
+      "deezer_id": "1006163552",
+      "deezer_release_year": "2006",
+      "preview_ok": true
+    },
+    {
+      "key": "oasis-wonderwall",
+      "title": "Wonderwall",
+      "artist": "Oasis",
+      "year": 1995,
+      "deezer_id": "985985832",
+      "deezer_release_year": "2008",
+      "preview_ok": true
+    },
+    {
+      "key": "the-prodigy-firestarter",
+      "title": "Firestarter (Instrumental)",
+      "artist": "The Prodigy",
+      "year": 1996,
+      "deezer_id": "1095162692",
+      "deezer_release_year": "1996",
+      "preview_ok": true
+    },
+    {
+      "key": "blur-song-2",
+      "title": "Song 2",
+      "artist": "Blur",
+      "year": 1997,
+      "deezer_id": "3102130",
+      "deezer_release_year": "2000",
+      "preview_ok": true
+    },
+    {
+      "key": "rammstein-du-hast",
+      "title": "Du hast",
+      "artist": "Rammstein",
+      "year": 1997,
+      "deezer_id": "630595142",
+      "deezer_release_year": "1997",
+      "preview_ok": true
+    },
+    {
+      "key": "britney-spears-baby-one-more-time",
+      "title": "...Baby One More Time",
+      "artist": "Britney Spears",
+      "year": 1998,
+      "deezer_id": "540175",
+      "deezer_release_year": "1999",
+      "preview_ok": true
+    },
+    {
+      "key": "cher-believe",
+      "title": "Believe",
+      "artist": "Cher",
+      "year": 1998,
+      "deezer_id": "786717",
+      "deezer_release_year": "1998",
+      "preview_ok": true
+    },
+    {
+      "key": "eminem-lose-yourself",
+      "title": "Lose Yourself",
+      "artist": "Eminem",
+      "year": 2002,
+      "deezer_id": "1109731",
+      "deezer_release_year": "2005",
+      "preview_ok": true
+    },
+    {
+      "key": "johnny-cash-hurt",
+      "title": "Hurt",
+      "artist": "Johnny Cash",
+      "year": 2002,
+      "deezer_id": "128846783",
+      "deezer_release_year": "2002",
+      "preview_ok": true
+    },
+    {
+      "key": "outkast-hey-ya",
+      "title": "Hey Ya!",
+      "artist": "Outkast",
+      "year": 2003,
+      "deezer_id": "628266",
+      "deezer_release_year": "2002",
+      "preview_ok": true
+    },
+    {
+      "key": "amy-winehouse-rehab",
+      "title": "Rehab",
+      "artist": "Amy Winehouse",
+      "year": 2006,
+      "deezer_id": "2176852",
+      "deezer_release_year": "2006",
+      "preview_ok": true
+    },
+    {
+      "key": "rihanna-umbrella",
+      "title": "Umbrella",
+      "artist": "Rihanna",
+      "year": 2007,
+      "deezer_id": "925106",
+      "deezer_release_year": "2008",
+      "preview_ok": true
+    },
+    {
+      "key": "lady-gaga-bad-romance",
+      "title": "Bad Romance",
+      "artist": "Lady Gaga",
+      "year": 2009,
+      "deezer_id": "4601933",
+      "deezer_release_year": "2009",
+      "preview_ok": true
+    },
+    {
+      "key": "adele-rolling-in-the-deep",
+      "title": "Rolling in the Deep",
+      "artist": "Adele",
+      "year": 2010,
+      "deezer_id": "8086126",
+      "deezer_release_year": "2011",
+      "preview_ok": true
+    },
+    {
+      "key": "cro-easy",
+      "title": "Easy",
+      "artist": "CRO",
+      "year": 2012,
+      "deezer_id": "3786097162",
+      "deezer_release_year": "2012",
+      "preview_ok": true
+    },
+    {
+      "key": "marteria-kids",
+      "title": "Kids (2 Finger an den Kopf)",
+      "artist": "Marteria",
+      "year": 2013,
+      "deezer_id": "2344531095",
+      "deezer_release_year": "2014",
+      "preview_ok": true
+    },
+    {
+      "key": "deichkind-leider-geil",
+      "title": "Leider geil (Leider geil)",
+      "artist": "Deichkind",
+      "year": 2012,
+      "deezer_id": "1331569012",
+      "deezer_release_year": "2012",
+      "preview_ok": true
+    },
+    {
+      "key": "kraftklub-songs-f-r-liam",
+      "title": "Songs für Liam",
+      "artist": "Kraftklub",
+      "year": 2012,
+      "deezer_id": "15914088",
+      "deezer_release_year": "2012",
+      "preview_ok": true
+    },
+    {
+      "key": "daft-punk-get-lucky",
+      "title": "Get Lucky (feat. Pharrell Williams and Nile Rodgers)",
+      "artist": "Daft Punk",
+      "year": 2013,
+      "deezer_id": "67238735",
+      "deezer_release_year": "2013",
+      "preview_ok": true
+    },
+    {
+      "key": "mark-ronson-uptown-funk",
+      "title": "Uptown Funk (feat. Bruno Mars)",
+      "artist": "Mark Ronson",
+      "year": 2014,
+      "deezer_id": "92734438",
+      "deezer_release_year": "2015",
+      "preview_ok": true
+    },
+    {
+      "key": "ed-sheeran-shape-of-you",
+      "title": "Shape of You",
+      "artist": "Ed Sheeran",
+      "year": 2017,
+      "deezer_id": "139470659",
+      "deezer_release_year": "2017",
+      "preview_ok": true
+    },
+    {
+      "key": "billie-eilish-bad-guy",
+      "title": "bad guy",
+      "artist": "Billie Eilish",
+      "year": 2019,
+      "deezer_id": "655095912",
+      "deezer_release_year": "2019",
+      "preview_ok": true
+    },
+    {
+      "key": "the-weeknd-blinding-lights",
+      "title": "Blinding Lights",
+      "artist": "The Weeknd",
+      "year": 2019,
+      "deezer_id": "908604612",
+      "deezer_release_year": "2020",
+      "preview_ok": true
+    },
+    {
+      "key": "dua-lipa-don-t-start-now",
+      "title": "Don't Start Now (Zach Witness Remix / Malibu Mermaids Version)",
+      "artist": "Dua Lipa",
+      "year": 2019,
+      "deezer_id": "846483432",
+      "deezer_release_year": "2020",
+      "preview_ok": true
+    },
+    {
+      "key": "apache-207-roller",
+      "title": "Roller",
+      "artist": "Apache 207",
+      "year": 2019,
+      "deezer_id": "735495312",
+      "deezer_release_year": "2019",
+      "preview_ok": true
+    }
+  ]
+}

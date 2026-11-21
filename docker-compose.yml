@@ -1,0 +1,8 @@
+services:
+  jahresringe:
+    build: .
+    image: jahresringe:local
+    container_name: jahresringe
+    ports:
+      - "8123:8000"
+    restart: unless-stopped
