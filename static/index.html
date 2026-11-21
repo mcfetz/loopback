@@ -28,29 +28,23 @@
       <p id="import-status" class="hint"></p>
     </div>
     <div class="card">
-      <h2>Host</h2>
-      <p class="hint">Du spielst das Audio, steuerst die Runden und r&auml;tst selbst mit. Die L&ouml;sung siehst du erst beim Aufl&ouml;sen.</p>
-      <label>Dein Name <input id="host-name" maxlength="24" placeholder="Host" value="Host"></label>
+      <h2>Spielen</h2>
+      <p class="hint">Du spielst das Audio, steuerst die Runden und r&auml;tst selbst mit &mdash; die L&ouml;sung siehst du erst beim Aufl&ouml;sen. Solo l&auml;uft es ohne Mitspieler und ohne Code.</p>
+      <label>Dein Name <input id="host-name" maxlength="24" placeholder="Dein Name"></label>
       <label>Genres <span class="chipnote">nichts gewählt = alle</span></label>
       <div class="chips" data-chips></div>
       <label>Runden <span class="chipnote">danach ist Schluss</span></label>
       <div class="chips" data-rounds></div>
-      <button id="btn-create" class="primary big">Spiel erstellen</button>
+      <div class="row startrow">
+        <button id="btn-create" class="primary">Spiel erstellen</button>
+        <button id="btn-solo">Solo spielen</button>
+      </div>
     </div>
     <div class="card">
       <h2>Mitspielen</h2>
       <label>Session-Code <input id="join-code" maxlength="5" autocapitalize="characters" placeholder="ABCD2"></label>
       <label>Dein Name <input id="join-name" maxlength="24" placeholder="Daniel"></label>
       <button id="btn-join" class="big">Beitreten</button>
-    </div>
-    <div class="card">
-      <h2>Allein</h2>
-      <p class="hint">Single-Player: gleiche Regeln, keine Mitspieler, kein Code n&ouml;tig.</p>
-      <label>Genres <span class="chipnote">nichts gewählt = alle</span></label>
-      <div class="chips" data-chips></div>
-      <label>Runden <span class="chipnote">danach ist Schluss</span></label>
-      <div class="chips" data-rounds></div>
-      <button id="btn-solo" class="big">Solo spielen</button>
     </div>
     <div class="card">
       <h2>Highscores</h2>

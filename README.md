@@ -32,7 +32,8 @@ Lösung sieht er trotzdem erst beim Auflösen — der Rechner steht ja im Partyr
 
 ## Solo
 
-„Solo spielen" auf der Startseite: gleiche Regeln auf einem Gerät, ohne Session-Code,
+„Solo spielen" auf der Startseite (im Block **Spielen**, neben „Spiel erstellen"): dieselben
+Einstellungen (Name, Genres, Runden), gleiche Regeln auf einem Gerät, ohne Session-Code,
 ohne Mitspieler. Man steuert selbst und tippt selbst, 10 Karten sind das Ziel.
 
 ## Starten

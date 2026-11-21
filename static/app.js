@@ -366,10 +366,14 @@ $("#btn-import").onclick = async () => {
   }
 };
 
+function playerName(fallback) {
+  return ($("#host-name").value || "").trim().slice(0, 24) || fallback;
+}
+
 $("#btn-create").onclick = () => {
   showError("");
   me.role = "host";
-  me.name = ($("#host-name").value || "Host").trim().slice(0, 24);
+  me.name = playerName("Host");
   send({ action: "create", name: me.name, genres: chosenGenres(), playlist: pickedSource,
          rounds: pickedRounds });
 };
@@ -387,8 +391,8 @@ $("#btn-join").onclick = () => {
 $("#btn-solo").onclick = () => {
   showError("");
   me.role = "solo";
-  send({ action: "solo", name: "Solo", genres: chosenGenres(), playlist: pickedSource,
-         rounds: pickedRounds });
+  send({ action: "solo", name: playerName("Solo"), genres: chosenGenres(),
+         playlist: pickedSource, rounds: pickedRounds });
 };
 
 $("#btn-leave").onclick = () => {
@@ -403,8 +407,9 @@ for (const [id, action] of [["#btn-start", "start"], ["#btn-next", "next"],
 
 $("#solo-next").onclick = () => send({ action: "next" });
 $("#solo-skip").onclick = () => send({ action: "skip" });
-$("#solo-restart").onclick = () => send({ action: "solo", name: "Solo", genres: chosenGenres(),
-                                           playlist: pickedSource, rounds: pickedRounds });
+$("#solo-restart").onclick = () => send({ action: "solo", name: me.name || "Solo",
+                                           genres: chosenGenres(), playlist: pickedSource,
+                                           rounds: pickedRounds });
 
 // ---------------------------------------------------------------- Audio
 
