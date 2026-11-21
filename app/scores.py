@@ -13,7 +13,7 @@ import threading
 import time
 from pathlib import Path
 
-log = logging.getLogger("song-timeline")
+log = logging.getLogger("loopback")
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 SCORES_FILE = DATA_DIR / "highscores.json"

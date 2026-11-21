@@ -18,7 +18,7 @@ from app import catalog, deezer, importer, scores
 from app.game import (Card, DEFAULT_ROUNDS, GameError, Player, Room, ROUND_OPTIONS, filter_pool,
                       new_code)
 
-log = logging.getLogger("song-timeline")
+log = logging.getLogger("loopback")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 BASE_DIR = Path(__file__).resolve().parent.parent

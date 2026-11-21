@@ -15,7 +15,7 @@ import httpx
 
 DEEZER = "https://api.deezer.com"
 POOL_FILE = Path(__file__).resolve().parent.parent / "data" / "pool.json"
-UA = "song-timeline/0.1 (private party game; daniel@familie-heise.de)"
+UA = "loopback/0.1 (private party game; daniel@familie-heise.de)"
 
 
 def load_pool() -> list[dict]:
