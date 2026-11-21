@@ -150,6 +150,10 @@ function audioBox(name) {
       box.audio.currentTime = 0;
       box.audio.play().catch(() => {});
     };
+    const sync = () => box.classList.toggle("is-playing", !box.audio.paused);
+    box.audio.onplay = sync;
+    box.audio.onpause = sync;
+    box.audio.onended = sync;
     box.audio.ontimeupdate = () => {
       const dur = box.audio.duration || 30;
       box.bar.style.width = `${Math.min(100, (box.audio.currentTime / dur) * 100)}%`;
@@ -194,6 +198,8 @@ function renderHost() {
   if (mine) {
     $("#host-mine").textContent = `${mine.score} Karte${mine.score === 1 ? "" : "n"}`;
     renderTimeline($("#timeline-host"), mine);
+    bumpScore($("#host-mine"), mine.score);
+    celebrate(mine, $("#timeline-host"), $("#host-reveal"));
     if (playing) {
       setStatus(mine.pending === null ? "Du bist dran: tippe unten in deiner Timeline."
         : "Getippt — kannst noch ändern, bis du auflöst.");
@@ -238,6 +244,8 @@ function renderPlayer() {
 
   renderReveal($("#player-reveal"));
   renderTimeline($("#timeline"), mine);
+  bumpScore($("#player-score"), mine.score);
+  celebrate(mine, $("#timeline"), $("#player-reveal"));
   renderResults($("#player-results"));
   renderPlayers($("#player-players"));
 }
@@ -269,6 +277,8 @@ function renderSolo() {
 
   renderReveal($("#solo-revealbox"));
   renderTimeline($("#timeline-solo"), mine);
+  bumpScore($("#solo-score"), mine.score);
+  celebrate(mine, $("#timeline-solo"), $("#solo-revealbox"));
 
   const log = $("#solo-log");
   log.innerHTML = "";
@@ -284,6 +294,116 @@ function renderSolo() {
 }
 
 // ---------------------------------------------------------------- Bausteine
+
+// ---------------------------------------------------------------- Effekte
+
+const FX = (() => {
+  const canvas = document.getElementById("fx");
+  const ctx = canvas ? canvas.getContext("2d") : null;
+  const COLORS = ["#ff2e93", "#ff8a3d", "#ffcf2e", "#b6ff3d", "#00e0ff", "#6b2bff", "#ffffff"];
+  let particles = [];
+  let raf = null;
+
+  function resize() {
+    if (!canvas) return;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  window.addEventListener("resize", resize);
+  resize();
+
+  function spawn(count, origin, spread = 1) {
+    if (!ctx) return;
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = (3 + Math.random() * 9) * spread;
+      particles.push({
+        x: origin.x, y: origin.y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 4,
+        size: 5 + Math.random() * 7,
+        rot: Math.random() * Math.PI,
+        vr: (Math.random() - 0.5) * 0.4,
+        color: COLORS[(Math.random() * COLORS.length) | 0],
+        life: 1,
+      });
+    }
+    if (!raf) raf = requestAnimationFrame(loop);
+  }
+
+  function loop() {
+    raf = requestAnimationFrame(loop);
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    particles = particles.filter((p) => p.life > 0);
+    for (const p of particles) {
+      p.vy += 0.28;              // Schwerkraft
+      p.vx *= 0.995;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      p.life -= 0.011;
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, Math.min(1, p.life));
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 3, p.size, p.size * 0.66);
+      ctx.restore();
+    }
+    if (!particles.length) {
+      cancelAnimationFrame(raf);
+      raf = null;
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    }
+  }
+
+  function burst() {
+    spawn(130, { x: window.innerWidth / 2, y: window.innerHeight * 0.42 });
+  }
+
+  function rain() {
+    let shots = 0;
+    const timer = setInterval(() => {
+      spawn(22, { x: Math.random() * window.innerWidth, y: -20 }, 0.7);
+      if (++shots > 14) clearInterval(timer);
+    }, 220);
+  }
+
+  return { burst, rain };
+})();
+
+const fxDone = { key: "" };
+
+function celebrate(mine, timelineEl, revealEl) {
+  if (!mine || !state) return;
+  const key = `${state.round}:${state.state}`;
+  if (fxDone.key === key) return;
+  fxDone.key = key;
+
+  if (state.state === "revealed" && mine.correct_last === true) {
+    FX.burst();
+  } else if (state.state === "revealed" && mine.correct_last === false && timelineEl) {
+    timelineEl.classList.remove("shake");
+    void timelineEl.offsetWidth;
+    timelineEl.classList.add("shake");
+    setTimeout(() => timelineEl.classList.remove("shake"), 700);
+  } else if (state.state === "finished" && state.winner === mine.name) {
+    FX.rain();
+  }
+}
+
+const scoreSeen = new Map();
+function bumpScore(el, value) {
+  if (!el) return;
+  if (scoreSeen.get(el) !== undefined && scoreSeen.get(el) !== value) {
+    el.classList.remove("bump");
+    void el.offsetWidth;
+    el.classList.add("bump");
+  }
+  scoreSeen.set(el, value);
+}
 
 function renderReveal(box) {
   const cur = state.current;
@@ -329,6 +449,7 @@ function slotLabel(cards, i) {
 function renderResults(box) {
   if (!box) return;
   box.innerHTML = "";
+  if (state.winner) box.appendChild(el("div", "winner-banner", `Gewonnen: ${state.winner}`));
   if (state.state !== "revealed" && state.state !== "finished") return;
   for (const r of state.results) {
     const row = el("div", "resultrow " + (r.correct ? "ok" : "bad"));
